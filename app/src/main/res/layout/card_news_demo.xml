@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/ll_farmer"
+        android:layout_height="wrap_content"
+        android:layout_margin="1sp"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
+            android:layout_marginTop="35sp"
+            android:layout_width="match_parent"
+            android:text="NOTICIA" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_width="match_parent"
+            android:text="Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500," />
+
+    </LinearLayout>
+
+    <View
+        android:background="#BABABA"
+        android:layout_below="@+id/ll_farmer"
+        android:layout_height="1sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:layout_width="match_parent" />
+
+</RelativeLayout>
+
+

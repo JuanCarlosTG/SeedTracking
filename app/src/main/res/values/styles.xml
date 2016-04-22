@@ -1,0 +1,112 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar"/>
+
+    <style name="et_farmer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginLeft">40sp</item>
+        <item name="android:layout_marginRight">40sp</item>
+        <item name="android:textColorHint">@color/colorGreen</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:drawableBottom">@drawable/line_gray</item>
+        <item name="android:padding">5sp</item>
+        <item name="android:drawablePadding">5sp</item>
+        <item name="android:layout_marginTop">20sp</item>
+    </style>
+
+    <style name="et_profile">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:editable">false</item>
+        <item name="android:layout_marginLeft">40sp</item>
+        <item name="android:layout_marginRight">40sp</item>
+    </style>
+
+    <style name="et_login">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textColorHint">@color/colorGray</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:drawableBottom">@drawable/line_gray</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">5sp</item>
+        <item name="android:drawablePadding">5sp</item>
+        <item name="android:layout_marginTop">15sp</item>
+    </style>
+
+    <style name="tv_farmer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:layout_marginLeft">60sp</item>
+        <item name="android:layout_marginRight">40sp</item>
+    </style>
+
+    <style name="bt_tab_bottom" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/tab_text_1</item>
+        <item name="android:textColor">@drawable/tab_text_color</item>
+        <item name="android:button">@null</item>
+        <item name="android:checked">false</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:paddingTop">3sp</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:drawablePadding">2sp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+
+    </style>
+
+    <style name="text_alignment_center">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="iv_farmer_actions" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20sp</item>
+    </style>
+
+    <style name="bt_farmer_actions" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20sp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:drawablePadding">40sp</item>
+    </style>
+
+
+    <style name="dialog_progress" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="custom_scroll">
+        <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
+        <item name="android:scrollbarStyle">outsideOverlay</item>
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:fadeScrollbars">false</item>
+        <item name="android:scrollbarThumbVertical">@drawable/profile_pleca_1</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

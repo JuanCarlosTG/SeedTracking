@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">SeedTracking</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="txt_user">NOMBRE</string>
+    <string name="txt_pass">CONTRASEÑA</string>
+    <string name="txt_example_mail">ejemplo@mail.com</string>
+
+    <string name="txt_farmer_1">Nombre</string>
+    <string name="txt_farmer_2">Apellido paterno</string>
+    <string name="txt_farmer_3">Apellido materno</string>
+    <string name="txt_farmer_4">Correo electrónico</string>
+    <string name="txt_farmer_4_a">Confirmar correo electrónico</string>
+    <string name="txt_farmer_5">Teléfono</string>
+    <string name="txt_farmer_6">Celular</string>
+    <string name="txt_farmer_7">Razón Social</string>
+    <string name="txt_farmer_8">RFC</string>
+    <string name="txt_farmer_9">Credencial de elector</string>
+    <string name="txt_farmer_10">Dirección (calle, núm y colonia)</string>
+    <string name="txt_farmer_11">CP</string>
+    <string name="txt_farmer_12">ESTADO</string>
+    <string name="txt_farmer_13">MUNICIPIO</string>
+    <!--
+    <string name="txt_farmer_14">REGIÖN</string>
+    <string name="txt_farmer_15">REPRESENTANTE</string>
+    -->
+
+    <string-array name="str_array_farmer_state">
+        <item>Estado 1</item>
+        <item>Estado 2</item>
+        <item>Estado 3</item>
+    </string-array>
+
+    <string-array name="str_array_farmer_municipality">
+        <item>Municipio 1</item>
+        <item>Municipio 2</item>
+        <item>Municipio 3</item>
+    </string-array>
+
+    <string-array name="str_array_farmer_region">
+        <item>Región 1</item>
+        <item>Región 2</item>
+        <item>Región 3</item>
+    </string-array>
+
+    <string-array name="str_array_farmer_representative">
+        <item>Representante 1</item>
+        <item>Representante 2</item>
+        <item>Representante 3</item>
+    </string-array>
+
+    <string name="bt_tab_bottom_1">Login</string>
+    <string name="bt_tab_bottom_2">Agricultores</string>
+    <string name="bt_tab_bottom_3">Buscar Agricultor</string>
+    <string name="bt_tab_bottom_4">Ventas</string>
+    <string name="bt_tab_bottom_5">Licencias</string>
+    <string name="bt_tab_bottom_6">Predio</string>
+    <string name="bt_tab_bottom_7">Perfil</string>
+    <string name="bt_tab_bottom_8">Contacto</string>
+    <string name="bt_tab_bottom_9">Noticias</string>
+    <string name="btn_logout">Salir</string>
+
+    <string name="btn_enter">ENVIAR</string>
+    <string name="btn_forgot_pass">¿Olvidaste tu contraseña?</string>
+    <string name="title_activity_example">ExampleActivity</string>
+    <string name="title_activity_add_farmer">AddFarmer</string>
+
+
+    <string name="btn_start">INICIAR</string>
+    <string name="btn_send">ENVIAR</string>
+    <string name="btn_select_photo">Seleccionar foto</string>
+
+    <string name="txt_title_add_farmer">Agregar Agricultor</string>
+    <string name="txt_title_sales">Venta</string>
+    <string name="title_activity_sales">Sales</string>
+    <string name="title_activity_news">NOTICIAS</string>
+
+    <string name="error_connectivity">No se encontró señal de internet.</string>
+    <string name="desc"></string>
+
+    <string name="txt_error">Error</string>
+
+    <string name="bt_close">Cerrar</string>
+    <string name="bt_add_farmer">Guardar</string>
+    <string name="bt_buys">COMPRAS</string>
+    <string name="bt_datas">DATOS</string>
+    <string name="bt_assign">ASIGNADAS</string>
+    <string name="bt_properties">PREDIOS</string>
+
+    <string name="txt_success_farmer">Registro exitoso</string>
+
+
+    <string name="txt_error_name">Debes introducir el campo nombre</string>
+    <string name="txt_error_last_name_a">Debes introducir el campo apellido paterno</string>
+    <string name="txt_error_last_name_b">Debes introducir el campo apellido materno</string>
+    <string name="txt_error_mail">Debes introducir el campo correo electrónico</string>
+    <string name="txt_error_confirm_mail">Debes confirmar el correo electrónico</string>
+    <string name="txt_error_incorrect_mail">Los correos electrónicos no coinciden</string>
+    <string name="txt_error_phone">Debes introducir el campo teléfono</string>
+    <string name="txt_error_cell">Debes introducir el campo celular</string>
+    <string name="txt_error_company">Debes introducir el campo razón social</string>
+    <string name="txt_error_rfc">Debes introducir el campo RFC</string>
+    <string name="txt_error_id">Debes introducir el campo id</string>
+    <string name="txt_error_address">Debes introducir el campo dirección</string>
+    <string name="txt_error_zip">Debes introducir el campo código postal</string>
+    <string name="txt_error_state">Debes introducir el campo estado</string>
+    <string name="txt_error_region">Debes introducir el campo municipio</string>
+    <string name="txt_error_photo">Debes tomar una foto primero</string>
+
+
+    <string name="txt_sending">Enviando</string>
+    <string name="title_activity_login">INGRESAR</string>
+    <string name="title_activity_recover">RECUPERAR</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+</resources>

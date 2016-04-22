@@ -1,0 +1,156 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_1" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_name"/>
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_2" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_last_name_a"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_3"/>
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_last_name_b"/>
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_4" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_mail"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_5" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_phone"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_6" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_cell"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_7" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_company"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_8" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_rfc"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_9" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_id"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_10"/>
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_address"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_12"/>
+
+            <Spinner
+                android:id="@+id/state_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_13"/>
+
+            <Spinner
+                android:id="@+id/municipality_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"/>
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_11" />
+
+            <EditText style="@style/et_profile"
+                android:id="@+id/txt_zip"/>
+
+
+            <!--TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_14" /-->
+
+            <Spinner
+                android:id="@+id/region_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"/>
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer_13" />
+
+            <Spinner
+                android:id="@+id/representative_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp" />
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>
+
+

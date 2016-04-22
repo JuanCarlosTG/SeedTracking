@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        android:scrollbars="none"
+        android:layout_below="@+id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150sp"
+                    android:id="@+id/iv_farmer"
+                    android:background="@drawable/profile_photo"/>
+
+                <Button
+                    android:layout_width="44sp"
+                    android:layout_height="44sp"
+                    android:layout_marginTop="125sp"
+                    android:background="@drawable/profile_edge"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_name"
+                android:hint="@string/txt_farmer_1"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_last_name_a"
+                android:hint="@string/txt_farmer_2"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_last_name_b"
+                android:hint="@string/txt_farmer_3"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_e_mail"
+                android:inputType="textEmailAddress"
+                android:hint="@string/txt_farmer_4"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_confirm_e_mail"
+                android:inputType="textEmailAddress"
+                android:hint="@string/txt_farmer_4_a"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_phone"
+                android:inputType="phone"
+                android:hint="@string/txt_farmer_5"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_cell"
+                android:inputType="phone"
+                android:hint="@string/txt_farmer_6"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_company"
+                android:hint="@string/txt_farmer_7"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_rfc"
+                android:maxLength="13"
+                android:hint="@string/txt_farmer_8"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_id"
+                android:hint="@string/txt_farmer_9"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_address"
+                android:hint="@string/txt_farmer_10"/>
+
+            <Spinner
+                android:id="@+id/state_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"
+                android:hint="@string/txt_farmer_12"/>
+
+            <Spinner
+                android:id="@+id/municipality_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"
+                android:hint="@string/txt_farmer_13"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_zip"
+                android:hint="@string/txt_farmer_11"
+                android:inputType="number"/>
+
+            <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"
+                android:layout_marginTop="20sp"
+                android:layout_marginBottom="20sp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="110sp"
+                    android:layout_height="110sp"
+                    android:background="@drawable/register_photo"
+                    android:id="@+id/add_iv_farmer"
+                    android:layout_centerVertical="true"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/add_iv_farmer"
+                    android:layout_toEndOf="@+id/add_iv_farmer"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginStart="20sp"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/register_btn_photo"
+                        android:text="@string/btn_send"
+                        android:textSize="10sp"
+                        android:padding="2sp"
+                        android:onClick="saveFarmer"
+                        android:id="@+id/btn_add_farmer"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/register_btn_photo"
+                        android:textSize="10sp"
+                        android:paddingLeft="10sp"
+                        android:paddingRight="10sp"
+                        android:layout_marginTop="10sp"
+                        android:text="@string/btn_select_photo"
+                        android:onClick="clickCamera"
+                        android:id="@+id/btn_select_photo" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

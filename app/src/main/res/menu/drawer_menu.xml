@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/news"
+            android:checked="true"
+            android:title="Noticias"/>
+
+        <item
+            android:id="@+id/farmers"
+            android:checked="false"
+            android:title="Agricultores"/>
+
+        <item
+            android:id="@+id/profile"
+            android:checked="false"
+            android:title="Perfil"/>
+
+        <!--item
+            android:id="@+id/bitacoras"
+            android:checked="false"
+            android:title="Bitácoras" />
+
+        <item
+            android:id="@+id/etapas"
+            android:checked="false"
+            android:title="Etapas" /-->
+
+        <item android:title="Configuración">
+            <menu>
+                <item
+                    android:id="@+id/logout"
+                    android:checked="false"
+                    android:title="Logout" />
+            </menu>
+        </item>
+
+
+    </group>
+
+</menu>

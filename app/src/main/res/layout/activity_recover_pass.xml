@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_with_back" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/txt_recover_mail"
+            style="@style/et_login"
+            android:layout_margin="20sp"
+            android:hint="@string/txt_example_mail" />
+
+        <Button
+            android:id="@+id/btn_add_farmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15sp"
+            android:background="@drawable/button_login"
+            android:onClick="recoverPass"
+            android:text="@string/btn_send"
+            android:textColor="@color/colorWhite"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

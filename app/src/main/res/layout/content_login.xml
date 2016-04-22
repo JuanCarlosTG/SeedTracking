@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.kreativeco.sysbioscience.login.LoginActivity"
+    tools:showIn="@layout/activity_login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight=".5"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/tv_user"
+            style="@style/et_farmer"
+            android:hint="@string/txt_user" />
+
+        <EditText
+            android:id="@+id/tv_pass"
+            style="@style/et_farmer"
+            android:layout_marginTop="20sp"
+            android:hint="@string/txt_pass" />
+
+        <Button
+            android:id="@+id/btn_add_farmer"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20sp"
+            android:background="@drawable/back_button"
+            android:onClick="runHome"
+            android:text="@string/btn_send"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btn_forgot_pass"
+            android:layout_width="220sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20sp"
+            android:background="@android:color/transparent"
+            android:onClick="runHome"
+            android:text="@string/btn_forgot_pass"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight=".5">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/iv_news"
+            android:background="@drawable/ic_assigned"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/blur_login" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Título Noticia"
+            android:id="@+id/tv_news"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="20sp"
+            android:textSize="30sp"
+            android:textColor="@color/colorWhite"
+            android:layout_above="@+id/ll_news"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/blue_blur"
+            android:orientation="vertical"
+            android:id="@+id/ll_news"
+            android:alpha=".7">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_sub_title"
+                android:layout_margin="10sp"
+                android:textColor="@color/colorWhite"
+                android:text="Introducción"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_date"
+                android:textColor="@color/colorWhite"
+                android:layout_margin="10sp"
+                android:text="FECHA"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

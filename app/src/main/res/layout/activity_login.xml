@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_clean"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight=".4"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/tv_user"
+                style="@style/et_login"
+                android:hint="@string/txt_user" />
+
+            <EditText
+                android:id="@+id/tv_pass"
+                style="@style/et_login"
+                android:inputType="textPassword"
+                android:layout_marginTop="20sp"
+                android:hint="@string/txt_pass" />
+
+            <Button
+                android:id="@+id/btn_add_farmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15sp"
+                android:background="@drawable/button_login"
+                android:onClick="runHome"
+                android:text="@string/btn_start"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"/>
+
+            <Button
+                android:id="@+id/btn_forgot_pass"
+                android:layout_width="220sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15sp"
+                android:background="@android:color/transparent"
+                android:onClick="recoverPass"
+                android:text="@string/btn_forgot_pass"
+                android:textColor="@color/colorGray"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight=".6">
+
+            <ImageView
+                android:id="@+id/image_news"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/blur_login" />
+
+            <TextView
+                android:id="@+id/txt_title_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/ll_news"
+                android:layout_marginBottom="20sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:text="Título Noticia"
+                android:textColor="@color/colorWhite"
+                android:textSize="30sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_news"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:alpha=".7"
+                android:background="@drawable/blue_blur"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:text="Introducción"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/txt_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10sp"
+                    android:text="FECHA"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

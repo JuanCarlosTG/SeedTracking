@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    tools:showIn="@layout/activity_add_buy"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="Factura/Contrato"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_name"/>
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="Variedad"/>
+
+            <Spinner
+                android:id="@+id/state_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp" />
+
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="Cantidad (de 100 en 100 gramos)" />
+
+            <Spinner
+                android:id="@+id/municipality_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp" />
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="Estado"/>
+
+            <Spinner
+                android:id="@+id/state_spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp" />
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="Municipio"/>
+
+            <Spinner
+                android:id="@+id/state_spinner3"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp" />
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="Tipo (Compra/Donación)"/>
+
+            <Spinner
+                android:id="@+id/state_spinner4"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp" />
+
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>+
+
+
+
+    <!--android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_add" /-->
+
+
+
+</RelativeLayout>

@@ -1,0 +1,56 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/transparent">
+
+    <include layout="@layout/header"
+        android:id="@+id/header"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_tab_header"
+        android:layout_below="@+id/header"
+        android:orientation="horizontal"
+        android:background="@color/colorWhite">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/rg_tab">
+
+            <RadioButton
+                style="@style/bt_tab_bottom"
+                android:drawableTop="@drawable/ic_data"
+                android:text="@string/bt_buys"/>
+
+            <RadioButton style="@style/bt_tab_bottom"
+                android:drawableTop="@drawable/ic_data"
+                android:text="@string/bt_datas"/>
+
+            <RadioButton
+                style="@style/bt_tab_bottom"
+                android:drawableTop="@drawable/ic_assigned"
+                android:text="@string/bt_assign"/>
+
+            <RadioButton
+                style="@style/bt_tab_bottom"
+                android:drawableTop="@drawable/ic_properties"
+                android:text="@string/bt_properties"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_below="@+id/ll_tab_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:background="#000000"/>
+
+</RelativeLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                style="@style/bt_farmer_actions"
+                android:text="@string/bt_buys"
+                android:id="@+id/btn_buy"
+                android:drawableLeft="@drawable/dot"
+                android:drawableStart="@drawable/dot"
+                android:drawablePadding="40sp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50sp"
+                android:layout_marginStart="50sp"
+                android:background="@drawable/arrow"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="200sp"
+            android:layout_height="1sp"
+            android:background="@color/colorGreen"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                style="@style/bt_farmer_actions"
+                android:text="@string/bt_datas"
+                android:id="@+id/btn_data"
+                android:drawableLeft="@drawable/dot"
+                android:drawableStart="@drawable/dot"
+                android:drawablePadding="40sp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70sp"
+                android:layout_marginStart="70sp"
+                android:background="@drawable/arrow"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="200sp"
+            android:layout_height="1sp"
+            android:background="@color/colorGreen"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                style="@style/bt_farmer_actions"
+                android:text="@string/bt_assign"
+                android:id="@+id/btn_licence"
+                android:drawableLeft="@drawable/dot"
+                android:drawableStart="@drawable/dot"
+                android:drawablePadding="40sp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35sp"
+                android:layout_marginStart="35sp"
+                android:background="@drawable/arrow"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="200sp"
+            android:layout_height="1sp"
+            android:background="@color/colorGreen"
+            android:layout_gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                style="@style/bt_farmer_actions"
+                android:text="@string/bt_properties"
+                android:id="@+id/btn_properties"
+                android:drawableLeft="@drawable/dot"
+                android:drawableStart="@drawable/dot"
+                android:drawablePadding="40sp"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20sp"
+                android:layout_marginStart="20sp"
+                android:background="@drawable/arrow"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:id="@+id/btn_close"
+        android:background="@drawable/close_button_a"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/linearLayout"
+        android:layout_toEndOf="@+id/linearLayout" />
+
+</RelativeLayout>
