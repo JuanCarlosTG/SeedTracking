@@ -74,7 +74,7 @@
                     android:layout_width="30sp"
                     android:layout_height="30sp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_more"
+                    android:background="@drawable/bt_more"
                     android:gravity="center"
                     android:id="@+id/btn_farmer_actions"/>
 
@@ -85,7 +85,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
-            android:background="#BABABA"
+            android:background="@color/colorGreen"
             android:layout_below="@+id/ll_farmer"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"/>

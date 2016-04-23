@@ -62,8 +62,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/iv_news"
-            android:background="@drawable/ic_assigned"/>
+            android:id="@+id/iv_news"/>
 
         <ImageView
             android:layout_width="match_parent"

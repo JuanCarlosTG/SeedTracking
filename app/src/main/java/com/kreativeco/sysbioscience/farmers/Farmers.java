@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import com.kreativeco.sysbioscience.FarmerElementAdapter;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
@@ -52,9 +51,9 @@ public class Farmers extends Fragment implements WebBridge.WebBridgeListener{
         });
 
         HashMap<String, Object> params = new HashMap<>();
-        params.put("idUsuarioSubdistribuidor", User.get("IdTipoUsuario", getActivity()));
+        params.put("token", User.getToken(getActivity()));
         params.put("metodo", "consultarPorSubdistribuidor");
-        WebBridge.send("Agricultor.ashx", params, getActivity(), this);
+        WebBridge.send("Agricultor.ashx?List", params, getActivity(), this);
 
         return v;
 

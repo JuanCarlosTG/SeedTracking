@@ -6,13 +6,18 @@
     <string name="txt_pass">CONTRASEÑA</string>
     <string name="txt_example_mail">ejemplo@mail.com</string>
 
+    <string name="txt_farmer">AGRICULTOR</string>
+    <string name="txt_contact">CONTACTO</string>
+    <string name="txt_location">UNICACIÓN</string>
+    <string name="txt_others">OTROS</string>
+
     <string name="txt_farmer_1">Nombre</string>
     <string name="txt_farmer_2">Apellido paterno</string>
     <string name="txt_farmer_3">Apellido materno</string>
     <string name="txt_farmer_4">Correo electrónico</string>
     <string name="txt_farmer_4_a">Confirmar correo electrónico</string>
-    <string name="txt_farmer_5">Teléfono</string>
-    <string name="txt_farmer_6">Celular</string>
+    <string name="txt_farmer_5">Celular</string>
+    <string name="txt_farmer_6">Teléfono ó celular</string>
     <string name="txt_farmer_7">Razón Social</string>
     <string name="txt_farmer_8">RFC</string>
     <string name="txt_farmer_9">Credencial de elector</string>
@@ -69,6 +74,11 @@
     <string name="btn_start">INICIAR</string>
     <string name="btn_send">ENVIAR</string>
     <string name="btn_select_photo">Seleccionar foto</string>
+
+    <string name="txt_photo">Fotografía</string>
+    <string name="txt_contract">Contrato</string>
+    <string name="txt_alerts">¿Enviar alertas al agricultos?</string>
+    <string name="txt_terms">Acepto términos y condiciones</string>
 
     <string name="txt_title_add_farmer">Agregar Agricultor</string>
     <string name="txt_title_sales">Venta</string>

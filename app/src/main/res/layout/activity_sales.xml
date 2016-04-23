@@ -24,21 +24,21 @@
 
             <RadioButton
                 style="@style/bt_tab_bottom"
-                android:drawableTop="@drawable/ic_data"
+                android:drawableTop="@drawable/option1"
                 android:text="@string/bt_buys"/>
 
             <RadioButton style="@style/bt_tab_bottom"
-                android:drawableTop="@drawable/ic_data"
+                android:drawableTop="@drawable/option2"
                 android:text="@string/bt_datas"/>
 
             <RadioButton
                 style="@style/bt_tab_bottom"
-                android:drawableTop="@drawable/ic_assigned"
+                android:drawableTop="@drawable/option3"
                 android:text="@string/bt_assign"/>
 
             <RadioButton
                 style="@style/bt_tab_bottom"
-                android:drawableTop="@drawable/ic_properties"
+                android:drawableTop="@drawable/option4"
                 android:text="@string/bt_properties"/>
 
         </RadioGroup>

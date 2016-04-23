@@ -38,7 +38,7 @@ import java.util.HashMap;
 
 public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeListener {
 
-    private EditText etName, etLastNameA, etLastNameB, etEmail, etConfirmEmail, etPhone;
+    private EditText etName, etLastNameA, etLastNameB, etEmail;
     private EditText etCell, etCompany, etRFC, etID, etAddress, etZip;
     private ImageView addIvFarmer;
     private ImageButton iBtnBackArrow;
@@ -67,8 +67,6 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         etLastNameA = (EditText) findViewById(R.id.et_last_name_a);
         etLastNameB = (EditText) findViewById(R.id.et_last_name_b);
         etEmail = (EditText) findViewById(R.id.et_e_mail);
-        etConfirmEmail = (EditText) findViewById(R.id.et_confirm_e_mail);
-        etPhone = (EditText) findViewById(R.id.et_phone);
         etCell = (EditText) findViewById(R.id.et_cell);
         etCompany = (EditText) findViewById(R.id.et_company);
         etRFC = (EditText) findViewById(R.id.et_rfc);
@@ -88,17 +86,12 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         if (etLastNameB.getText().length() < 1)
             errors.add(getString(R.string.txt_error_last_name_b));
         if (etEmail.getText().length() < 1) errors.add(getString(R.string.txt_error_mail));
-        if (etConfirmEmail.getText().length() < 1)
-            errors.add(getString(R.string.txt_error_confirm_mail));
-        if (etPhone.getText().length() < 1) errors.add(getString(R.string.txt_error_phone));
         if (etCell.getText().length() < 1) errors.add(getString(R.string.txt_error_cell));
         if (etCompany.getText().length() < 1) errors.add(getString(R.string.txt_error_company));
         if (etRFC.getText().length() < 13) errors.add(getString(R.string.txt_error_rfc));
         if (etID.getText().length() < 1) errors.add(getString(R.string.txt_error_id));
         if (etAddress.getText().length() < 1) errors.add(getString(R.string.txt_error_address));
         if (etZip.getText().length() < 5) errors.add(getString(R.string.txt_error_zip));
-        if (!etEmail.getText().toString().equals(etConfirmEmail.getText().toString()))
-            errors.add(getString(R.string.txt_error_incorrect_mail));
         if (strFileLocation == null) errors.add(getString(R.string.txt_error_photo));
 
         if (errors.size() != 0) {
@@ -120,7 +113,7 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         ByteArrayInputStream bis = new ByteArrayInputStream(imageInByte);
         */
         params.put("metodo",        "insertar");
-        params.put("idUsuarioSubdistribuidor", User.getToken(this));
+        params.put("token", User.getToken(this));
         //params.put("idUsuarioSubdistribuidor", User.get("IdTipoUsuario", this));
         params.put("mail",          etEmail.getText().toString());
         params.put("password",      "123456");
@@ -135,8 +128,10 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("cp",            etZip.getText().toString());
         params.put("credencial",    etID.getText().toString());
         params.put("activo",        true);
+        params.put("notifSubdistribuidor",true);
 
-        if (strFileLocation != null) {
+
+        /*if (strFileLocation != null) {
             File file = new File(strFileLocation);
 
             Bitmap bm = BitmapFactory.decodeFile(strFileLocation);
@@ -148,11 +143,17 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
 
             params.put("archivoContrato", encodedImage);
             params.put("archivoFoto",     encodedImage);
+        }*/
+        if (strFileLocation != null) {
+            File file = new File(strFileLocation);
+            params.put("archivoContrato", file);
+            params.put("archivoFoto",     file);
         }
 
 
 
-        WebBridge.send("Agricultor.ashx", params, getString(R.string.txt_sending), this, this);
+
+        WebBridge.send("Agricultor.ashx?insert", params, getString(R.string.txt_sending), this, this);
 
     }
 
