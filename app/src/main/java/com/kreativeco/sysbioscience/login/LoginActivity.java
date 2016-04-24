@@ -77,6 +77,12 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
 
                     JSONArray jsonArrayNews = json.getJSONArray("Object");
                     printFirsNews(jsonArrayNews);
+                    if(User.logged(this)){
+                        HashMap<String, Object> params = new HashMap<String, Object>();
+                        params.put("token", User.getToken(this));
+                        params.put("metodo", "autoLogin");
+                        WebBridge.send("Login.ashx", params, "Verificndo\nUsuario", this, this);
+                    }
 
                 }else{
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
@@ -84,6 +90,12 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
                     User.set("IdTipoUsuario", json.getJSONObject("Object").getString("IdTipoUsuario"), this);
                     startActivity(home);
                     finish();
+                }
+            }else if(json.getInt("ResponseCode") == 500){
+                if (url.contains("Login.ashx")){
+                    User.clear(this);
+                    String error = json.getJSONObject("Errors").getString("600");
+                    new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
                 }
             } else {
                 String error = json.getJSONObject("Errors").getString("600");

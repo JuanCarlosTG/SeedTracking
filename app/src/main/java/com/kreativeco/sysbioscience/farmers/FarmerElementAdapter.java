@@ -2,28 +2,27 @@ package com.kreativeco.sysbioscience.farmers;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.kreativeco.sysbioscience.R;
-import com.kreativeco.sysbioscience.Sales;
+import com.kreativeco.sysbioscience.sales.Sales;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +35,7 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
 
     private JSONArray farmers;
     Activity activity;
+    private static Activity farmerActivity;
     private static Context context;
 
     public static class FarmerViewHolder extends RecyclerView.ViewHolder {
@@ -43,15 +43,12 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
         public TextView farmerName;
         public TextView farmerSite;
         public Button farmerActions;
+        public JSONObject farmerData;
 
-        public FarmerViewHolder(View itemView) {
+
+        public FarmerViewHolder(final View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showMenuActions(v);
-                }
-            });
+
             farmerImage = (ImageView) itemView.findViewById(R.id.iv_farmer);
             farmerName = (TextView) itemView.findViewById(R.id.tv_name);
             farmerSite = (TextView) itemView.findViewById(R.id.tv_site);
@@ -59,71 +56,61 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
             farmerActions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //Toast.makeText(context, "Texto", Toast.LENGTH_SHORT).show();
                     showMenuActions(v);
                 }
             });
         }
 
-        public void showMenuActions(View v){
+        public void showMenuActions(View view){
 
-            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            final Dialog dialog = new Dialog(farmerActivity);
+            dialog.setContentView(R.layout.alert_dialog_farmer);
+            dialog.setTitle("Selecciona una opción");
+            dialog.show();
 
-            View inflatedView = layoutInflater.inflate(R.layout.farmer_actions, null,false);
-
-            final PopupWindow popWindow = new PopupWindow(context);
-            popWindow.setContentView(inflatedView);
-
-            popWindow.setBackgroundDrawable(new BitmapDrawable());
-            popWindow.setFocusable(true);
-            popWindow.setOutsideTouchable(true);
-
-            // Getting a reference to Close button, and close the popup when clicked.
-            Button close = (Button) inflatedView.findViewById(R.id.btn_close);
-            close.setOnClickListener(new View.OnClickListener() {
+            Button btnClose = (Button) dialog.findViewById(R.id.btn_cancel);
+            Button btnData = (Button) dialog.findViewById(R.id.btn_data);
+            Button btnSales = (Button) dialog.findViewById(R.id.btn_sales);
+            Button btnAssigned = (Button) dialog.findViewById(R.id.btn_assigned);
+            Button btnProperties = (Button) dialog.findViewById(R.id.btn_properties);
+            btnClose.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    popWindow.dismiss();
-                }
+                public void onClick(View v) {dialog.cancel();}
             });
 
-            Button btBuy = (Button) inflatedView.findViewById(R.id.btn_buy);
-            btBuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    runSales();
-                }
-            });
-
-            Button btnData = (Button) inflatedView.findViewById(R.id.btn_data);
             btnData.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    runSales();
+                    runSales(1, farmerData);
+                    dialog.cancel();
                 }
             });
 
-            Button btnLicence = (Button) inflatedView.findViewById(R.id.btn_licence);
-            btnLicence.setOnClickListener(new View.OnClickListener() {
+            btnSales.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    runSales();
-                }
+                public void onClick(View v) {runSales(0, farmerData);
+                    dialog.cancel();}
             });
 
-            Button btnProperties = (Button) inflatedView.findViewById(R.id.btn_properties);
+            btnAssigned.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {runSales(2, farmerData);
+                    dialog.cancel();}
+            });
+
             btnProperties.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    runSales();
-                }
+                public void onClick(View v) {runSales(3, farmerData);
+                    dialog.cancel();}
             });
 
+        }
 
-
-            popWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-            popWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-            popWindow.showAtLocation(v, Gravity.CENTER, v.getLeft(),v.getBottom());
+        public void runSales(int option, JSONObject jsonObjectdata){
+            Intent intent = new Intent(farmerActivity, Sales.class);
+            intent.putExtra("option", option);
+            intent.putExtra("jsonData", jsonObjectdata.toString());
+            farmerActivity.startActivity(intent);
         }
 
     }
@@ -131,6 +118,7 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
     public FarmerElementAdapter(JSONArray farmers, Activity activity) {
         this.farmers = farmers;
         this.activity = activity;
+        farmerActivity = this.activity;
         this.context = activity.getBaseContext();
     }
 
@@ -181,6 +169,9 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
 
             holder.farmerName.setText(farmerName);
             holder.farmerSite.setText(farmerAddress);
+            holder.farmerData = farmer;
+
+            Log.e("Farmer DATA", holder.farmerData.toString());
 
         } catch (JSONException jsonE) {
 
@@ -193,7 +184,6 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
         return farmers.length();
     }
 
-    private void showMenuActions(){
-    }
+
 
 }

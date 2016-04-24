@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/pleca_blue"
         android:layout_below="@+id/pleca_green"
-        android:id="@+id/pleca_bluew"/>
+        android:id="@+id/pleca_blue"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
@@ -23,7 +23,8 @@
         android:id="@+id/rv_farmers"
         android:background="@android:color/transparent"
         android:layout_above="@+id/i_btn_add_farmer"
-        android:layout_toRightOf="@+id/pleca_bluew">
+        android:layout_toRightOf="@+id/pleca_blue"
+        android:layout_toEndOf="@+id/pleca_blue">
 
     </android.support.v7.widget.RecyclerView>
 

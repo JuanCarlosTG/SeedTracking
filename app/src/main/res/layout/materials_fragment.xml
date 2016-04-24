@@ -17,23 +17,23 @@
             android:background="@android:color/transparent"
             android:orientation="vertical">
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
-            <include layout="@layout/property_ui"/>
+            <include layout="@layout/sales_ui"/>
 
         </LinearLayout>
 
@@ -46,8 +46,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:background="@android:color/transparent"
-        android:src="@drawable/bt_add" />
+        android:layout_margin="16sp"
+        android:background="@drawable/ic_add" />
 
 </RelativeLayout>

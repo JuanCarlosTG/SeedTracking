@@ -1,4 +1,4 @@
-package com.kreativeco.sysbioscience;
+package com.kreativeco.sysbioscience.sales;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -22,13 +22,13 @@ public class FragmentAdapterSales extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return new MaterialsFragment();
+                return new SalesFragment();
             case 1:
-                //return new Profile();
+                return new DataFragment();
             case 2:
                 return new LicenseFragment();
             case 3:
-                return new DataFragment();
+                return new PropertyFragment();
             default:
                 return null;
         }

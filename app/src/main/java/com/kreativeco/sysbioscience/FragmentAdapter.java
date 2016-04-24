@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.kreativeco.sysbioscience.login.profile.Profile;
+import com.kreativeco.sysbioscience.sales.SalesFragment;
 
 /**
  * Created by kreativeco on 01/02/16.
@@ -26,7 +26,7 @@ public class FragmentAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new Section2();
             case 2:
-                return new SalesFragment();
+                //return new SalesFragment();
             case 3:
                 return new License();
             case 4:

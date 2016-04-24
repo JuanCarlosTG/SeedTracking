@@ -28,7 +28,7 @@ public class Splash extends SectionActivity {
                 }finally{
 
                     if (User.logged(activity)) {
-                        Intent intent = new Intent(Splash.this, HomeActivity.class);
+                        Intent intent = new Intent(Splash.this, LoginActivity.class);
                         startActivityForResult(intent, 1);
                     } else {
                         Intent i = new Intent(Splash.this, LoginActivity.class);

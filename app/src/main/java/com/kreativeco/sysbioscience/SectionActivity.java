@@ -23,7 +23,7 @@ public class SectionActivity extends Activity {
     /* PROPERTIES */
 
     static public int STATUS_BAR_COLOR = Color.parseColor("#009FDD");
-    int height;
+    static public int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

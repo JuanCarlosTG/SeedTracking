@@ -17,8 +17,13 @@ import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.login.profile.Profile;
 import com.kreativeco.sysbioscience.utils.User;
+import com.kreativeco.sysbioscience.utils.WebBridge;
 
-public class HomeActivity extends SectionActivity {
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+public class HomeActivity extends SectionActivity{
 
     public ImageButton btnMenu;
 
@@ -55,7 +60,6 @@ public class HomeActivity extends SectionActivity {
         mDrawerOptions.setAdapter(adapterArray);
 
 
-
         btnMenu = (ImageButton) findViewById(R.id.i_btn_header);
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +71,7 @@ public class HomeActivity extends SectionActivity {
         final Farmers farmers = new Farmers();
         getFragmentManager().beginTransaction().add(R.id.flContent, farmers).commit();
 
-        setTitle("Noticias");
+        setTitle("Agricultores");
 
         mDrawerOptions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,8 +93,6 @@ public class HomeActivity extends SectionActivity {
 
             }
         });
-
-        Log.e("IdTipoUsuario", User.get("IdTipoUsuario", this));
 
     }
 

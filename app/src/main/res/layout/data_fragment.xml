@@ -7,45 +7,207 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:keepScreenOn="true"
         android:scrollbars="none"
-        android:background="@android:color/transparent"
-        android:layout_above="@+id/fab">
+        android:layout_below="@+id/header">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="#FFFFFF"
             android:orientation="vertical">
 
-            <include layout="@layout/data_ui"/>
+            <TextView
+                android:layout_marginTop="20sp"
+                style="@style/tv_farmer"
+                android:text="@string/txt_farmer"/>
 
-            <include layout="@layout/data_ui"/>
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_name"
+                android:hint="@string/txt_farmer_1"/>
 
-            <include layout="@layout/data_ui"/>
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_last_name_a"
+                android:hint="@string/txt_farmer_2"/>
 
-            <include layout="@layout/data_ui"/>
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_last_name_b"
+                android:hint="@string/txt_farmer_3"/>
 
-            <include layout="@layout/data_ui"/>
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_contact"/>
 
-            <include layout="@layout/data_ui"/>
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_e_mail"
+                android:inputType="textEmailAddress"
+                android:hint="@string/txt_farmer_4"/>
 
-            <include layout="@layout/data_ui"/>
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_cell"
+                android:inputType="phone"
+                android:hint="@string/txt_farmer_6"/>
 
-            <include layout="@layout/data_ui"/>
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_location"/>
 
-            <include layout="@layout/data_ui"/>
+            <Spinner
+                android:id="@+id/state_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"
+                android:hint="@string/txt_farmer_12"/>
+
+            <Spinner
+                android:id="@+id/municipality_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginLeft="40sp"
+                android:layout_marginRight="40sp"
+                android:hint="@string/txt_farmer_13"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_address"
+                android:hint="@string/txt_farmer_10"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_zip"
+                android:hint="@string/txt_farmer_11"
+                android:inputType="number"/>
+
+            <TextView
+                style="@style/tv_farmer"
+                android:text="@string/txt_location"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_company"
+                android:hint="@string/txt_farmer_7"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_rfc"
+                android:maxLength="13"
+                android:hint="@string/txt_farmer_8"/>
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/et_id"
+                android:hint="@string/txt_farmer_9"/>
+
+            <RelativeLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20sp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:background="@drawable/register_photo"
+                    android:id="@+id/add_iv_farmer"
+                    android:onClick="clickCamera"
+                    android:layout_margin="10sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/txt_photo"
+                    android:id="@+id/txt_photo"
+                    android:layout_toRightOf="@+id/add_iv_farmer"
+                    android:layout_toEndOf="@+id/add_iv_farmer"/>
+
+                <ImageView
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:background="@drawable/register_photo"
+                    android:id="@+id/add_iv_contrato"
+                    android:layout_margin="10sp"
+                    android:onClick="clickCamera"
+                    android:layout_below="@+id/add_iv_farmer"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:gravity="left|center_vertical"
+                    android:text="@string/txt_contract"
+                    android:layout_below="@+id/txt_photo"
+                    android:layout_toRightOf="@+id/add_iv_contrato"
+                    android:layout_toEndOf="@+id/add_iv_contrato"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/add_iv_contrato"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginStart="20sp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="right"
+                        android:id="@+id/ll_alerts">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@string/txt_alerts"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkbox_alerts"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="right"
+                        android:id="@+id/ll_terms"
+                        android:layout_below="@+id/ll_alerts">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@string/txt_terms"/>
+
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkbox_terms"/>
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_login"
+                        android:text="@string/btn_send"
+                        android:textSize="12sp"
+                        android:padding="2sp"
+                        android:layout_below="@+id/ll_terms"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/colorWhite"
+                        android:onClick="saveFarmer"
+                        android:id="@+id/btn_add_farmer"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
-    <ImageButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16sp"
-        android:background="@drawable/ic_add" />
+
 </RelativeLayout>

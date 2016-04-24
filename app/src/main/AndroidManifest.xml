@@ -81,7 +81,7 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".Sales"
+            android:name=".sales.Sales"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >
