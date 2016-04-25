@@ -76,6 +76,10 @@ public class SalesElementAdapter extends RecyclerView.Adapter<SalesElementAdapte
                 @Override
                 public void onClick(View v) {
                     dialog.cancel();
+                    Intent intent = new Intent(salesActivity, AddSell.class);
+                    intent.putExtra("jsonData", salesData.toString());
+                    intent.putExtra("option", 1);
+                    salesActivity.startActivity(intent);
                 }
             });
 
@@ -132,6 +136,10 @@ public class SalesElementAdapter extends RecyclerView.Adapter<SalesElementAdapte
             holder.salesAssigned.setText(saleSeed);
             holder.salesData = sale;
 
+            if (saleSeed.equals("En Proceso")){
+                holder.salesActions.setEnabled(false);
+                holder.salesActions.setAlpha(0.5f);
+            }
 
         } catch (JSONException jsonE) {
 

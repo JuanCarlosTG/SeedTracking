@@ -1,6 +1,7 @@
 package com.kreativeco.sysbioscience.sales;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.utils.User;
@@ -38,7 +40,16 @@ public class SalesFragment extends Fragment implements WebBridge.WebBridgeListen
 
         RecyclerView.LayoutManager rvLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
         rvSales.setLayoutManager(rvLayoutManager);
-        //ImageButton iBtnAddFarmer = (ImageButton) v.findViewById(R.id.i_btn_add_farmer);
+        ImageButton btnAddSales = (ImageButton) v.findViewById(R.id.btn_add_sales);
+        btnAddSales.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddSell.class);
+                intent.putExtra("jsonData", "");
+                intent.putExtra("option", 0);
+                getActivity().startActivity(intent);
+            }
+        });
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", User.getToken(getActivity()));

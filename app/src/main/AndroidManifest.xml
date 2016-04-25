@@ -63,6 +63,30 @@
             android:theme="@style/AppTheme" />
 
         <activity
+            android:name=".sales.AddSell"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".utils.ListStates"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".utils.ListMunicipality"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".utils.ListVarieties"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".AddBuy"
             android:label=""
             android:screenOrientation="portrait"

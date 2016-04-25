@@ -248,6 +248,7 @@ public class Sales extends SectionActivity {
             }
         }
     }
+
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();

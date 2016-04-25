@@ -25,6 +25,14 @@
     <string name="txt_farmer_11">CP</string>
     <string name="txt_farmer_12">ESTADO</string>
     <string name="txt_farmer_13">MUNICIPIO</string>
+
+    <string name="txt_sell_1">Factura o # de Contrato</string>
+    <string name="txt_sell_2">Estado</string>
+    <string name="txt_sell_3">Municipio</string>
+    <string name="txt_sell_4">Variedad</string>
+    <string name="txt_sell_5">Cantidad</string>
+    <string name="txt_sell_6">Tipo de compra</string>
+
     <!--
     <string name="txt_farmer_14">REGIÖN</string>
     <string name="txt_farmer_15">REPRESENTANTE</string>
