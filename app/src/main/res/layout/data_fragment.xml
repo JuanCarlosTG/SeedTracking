@@ -104,7 +104,6 @@
                     android:layout_height="50sp"
                     android:background="@drawable/register_photo"
                     android:id="@+id/add_iv_farmer"
-                    android:onClick="clickCamera"
                     android:layout_margin="10sp"/>
 
                 <TextView
@@ -122,9 +121,8 @@
                     android:layout_width="50sp"
                     android:layout_height="50sp"
                     android:background="@drawable/register_photo"
-                    android:id="@+id/add_iv_contrato"
+                    android:id="@+id/add_iv_contract"
                     android:layout_margin="10sp"
-                    android:onClick="clickCamera"
                     android:layout_below="@+id/add_iv_farmer"/>
 
                 <TextView
@@ -135,13 +133,13 @@
                     android:gravity="left|center_vertical"
                     android:text="@string/txt_contract"
                     android:layout_below="@+id/txt_photo"
-                    android:layout_toRightOf="@+id/add_iv_contrato"
-                    android:layout_toEndOf="@+id/add_iv_contrato"/>
+                    android:layout_toRightOf="@+id/add_iv_contract"
+                    android:layout_toEndOf="@+id/add_iv_contract"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/add_iv_contrato"
+                    android:layout_below="@+id/add_iv_contract"
                     android:layout_marginLeft="20sp"
                     android:layout_marginStart="20sp"
                     android:orientation="vertical">
@@ -199,7 +197,7 @@
                         android:layout_centerHorizontal="true"
                         android:textColor="@color/colorWhite"
                         android:onClick="saveFarmer"
-                        android:id="@+id/btn_add_farmer"/>
+                        android:id="@+id/btn_update_farmer"/>
 
                 </RelativeLayout>
 

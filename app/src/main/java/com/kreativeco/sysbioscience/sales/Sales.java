@@ -1,6 +1,8 @@
 package com.kreativeco.sysbioscience.sales;
 
 import android.Manifest;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -44,7 +46,10 @@ public class Sales extends SectionActivity {
 
     private static final int START_CAMERA = 0;
     private static final int REQUEST_EXTERNAL_STORAGE_RESULT = 0;
+    private int imageSelector;
     String strFileLocation = null;
+    public ViewPager viewPager;
+    public FragmentAdapterSales fragmentAdapterSales;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +57,8 @@ public class Sales extends SectionActivity {
         setContentView(R.layout.activity_sales);
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-        final FragmentAdapterSales fragmentAdapterSales = new FragmentAdapterSales
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        fragmentAdapterSales = new FragmentAdapterSales
                 (getFragmentManager(), 4);
         viewPager.setAdapter(fragmentAdapterSales);
 
@@ -249,7 +254,8 @@ public class Sales extends SectionActivity {
         Log.e("sizeHeader", height + "");
     }
 
-    public void clickCamera(View v) {
+    public void clickCamera(int imageSelector) {
+        this.imageSelector = imageSelector;
         takePhoto();
     }
 
@@ -320,6 +326,21 @@ public class Sales extends SectionActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == START_CAMERA && resultCode == RESULT_OK) {
+
+            FragmentManager fm = getFragmentManager();
+            DataFragment fragment = (DataFragment) fragmentAdapterSales.getItem(1);
+//if you added fragment via layout xml
+            //DataFragment fragment = (DataFragment)fm.findFragmentById(R.id.your_fragment_id);
+
+            if(imageSelector == 0){
+                CurrentDataFarmer.setStrFileFarmer(strFileLocation);
+                //fragment.setImageFarmer();
+
+            }else if (imageSelector == 1){
+                CurrentDataFarmer.setStrFileContract(strFileLocation);
+                //fragment.setImageContract();
+            }else
+                return;
 
             /*if (Build.VERSION.SDK_INT >= 23){
                 Glide.with(this).load(strFileLocation).into(addIvFarmer);

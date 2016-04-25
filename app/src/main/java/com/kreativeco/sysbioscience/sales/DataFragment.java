@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -41,14 +42,18 @@ import java.util.HashMap;
 /**
  * Created by kreativeco on 01/02/16.
  */
-public class DataFragment extends Fragment implements WebBridge.WebBridgeListener{
+public class DataFragment extends Fragment implements WebBridge.WebBridgeListener {
 
     private EditText etName, etLastNameA, etLastNameB, etEmail;
     private EditText etCell, etCompany, etRFC, etID, etAddress, etZip;
-    private ImageView addIvFarmer;
+    private ImageView addImageFarmer, addImageContract;
+    public String strFileContract = null;
+    public String strileFarmer = null;
     private ImageButton iBtnBackArrow;
-    
+    private Button btnUpdateFarmer;
+
     View v;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,11 +69,38 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         etID = (EditText) v.findViewById(R.id.et_id);
         etAddress = (EditText) v.findViewById(R.id.et_address);
         etZip = (EditText) v.findViewById(R.id.et_zip);
-        addIvFarmer = (ImageView) v.findViewById(R.id.add_iv_farmer);
+        addImageFarmer = (ImageView) v.findViewById(R.id.add_iv_farmer);
+        addImageContract = (ImageView) v.findViewById(R.id.add_iv_contract);
+        btnUpdateFarmer = (Button) v.findViewById(R.id.btn_update_farmer);
+
+        btnUpdateFarmer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateFarmer(v);
+            }
+        });
+
+        addImageFarmer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImage(0);
+            }
+        });
+
+        addImageContract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getImage(1);
+            }
+        });
 
         setDataFarmer();
         return v;
 
+    }
+
+    public void getImage(int imageSelector) {
+        ((Sales) getActivity()).clickCamera(imageSelector);
     }
 
     private void setDataFarmer() {
@@ -86,6 +118,28 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         //addIvFarmer
     }
 
+    public void setImageFarmer() {
+
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            Log.e("FILE LOCATION", CurrentDataFarmer.getStrFileFarmer());
+            Glide.with(getActivity()).load(CurrentDataFarmer.getStrFileFarmer()).into(addImageFarmer);
+        } else {
+            Bitmap photo = BitmapFactory.decodeFile(CurrentDataFarmer.getStrFileFarmer());
+            addImageFarmer.setImageURI(Uri.parse(CurrentDataFarmer.getStrFileFarmer()));
+        }
+    }
+
+    public void setImageContract() {
+
+        if (Build.VERSION.SDK_INT >= 23){
+                Glide.with(this).load(CurrentDataFarmer.getStrFileContract()).into(addImageContract);
+            }else{
+                Bitmap photo = BitmapFactory.decodeFile(CurrentDataFarmer.getStrFileContract());
+                addImageFarmer.setImageURI(Uri.parse(CurrentDataFarmer.getStrFileContract()));
+            }
+    }
+
     public void updateFarmer(View view) {
         ArrayList<String> errors = new ArrayList<String>();
         if (etName.getText().length() < 1) errors.add(getString(R.string.txt_error_name));
@@ -100,7 +154,7 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         if (etID.getText().length() < 1) errors.add(getString(R.string.txt_error_id));
         if (etAddress.getText().length() < 1) errors.add(getString(R.string.txt_error_address));
         if (etZip.getText().length() < 5) errors.add(getString(R.string.txt_error_zip));
-//        if (strFileLocation == null) errors.add(getString(R.string.txt_error_photo));
+        if (CurrentDataFarmer.getStrFileContract().equals("")) errors.add(getString(R.string.txt_error_photo));
 
         if (errors.size() != 0) {
             String msg = "";
@@ -113,40 +167,39 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
 
         HashMap<String, Object> params = new HashMap<>();
 
-        /*BitmapDrawable bitmapDrawable = ((BitmapDrawable) addIvFarmer.getDrawable());
-        Bitmap bitmap = bitmapDrawable .getBitmap();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
-        byte[] imageInByte = stream.toByteArray();
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageInByte);
-        */
-        params.put("metodo",        "insertar");
+
+        params.put("metodo", "actualizar");
         params.put("token", User.getToken(getActivity()));
         //params.put("idUsuarioSubdistribuidor", User.get("IdTipoUsuario", this));
-        params.put("mail",          etEmail.getText().toString());
-        params.put("password",      "123456");
-        params.put("nombre",        etName.getText().toString());
-        params.put("apellidoP",     etLastNameA.getText().toString());
-        params.put("apellidoM",     etLastNameB.getText().toString());
-        params.put("razonSocial",   etCompany.getText().toString());
-        params.put("rfc",           etRFC.getText().toString());
-        params.put("telefono",      etCell.getText().toString());
-        params.put("idMunicipio",   1);
-        params.put("direccion",     etAddress.getText().toString());
-        params.put("cp",            etZip.getText().toString());
-        params.put("credencial",    etID.getText().toString());
-        params.put("activo",        true);
-        params.put("notifSubdistribuidor",true);
+        params.put("mail", etEmail.getText().toString());
+        params.put("password", "123456");
+        params.put("nombre", etName.getText().toString());
+        params.put("apellidoP", etLastNameA.getText().toString());
+        params.put("apellidoM", etLastNameB.getText().toString());
+        params.put("razonSocial", etCompany.getText().toString());
+        params.put("rfc", etRFC.getText().toString());
+        params.put("telefono", etCell.getText().toString());
+        params.put("idMunicipio", 95);
+        params.put("direccion", etAddress.getText().toString());
+        params.put("cp", etZip.getText().toString());
+        params.put("credencial", etID.getText().toString());
+        params.put("activo", true);
+        params.put("notifSubdistribuidor", true);
+        params.put("idUsuario", CurrentDataFarmer.getFarmerId());
 
+        Log.e("idUSEUARIO", CurrentDataFarmer.getFarmerId() + "");
 
+        if (!CurrentDataFarmer.getFarmerContract().equals("")) {
+            File fileFarmer = new File(CurrentDataFarmer.getFarmerContract());
+            params.put("archivoContrato", fileFarmer);
+        }
 
-        /*if (strFileLocation != null) {
-            File file = new File(strFileLocation);
-            params.put("archivoContrato", file);
-            params.put("archivoFoto",     file);
-        }*/
+        if (!CurrentDataFarmer.getStrFileFarmer().equals("")) {
+            File photoFile = new File(CurrentDataFarmer.getStrFileFarmer());
+            params.put("archivoFoto", photoFile);
+        }else params.put("archivoFoto", "image.jpg");
 
-        WebBridge.send("Agricultor.ashx?insert", params,getActivity().getString(R.string.txt_sending), getActivity(), this);
+        WebBridge.send("Agricultor.ashx?update", params, getActivity().getString(R.string.txt_sending), getActivity(), this);
 
     }
 
@@ -174,5 +227,10 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         Log.e("JSON FAILURE", response);
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        setImageFarmer();
+        setImageContract();
+    }
 }

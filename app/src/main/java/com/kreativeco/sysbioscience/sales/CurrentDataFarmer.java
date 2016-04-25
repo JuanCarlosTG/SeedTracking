@@ -34,6 +34,9 @@ public class CurrentDataFarmer {
     private static boolean farmerCanLogin           = false;
     private static boolean farmerActive             = false;
 
+    private static String strFileFarmer             = "";
+    private static String strFileContract           = "";
+
 
     public static String getFarmerName() {
         return farmerName;
@@ -257,5 +260,21 @@ public class CurrentDataFarmer {
 
     public static void setFarmerActive(boolean farmerActive) {
         CurrentDataFarmer.farmerActive = farmerActive;
+    }
+
+    public static String getStrFileFarmer() {
+        return strFileFarmer;
+    }
+
+    public static void setStrFileFarmer(String strFileFarmer) {
+        CurrentDataFarmer.strFileFarmer = strFileFarmer;
+    }
+
+    public static String getStrFileContract() {
+        return strFileContract;
+    }
+
+    public static void setStrFileContract(String strFileContract) {
+        CurrentDataFarmer.strFileContract = strFileContract;
     }
 }
