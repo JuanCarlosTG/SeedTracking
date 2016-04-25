@@ -17,6 +17,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,6 +28,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
+import com.kreativeco.sysbioscience.utils.ListIds;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,6 +67,14 @@ public class Sales extends SectionActivity {
         rlHeader =(RelativeLayout) findViewById(R.id.rl_header);
         llTabHeader = (LinearLayout) findViewById(R.id.ll_tab_header);
         txtTitle = (TextView) findViewById(R.id.txt_title);
+        ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
+        headerBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
+            }
+        });
 
         ViewTreeObserver vto = rlHeader.getViewTreeObserver();
         if(vto.isAlive()){
@@ -330,8 +340,6 @@ public class Sales extends SectionActivity {
 
             FragmentManager fm = getFragmentManager();
             DataFragment fragment = (DataFragment) fragmentAdapterSales.getItem(1);
-//if you added fragment via layout xml
-            //DataFragment fragment = (DataFragment)fm.findFragmentById(R.id.your_fragment_id);
 
             if(imageSelector == 0){
                 CurrentDataFarmer.setStrFileFarmer(strFileLocation);
@@ -343,14 +351,21 @@ public class Sales extends SectionActivity {
             }else
                 return;
 
-            /*if (Build.VERSION.SDK_INT >= 23){
-                Glide.with(this).load(strFileLocation).into(addIvFarmer);
-                Toast.makeText(this, "FOTO EXITOSA", Toast.LENGTH_SHORT).show();
-            }else{
-                Bitmap photo = BitmapFactory.decodeFile(strFileLocation);
-                addIvFarmer.setImageURI(Uri.parse(strFileLocation));
-            }*/
+        }
 
+        if (requestCode == 1) {
+            if (resultCode == 1) {
+                ListIds.setIdState(data.getIntExtra("idState", 0));
+                ListIds.setStringState(data.getStringExtra("nameState"));
+
+            }
+        }
+
+        if (requestCode == 2) {
+            if (resultCode == 2) {
+                ListIds.setIdLocality(data.getIntExtra("idMunicipality", 0));
+                ListIds.setStringLocality(data.getStringExtra("municipalityName"));
+            }
         }
 
     }

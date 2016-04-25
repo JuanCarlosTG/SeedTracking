@@ -87,6 +87,12 @@
             android:theme="@style/AppTheme" />
 
         <activity
+            android:name=".utils.ListSellType"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".AddBuy"
             android:label=""
             android:screenOrientation="portrait"

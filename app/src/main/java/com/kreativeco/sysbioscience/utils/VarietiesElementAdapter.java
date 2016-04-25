@@ -44,6 +44,7 @@ public class VarietiesElementAdapter extends RecyclerView.Adapter<VarietiesEleme
                     i.putExtra("nameVariety", nameVariety);
                     varietiesActivity.setResult(RESULT_OK, i);
                     varietiesActivity.finish();
+                    varietiesActivity.overridePendingTransition(R.anim.slide_down, R.anim.slide_down);
                 }
             });
             txtVarieties = (TextView) itemView.findViewById(R.id.txt_varieties);

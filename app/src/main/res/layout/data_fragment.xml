@@ -52,21 +52,15 @@
                 style="@style/tv_farmer"
                 android:text="@string/txt_location"/>
 
-            <Spinner
-                android:id="@+id/state_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:layout_marginLeft="40sp"
-                android:layout_marginRight="40sp"
-                android:hint="@string/txt_farmer_12"/>
+            <Button style="@style/et_farmer"
+                android:id="@+id/btn_state"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_2"/>
 
-            <Spinner
-                android:id="@+id/municipality_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:layout_marginLeft="40sp"
-                android:layout_marginRight="40sp"
-                android:hint="@string/txt_farmer_13"/>
+            <Button style="@style/et_farmer"
+                android:id="@+id/btn_municipality"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_3"/>
 
             <EditText style="@style/et_farmer"
                 android:id="@+id/et_address"

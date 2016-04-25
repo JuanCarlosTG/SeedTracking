@@ -36,14 +36,17 @@
 
             <Button style="@style/et_farmer"
                 android:id="@+id/btn_state"
+                android:drawableRight="@drawable/ic_arrow"
                 android:hint="@string/txt_sell_2"/>
 
             <Button style="@style/et_farmer"
                 android:id="@+id/btn_municipality"
+                android:drawableRight="@drawable/ic_arrow"
                 android:hint="@string/txt_sell_3"/>
 
             <Button style="@style/et_farmer"
                 android:id="@+id/btn_variety"
+                android:drawableRight="@drawable/ic_arrow"
                 android:inputType="textEmailAddress"
                 android:hint="@string/txt_sell_4"/>
 
@@ -54,6 +57,7 @@
 
             <Button style="@style/et_farmer"
                 android:id="@+id/btn_sell_type"
+                android:drawableRight="@drawable/ic_arrow"
                 android:hint="@string/txt_sell_6"/>
 
             <Button
@@ -66,8 +70,7 @@
                 android:textSize="12sp"
                 android:padding="2sp"
                 android:textColor="@color/colorWhite"
-                android:onClick="saveSell"
-                android:id="@+id/btn_add_farmer"/>
+                android:id="@+id/btn_add_sell"/>
 
 
         </LinearLayout>

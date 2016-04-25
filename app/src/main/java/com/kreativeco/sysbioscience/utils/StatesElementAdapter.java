@@ -47,8 +47,13 @@ public class StatesElementAdapter extends RecyclerView.Adapter<StatesElementAdap
                     Intent i = new Intent();
                     i.putExtra("idState", idState);
                     i.putExtra("nameState", nameState);
+                    ListIds.setIdState(idState);
+                    ListIds.setStringState(nameState);
+                    ListIds.setStringLocality("");
+                    ListIds.setIdLocality(-1);
                     statesActivity.setResult(RESULT_OK, i);
                     statesActivity.finish();
+                    statesActivity.overridePendingTransition(R.anim.slide_down, R.anim.slide_down);
                 }
             });
             txtSate       = (TextView) itemView.findViewById(R.id.txt_states);

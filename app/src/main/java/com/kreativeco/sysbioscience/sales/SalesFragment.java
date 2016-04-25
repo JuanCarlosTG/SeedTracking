@@ -51,13 +51,6 @@ public class SalesFragment extends Fragment implements WebBridge.WebBridgeListen
             }
         });
 
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("token", User.getToken(getActivity()));
-        params.put("metodo", "consultarPorAgricultor");
-        params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
-
-        WebBridge.send("Compras.ashx", params, "Obteniedo datos", getActivity(), this);
-
         return v;
 
     }
@@ -83,5 +76,17 @@ public class SalesFragment extends Fragment implements WebBridge.WebBridgeListen
     @Override
     public void onWebBridgeFailure(String url, String response) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("token", User.getToken(getActivity()));
+        params.put("metodo", "consultarPorAgricultor");
+        params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
+
+        WebBridge.send("Compras.ashx", params, "Obteniedo datos", getActivity(), this);
     }
 }

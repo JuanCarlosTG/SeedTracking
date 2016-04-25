@@ -8,13 +8,13 @@ public class CurrentDataSales {
     private static String salesCantity          = "";
     private static String saleDate              = "";
     private static String saleId                = "";
-    private static String saleIdFarmer          = "";
-    private static String saleIdState           = "";
-    private static String saleIdMunicipality    = "";
+    private static int saleIdFarmer          = 0;
+    private static int saleIdState           = 0;
+    private static int saleIdMunicipality    = 0;
     private static String saleRequest           = "";
-    private static String saleIdTypeSell        = "";
+    private static int saleIdTypeSell        = 0;
     private static String saleUserSell          = "";
-    private static String saleIdVariety         = "";
+    private static int saleIdVariety         = 0;
     private static String saleNumberAgreement   = "";
     private static String saleNameState         = "";
     private static String saleNameMunicipality  = "";
@@ -47,44 +47,12 @@ public class CurrentDataSales {
         CurrentDataSales.saleId = saleId;
     }
 
-    public static String getSaleIdFarmer() {
-        return saleIdFarmer;
-    }
-
-    public static void setSaleIdFarmer(String saleIdFarmer) {
-        CurrentDataSales.saleIdFarmer = saleIdFarmer;
-    }
-
-    public static String getSaleIdState() {
-        return saleIdState;
-    }
-
-    public static void setSaleIdState(String saleIdState) {
-        CurrentDataSales.saleIdState = saleIdState;
-    }
-
-    public static String getSaleIdMunicipality() {
-        return saleIdMunicipality;
-    }
-
-    public static void setSaleIdMunicipality(String saleIdMunicipality) {
-        CurrentDataSales.saleIdMunicipality = saleIdMunicipality;
-    }
-
     public static String getSaleRequest() {
         return saleRequest;
     }
 
     public static void setSaleRequest(String saleRequest) {
         CurrentDataSales.saleRequest = saleRequest;
-    }
-
-    public static String getSaleIdTypeSell() {
-        return saleIdTypeSell;
-    }
-
-    public static void setSaleIdTypeSell(String saleIdTypeSell) {
-        CurrentDataSales.saleIdTypeSell = saleIdTypeSell;
     }
 
     public static String getSaleUserSell() {
@@ -143,19 +111,52 @@ public class CurrentDataSales {
         CurrentDataSales.saleSeed = saleSeed;
     }
 
-    public static String getSaleIdVariety() {
-        return saleIdVariety;
-    }
-
-    public static void setSaleIdVariety(String saleIdVariety) {
-        CurrentDataSales.saleIdVariety = saleIdVariety;
-    }
-
     public static String getSaleVariety() {
         return saleVariety;
     }
 
     public static void setSaleVariety(String saleVariety) {
         CurrentDataSales.saleVariety = saleVariety;
+    }
+
+    public static int getSaleIdFarmer() {
+        return saleIdFarmer;
+    }
+
+    public static void setSaleIdFarmer(int saleIdFarmer) {
+        CurrentDataSales.saleIdFarmer = saleIdFarmer;
+    }
+
+    public static int getSaleIdState() {
+        return saleIdState;
+    }
+
+    public static void setSaleIdState(int saleIdState) {
+        CurrentDataSales.saleIdState = saleIdState;
+    }
+
+    public static int getSaleIdMunicipality() {
+        return saleIdMunicipality;
+    }
+
+    public static void setSaleIdMunicipality(int saleIdMunicipality) {
+        CurrentDataSales.saleIdMunicipality = saleIdMunicipality;
+    }
+
+    public static int getSaleIdTypeSell() {
+        return saleIdTypeSell;
+    }
+
+    public static void setSaleIdTypeSell(int saleIdTypeSell) {
+        CurrentDataSales.saleIdTypeSell = saleIdTypeSell;
+    }
+
+
+    public static int getSaleIdVariety() {
+        return saleIdVariety;
+    }
+
+    public static void setSaleIdVariety(int saleIdVariety) {
+        CurrentDataSales.saleIdVariety = saleIdVariety;
     }
 }

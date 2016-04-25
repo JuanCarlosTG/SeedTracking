@@ -54,21 +54,15 @@
                 style="@style/tv_farmer"
                 android:text="@string/txt_location"/>
 
-            <Spinner
-                android:id="@+id/state_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:layout_marginLeft="40sp"
-                android:layout_marginRight="40sp"
-                android:hint="@string/txt_farmer_12"/>
+            <Button style="@style/et_farmer"
+                android:id="@+id/btn_state"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_2"/>
 
-            <Spinner
-                android:id="@+id/municipality_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="50sp"
-                android:layout_marginLeft="40sp"
-                android:layout_marginRight="40sp"
-                android:hint="@string/txt_farmer_13"/>
+            <Button style="@style/et_farmer"
+                android:id="@+id/btn_municipality"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_3"/>
 
             <EditText style="@style/et_farmer"
                 android:id="@+id/et_address"
@@ -106,7 +100,6 @@
                     android:layout_height="50sp"
                     android:background="@drawable/register_photo"
                     android:id="@+id/add_iv_farmer"
-                    android:onClick="clickCamera"
                     android:layout_margin="10sp"/>
 
                 <TextView
@@ -124,9 +117,8 @@
                     android:layout_width="50sp"
                     android:layout_height="50sp"
                     android:background="@drawable/register_photo"
-                    android:id="@+id/add_iv_contrato"
+                    android:id="@+id/add_iv_contract"
                     android:layout_margin="10sp"
-                    android:onClick="clickCamera"
                     android:layout_below="@+id/add_iv_farmer"/>
 
                 <TextView
@@ -137,13 +129,13 @@
                     android:gravity="left|center_vertical"
                     android:text="@string/txt_contract"
                     android:layout_below="@+id/txt_photo"
-                    android:layout_toRightOf="@+id/add_iv_contrato"
-                    android:layout_toEndOf="@+id/add_iv_contrato"/>
+                    android:layout_toRightOf="@+id/add_iv_contract"
+                    android:layout_toEndOf="@+id/add_iv_contract"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/add_iv_contrato"
+                    android:layout_below="@+id/add_iv_contract"
                     android:layout_marginLeft="20sp"
                     android:layout_marginStart="20sp"
                     android:orientation="vertical">

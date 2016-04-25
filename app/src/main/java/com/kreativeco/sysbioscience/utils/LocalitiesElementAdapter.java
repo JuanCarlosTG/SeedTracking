@@ -42,8 +42,14 @@ public class LocalitiesElementAdapter extends RecyclerView.Adapter<LocalitiesEle
                     Intent i = new Intent();
                     i.putExtra("idMunicipality", idLocality);
                     i.putExtra("municipalityName", nameLocality);
+
+                    ListIds.setStringLocality(nameLocality);
+                    ListIds.setIdLocality(idLocality);
+
                     localitiesActivity.setResult(RESULT_OK, i);
                     localitiesActivity.finish();
+                    localitiesActivity.overridePendingTransition(R.anim.slide_down, R.anim.slide_down);
+
                 }
             });
             txtSate = (TextView) itemView.findViewById(R.id.txt_localities);

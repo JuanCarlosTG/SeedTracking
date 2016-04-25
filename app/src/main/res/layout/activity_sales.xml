@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/transparent">
 
-    <include layout="@layout/header"
+    <include layout="@layout/header_with_back"
         android:id="@+id/header"/>
 
     <ImageView

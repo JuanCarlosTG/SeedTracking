@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,6 +24,10 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
+import com.kreativeco.sysbioscience.sales.CurrentDataFarmer;
+import com.kreativeco.sysbioscience.utils.ListIds;
+import com.kreativeco.sysbioscience.utils.ListMunicipality;
+import com.kreativeco.sysbioscience.utils.ListStates;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
@@ -40,12 +45,13 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
 
     private EditText etName, etLastNameA, etLastNameB, etEmail;
     private EditText etCell, etCompany, etRFC, etID, etAddress, etZip;
-    private ImageView addIvFarmer;
-    private ImageButton iBtnBackArrow;
+    private ImageView addImageFarmer, addImageContract;
+    Button btnState, btnMunicipality;
 
     private static final int START_CAMERA = 0;
     private static final int REQUEST_EXTERNAL_STORAGE_RESULT = 0;
     String strFileLocation = null;
+    int imageSelector = 0;
 
 
     @Override
@@ -55,11 +61,12 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
 
-        iBtnBackArrow = (ImageButton) findViewById(R.id.i_btn_header);
-        iBtnBackArrow.setOnClickListener(new View.OnClickListener() {
+        ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
+        headerBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickBack(v);
+                finish();
+                overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
             }
         });
 
@@ -73,9 +80,58 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         etID = (EditText) findViewById(R.id.et_id);
         etAddress = (EditText) findViewById(R.id.et_address);
         etZip = (EditText) findViewById(R.id.et_zip);
+        addImageFarmer = (ImageView) findViewById(R.id.add_iv_farmer);
+        addImageContract = (ImageView) findViewById(R.id.add_iv_contract);
 
-        addIvFarmer = (ImageView) findViewById(R.id.add_iv_farmer);
+        addImageFarmer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageSelector = 1;
+                clickCamera(v);
+            }
+        });
 
+        addImageContract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageSelector = 2;
+                clickCamera(v);
+            }
+        });
+
+        btnState = (Button) findViewById(R.id.btn_state);
+        btnMunicipality = (Button) findViewById(R.id.btn_municipality);
+
+        btnState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnMunicipality.setText("");
+                ListIds.setIdLocality(-1);
+                ListIds.setIdVariety(-1);
+                selectState();
+            }
+        });
+
+        btnMunicipality.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ListIds.getIdState() == -1) return;
+                ListIds.setIdVariety(-1);
+                selectMunicipality();
+            }
+        });
+
+
+    }
+
+    private void selectState() {
+        Intent listStates = new Intent(AddFarmer.this, ListStates.class);
+        startActivityForResult(listStates, 1);
+    }
+
+    private void selectMunicipality() {
+        Intent listLocalities = new Intent(AddFarmer.this, ListMunicipality.class);
+        startActivityForResult(listLocalities, 2);
     }
 
     public void saveFarmer(View view) {
@@ -93,6 +149,7 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         if (etAddress.getText().length() < 1) errors.add(getString(R.string.txt_error_address));
         if (etZip.getText().length() < 5) errors.add(getString(R.string.txt_error_zip));
         if (strFileLocation == null) errors.add(getString(R.string.txt_error_photo));
+        if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_region));
 
         if (errors.size() != 0) {
             String msg = "";
@@ -105,16 +162,8 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
 
         HashMap<String, Object> params = new HashMap<>();
 
-        /*BitmapDrawable bitmapDrawable = ((BitmapDrawable) addIvFarmer.getDrawable());
-        Bitmap bitmap = bitmapDrawable .getBitmap();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
-        byte[] imageInByte = stream.toByteArray();
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageInByte);
-        */
         params.put("metodo",        "insertar");
         params.put("token", User.getToken(this));
-        //params.put("idUsuarioSubdistribuidor", User.get("IdTipoUsuario", this));
         params.put("mail",          etEmail.getText().toString());
         params.put("password",      "123456");
         params.put("nombre",        etName.getText().toString());
@@ -123,35 +172,18 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("razonSocial",   etCompany.getText().toString());
         params.put("rfc",           etRFC.getText().toString());
         params.put("telefono",      etCell.getText().toString());
-        params.put("idMunicipio",   1);
+        params.put("idMunicipio",   ListIds.getIdLocality());
         params.put("direccion",     etAddress.getText().toString());
         params.put("cp",            etZip.getText().toString());
         params.put("credencial",    etID.getText().toString());
         params.put("activo",        true);
         params.put("notifSubdistribuidor",true);
 
-
-        /*if (strFileLocation != null) {
-            File file = new File(strFileLocation);
-
-            Bitmap bm = BitmapFactory.decodeFile(strFileLocation);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.JPEG, 1, baos); //bm is the bitmap object
-            byte[] b = baos.toByteArray();
-
-            String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-
-            params.put("archivoContrato", encodedImage);
-            params.put("archivoFoto",     encodedImage);
-        }*/
         if (strFileLocation != null) {
             File file = new File(strFileLocation);
             params.put("archivoContrato", file);
             params.put("archivoFoto",     file);
         }
-
-
-
 
         WebBridge.send("Agricultor.ashx?insert", params, getString(R.string.txt_sending), this, this);
 
@@ -208,6 +240,28 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         return image;
     }
 
+    public void setImageFarmer() {
+
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            Log.e("FILE LOCATION", CurrentDataFarmer.getStrFileFarmer());
+            Glide.with(this).load(CurrentDataFarmer.getStrFileFarmer()).into(addImageFarmer);
+        } else {
+            Bitmap photo = BitmapFactory.decodeFile(CurrentDataFarmer.getStrFileFarmer());
+            addImageFarmer.setImageURI(Uri.parse(CurrentDataFarmer.getStrFileFarmer()));
+        }
+    }
+
+    public void setImageContract() {
+
+        if (Build.VERSION.SDK_INT >= 23){
+            Glide.with(this).load(CurrentDataFarmer.getStrFileContract()).into(addImageContract);
+        }else{
+            Bitmap photo = BitmapFactory.decodeFile(CurrentDataFarmer.getStrFileContract());
+            addImageContract.setImageURI(Uri.parse(CurrentDataFarmer.getStrFileContract()));
+        }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -229,17 +283,31 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
 
         if (requestCode == START_CAMERA && resultCode == RESULT_OK) {
 
-            if (Build.VERSION.SDK_INT >= 23){
-                Glide.with(this).load(strFileLocation).into(addIvFarmer);
-                Toast.makeText(AddFarmer.this, "FOTO EXITOSA", Toast.LENGTH_SHORT).show();
-            }else{
-                Bitmap photo = BitmapFactory.decodeFile(strFileLocation);
-                addIvFarmer.setImageURI(Uri.parse(strFileLocation));
+            if(imageSelector == 1){
+                CurrentDataFarmer.setStrFileFarmer(strFileLocation);
+                setImageFarmer();
+
+            }else if (imageSelector == 2){
+                CurrentDataFarmer.setStrFileContract(strFileLocation);
+                setImageContract();
+            }else
+                return;
+
+        }
+
+        if (requestCode == 1) {
+            if (resultCode == 1) {
+                ListIds.setIdState(data.getIntExtra("idState", 0));
+                btnState.setText(data.getStringExtra("nameState"));
+
             }
+        }
 
-            //icImage.setFilePathOriginal(strFileLocation);
-            //PhotoReport.setImageString(strFileLocation);
-
+        if (requestCode == 2) {
+            if (resultCode == 2) {
+                ListIds.setIdLocality(data.getIntExtra("idMunicipality", 0));
+                btnMunicipality.setText(data.getStringExtra("municipalityName"));
+            }
         }
 
     }
@@ -252,6 +320,7 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
             boolean status = json.getInt("ResponseCode") == 200;
             if (status) {
                 Toast.makeText(AddFarmer.this, getString(R.string.txt_success_farmer), Toast.LENGTH_SHORT).show();
+                ListIds.clear();
                 finish();
             } else {
                 String error = json.getString("Errors");
@@ -267,6 +336,5 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
     public void onWebBridgeFailure(String url, String response) {
         Log.e("JSON FAILURE", response);
     }
-
 
 }

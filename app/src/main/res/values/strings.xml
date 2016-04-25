@@ -125,6 +125,11 @@
     <string name="txt_error_region">Debes introducir el campo municipio</string>
     <string name="txt_error_photo">Debes tomar una foto primero</string>
 
+    <string name="txt_error_contract">Debes llenar el campo de Factura</string>
+    <string name="txt_error_cantity">No haz indicado una cantidad mayor a 0</string>
+    <string name="txt_error_variety">Debes indicar la variedad</string>
+    <string name="txt_error_selltype">Debes indicar el tipo de compra</string>
+
 
     <string name="txt_sending">Enviando</string>
     <string name="title_activity_login">INGRESAR</string>

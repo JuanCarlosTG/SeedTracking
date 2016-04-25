@@ -27,6 +27,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kreativeco.sysbioscience.AddProperty;
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.utils.ListIds;
+import com.kreativeco.sysbioscience.utils.ListMunicipality;
+import com.kreativeco.sysbioscience.utils.ListStates;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
@@ -47,10 +50,9 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
     private EditText etName, etLastNameA, etLastNameB, etEmail;
     private EditText etCell, etCompany, etRFC, etID, etAddress, etZip;
     private ImageView addImageFarmer, addImageContract;
-    public String strFileContract = null;
-    public String strileFarmer = null;
     private ImageButton iBtnBackArrow;
     private Button btnUpdateFarmer;
+    Button btnState, btnMunicipality;
 
     View v;
 
@@ -94,9 +96,45 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
             }
         });
 
-        setDataFarmer();
+        btnState = (Button) v.findViewById(R.id.btn_state);
+        btnMunicipality = (Button) v.findViewById(R.id.btn_municipality);
+
+        btnState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnMunicipality.setText("");
+                ListIds.setIdLocality(-1);
+                ListIds.setIdVariety(-1);
+                selectState();
+            }
+        });
+
+        btnMunicipality.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ListIds.getIdState() == -1) return;
+                ListIds.setIdVariety(-1);
+                selectMunicipality();
+            }
+        });
+
+        ListIds.setIdState(CurrentDataFarmer.getFarmerIdState());
+        ListIds.setIdLocality(CurrentDataFarmer.getFarmerIdMunicipality());
+        ListIds.setStringLocality(CurrentDataFarmer.getFarmerNameMunicipality());
+        ListIds.setStringState(CurrentDataFarmer.getFarmerNameState());
+
         return v;
 
+    }
+
+    private void selectState() {
+        Intent listStates = new Intent(getActivity(), ListStates.class);
+        startActivityForResult(listStates, 1);
+    }
+
+    private void selectMunicipality() {
+        Intent listLocalities = new Intent(getActivity(), ListMunicipality.class);
+        startActivityForResult(listLocalities, 2);
     }
 
     public void getImage(int imageSelector) {
@@ -115,6 +153,8 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         etID.setText(CurrentDataFarmer.getFarmerIdCard());
         etAddress.setText(CurrentDataFarmer.getFarmerAddress());
         etZip.setText(CurrentDataFarmer.getFarmerZip());
+        btnMunicipality.setText(ListIds.getStringLocality());
+        btnState.setText(ListIds.getStringState());
         //addIvFarmer
     }
 
@@ -155,6 +195,7 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         if (etAddress.getText().length() < 1) errors.add(getString(R.string.txt_error_address));
         if (etZip.getText().length() < 5) errors.add(getString(R.string.txt_error_zip));
         if (CurrentDataFarmer.getStrFileContract().equals("")) errors.add(getString(R.string.txt_error_photo));
+        if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_region));
 
         if (errors.size() != 0) {
             String msg = "";
@@ -179,7 +220,7 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         params.put("razonSocial", etCompany.getText().toString());
         params.put("rfc", etRFC.getText().toString());
         params.put("telefono", etCell.getText().toString());
-        params.put("idMunicipio", 95);
+        params.put("idMunicipio", ListIds.getIdLocality());
         params.put("direccion", etAddress.getText().toString());
         params.put("cp", etZip.getText().toString());
         params.put("credencial", etID.getText().toString());
@@ -232,5 +273,6 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         super.onResume();
         setImageFarmer();
         setImageContract();
+        setDataFarmer();
     }
 }

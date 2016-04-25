@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
@@ -26,6 +28,19 @@ public class ListMunicipality extends SectionActivity implements WebBridge.WebBr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+        overridePendingTransition(R.anim.slide_up, R.anim.slide_up);
+        setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
+
+        ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
+        headerBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(R.anim.slide_down, R.anim.slide_down);
+            }
+        });
+
+
 
         recyclerList = (RecyclerView) findViewById(R.id.recycler_list);
         recyclerList.setHasFixedSize(false);
