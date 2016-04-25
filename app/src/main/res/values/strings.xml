@@ -125,6 +125,9 @@
     <string name="txt_error_region">Debes introducir el campo municipio</string>
     <string name="txt_error_photo">Debes tomar una foto primero</string>
 
+    <string name="txt_error_confirm_pass">Las contraseñas no coinciden</string>
+    <string name="txt_error_size_pass">Las contraseñas debe ser de por lo menos 6 caracteres</string>
+
     <string name="txt_error_contract">Debes llenar el campo de Factura</string>
     <string name="txt_error_cantity">No haz indicado una cantidad mayor a 0</string>
     <string name="txt_error_variety">Debes indicar la variedad</string>
@@ -135,5 +138,11 @@
     <string name="title_activity_login">INGRESAR</string>
     <string name="title_activity_recover">RECUPERAR</string>
     <string name="title_activity_home">HomeActivity</string>
+
+    <string name="txt_menu_news">NOTICIAS</string>
+    <string name="txt_menu_farmers">AGRICULTORES</string>
+    <string name="txt_menu_profile">PERFIL</string>
+    <string name="txt_menu_logout">SALIR</string>
+
 
 </resources>

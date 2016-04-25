@@ -30,6 +30,8 @@
             android:id="@+id/txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40sp"
+            android:layout_marginRight="40sp"
             android:textColor="@color/colorWhite"
             android:layout_centerInParent="true"
             android:textSize="14sp"/>

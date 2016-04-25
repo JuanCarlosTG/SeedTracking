@@ -88,6 +88,12 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
                     Intent home = new Intent(LoginActivity.this, HomeActivity.class);
                     User.logged(true, this, json.getJSONObject("Object").getString("Token"));
                     User.set("IdTipoUsuario", json.getJSONObject("Object").getString("IdTipoUsuario"), this);
+                    User.set("NombreCompleto", json.getJSONObject("Object").getString("NombreCompleto"), this);
+                    User.set("ApellidoP", json.getJSONObject("Object").getString("ApellidoP"), this);
+                    User.set("ApellidoM", json.getJSONObject("Object").getString("ApellidoM"), this);
+                    User.set("Nombre", json.getJSONObject("Object").getString("Nombre"), this);
+                    User.set("Mail", json.getJSONObject("Object").getString("Mail"), this);
+
                     startActivity(home);
                     finish();
                 }
@@ -118,7 +124,7 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
             String strDate = jsonObjectNews.getString("FechaPublicacion");
 
             txtTitleNews.setText(strTitle);
-            txtContent.setText(strContent);
+            txtContent.setText(strTitle);
             txtDate.setText(strDate);
 
             Glide.with(this).load(strImage).into(imageNews);

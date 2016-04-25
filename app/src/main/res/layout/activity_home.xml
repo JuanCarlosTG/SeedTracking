@@ -31,7 +31,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:background="@color/colorWhite"
+        android:background="@drawable/bg_menu"
         android:choiceMode="singleChoice"
         android:divider="#fff"
         android:dividerHeight="0dp" />

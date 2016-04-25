@@ -1,34 +1,91 @@
 package com.kreativeco.sysbioscience.sales;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
-import com.kreativeco.sysbioscience.AddAssign;
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.utils.User;
+import com.kreativeco.sysbioscience.utils.WebBridge;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by kreativeco on 01/02/16.
  */
-public class LicenseFragment extends Fragment {
+public class LicenseFragment extends Fragment implements WebBridge.WebBridgeListener {
 
     View v;
+    private RecyclerView rvLicenses;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.license_fragment, null);
 
+        rvLicenses = (RecyclerView) v.findViewById(R.id.rv_licences);
+        rvLicenses.setHasFixedSize(false);
+
+        RecyclerView.LayoutManager rvLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
+        rvLicenses.setLayoutManager(rvLayoutManager);
+        ImageButton btnAddLicenses = (ImageButton) v.findViewById(R.id.btn_add_licenses);
+        btnAddLicenses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddAssign.class);
+                intent.putExtra("jsonData", "");
+                intent.putExtra("option", 0);
+                getActivity().startActivity(intent);
+            }
+        });
+
         return v;
 
     }
 
-    public void addBuy(){
-        Intent addBuy = new Intent(getActivity(), AddAssign.class);
-        startActivity(addBuy);
-        //Toast.makeText(getActivity(), "ADD FARMER", Toast.LENGTH_LONG).show();
+    @Override
+    public void onWebBridgeSuccess(String url, JSONObject json) {
+        try {
+            boolean status = json.getInt("ResponseCode") == 200;
+            if (status) {
+                JSONArray jsonArrayLicenses = json.getJSONArray("Object");
+                RecyclerView.Adapter rvAdapter = new LicensesElementAdapter(jsonArrayLicenses, getActivity());
+                rvLicenses.setAdapter(rvAdapter);
+            } else {
+                String error = json.getString("Errors");
+                new AlertDialog.Builder(getActivity().getBaseContext()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+            }
+
+        } catch (Exception e) {
+            Log.e("Exception", e.toString());
+        }
+    }
+
+    @Override
+    public void onWebBridgeFailure(String url, String response) {
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("token", User.getToken(getActivity()));
+        params.put("metodo", "consultarPorAgricultor");
+        params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
+
+        WebBridge.send("Asignaciones.ashx", params, "Obteniedo datos", getActivity(), this);
     }
 
 }

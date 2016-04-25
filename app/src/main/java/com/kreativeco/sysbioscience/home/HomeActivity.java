@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.News;
 import com.kreativeco.sysbioscience.farmers.Farmers;
@@ -29,8 +30,9 @@ public class HomeActivity extends SectionActivity{
 
     private DrawerLayout mDrawer;
     private ListView mDrawerOptions;
-    private String[] adapter = {"Noticias", "Agricultores ", "Perfil", "Parcelas"};
+    private String[] adapter = {"Noticias", "Agricultores ", "Perfil"};
     ArrayAdapter<String> adapterArray;
+    CustomMenuAdapter adapterActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class HomeActivity extends SectionActivity{
         overridePendingTransition(R.anim.fade_in, R.anim.static_motion);
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
 
-        adapterArray = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, adapter);
+        adapterActivity = new CustomMenuAdapter(this, R.layout.custom_menu_item, ItemsMenu.getCustomListView());
 
         mDrawerOptions = (ListView) findViewById(R.id.left_drawer);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -47,6 +49,10 @@ public class HomeActivity extends SectionActivity{
         View header = getLayoutInflater().inflate(R.layout.header_list, null);
         View footer = getLayoutInflater().inflate(R.layout.footer_list, null);
         View statusBarList = header.findViewById(R.id.status_bar_list);
+
+        TextView txtHeaderList = (TextView) header.findViewById(R.id.txt_username);
+        String userName = User.get("Nombre", this) + " " + User.get("ApellidoP", this);
+        txtHeaderList.setText(userName);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (statusBarList == null) return;
@@ -57,7 +63,7 @@ public class HomeActivity extends SectionActivity{
 
         mDrawerOptions.addHeaderView(header);
         mDrawerOptions.addFooterView(footer);
-        mDrawerOptions.setAdapter(adapterArray);
+        mDrawerOptions.setAdapter(adapterActivity);
 
 
         btnMenu = (ImageButton) findViewById(R.id.i_btn_header);
@@ -88,7 +94,6 @@ public class HomeActivity extends SectionActivity{
                 } else if (position == 4) {
 
                 }
-
                 mDrawer.closeDrawers();
 
             }

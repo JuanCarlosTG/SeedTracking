@@ -8,9 +8,11 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
@@ -18,40 +20,51 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by kreativeco on 01/02/16.
  */
-public class Profile extends Fragment implements WebBridge.WebBridgeListener{
+public class Profile extends Fragment implements WebBridge.WebBridgeListener {
 
-    private EditText txtName, txtLastNameA, txtLastNameB, txtEmail, txtConfirmEmail, txtPhone;
-    private EditText txtCell, txtCompany, txtRFC, txtID, txtAddress, txtZip;
+    private EditText txtName, txtLastNameA, txtLastNameB, txtEmail, txtPass, txtConfirmPass;
+    Button btnUpdateProfile;
 
     View v;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         v = inflater.inflate(R.layout.profile, null);
 
-        txtName          = (EditText) v.findViewById(R.id.txt_name);
-        txtLastNameA     = (EditText) v.findViewById(R.id.txt_last_name_a);
-        txtLastNameB     = (EditText) v.findViewById(R.id.txt_last_name_b);
-        txtEmail         = (EditText) v.findViewById(R.id.txt_mail);
-        txtPhone         = (EditText) v.findViewById(R.id.txt_phone);
-        txtCell          = (EditText) v.findViewById(R.id.txt_cell);
-        txtCompany       = (EditText) v.findViewById(R.id.txt_company);
-        txtRFC           = (EditText) v.findViewById(R.id.txt_rfc);
-        txtID            = (EditText) v.findViewById(R.id.txt_id);
-        txtAddress       = (EditText) v.findViewById(R.id.txt_address);
-        txtZip           = (EditText) v.findViewById(R.id.txt_zip);
+        txtName = (EditText) v.findViewById(R.id.et_name);
+        txtLastNameA = (EditText) v.findViewById(R.id.et_last_name_a);
+        txtLastNameB = (EditText) v.findViewById(R.id.et_last_name_b);
+        txtEmail = (EditText) v.findViewById(R.id.et_e_mail);
+        txtPass = (EditText) v.findViewById(R.id.et_pass);
+        txtConfirmPass = (EditText) v.findViewById(R.id.et_confirm_pass);
+        btnUpdateProfile = (Button) v.findViewById(R.id.btn_update_profile);
 
-        /*ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.width = R.dimen.sp_100;
-        layoutParams.height = R.dimen.sp_200;
+        btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateProfile();
+            }
+        });
 
-        txtAddress.setLayoutParams(layoutParams);*/
+        String userName = User.get("Nombre", getActivity());
+        String apellidoA = User.get("ApellidoP", getActivity());
+        String apellidoB = User.get("ApellidoM", getActivity());
+        String mail = User.get("Mail", getActivity());
+
+        txtName.setText(userName);
+        txtLastNameA.setText(apellidoA);
+        txtLastNameB.setText(apellidoB);
+        txtEmail.setText(mail);
+
 
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", User.getToken(getActivity()));
@@ -63,30 +76,59 @@ public class Profile extends Fragment implements WebBridge.WebBridgeListener{
 
     }
 
+    public void updateProfile() {
+        ArrayList<String> errors = new ArrayList<String>();
+        if (txtName.getText().length() < 1) errors.add(getString(R.string.txt_error_name));
+        if (txtLastNameA.getText().length() < 1)
+            errors.add(getString(R.string.txt_error_last_name_a));
+        if (txtLastNameA.getText().length() < 1)
+            errors.add(getString(R.string.txt_error_last_name_b));
+        if (txtEmail.getText().length() < 1) errors.add(getString(R.string.txt_error_mail));
+        if (!txtPass.getText().toString().equals(txtConfirmPass.getText().toString()))
+            errors.add(getString(R.string.txt_error_confirm_pass));
+        if (txtPass.getText().toString().length() < 3)
+            errors.add(getString(R.string.txt_error_size_pass));
+
+        if (errors.size() != 0) {
+            String msg = "";
+            for (String s : errors) {
+                msg += "- " + s + "\n";
+            }
+            new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+            return;
+        }
+
+        HashMap<String, Object> params = new HashMap<>();
+
+        params.put("metodo",        "editarPerfil");
+        params.put("token", User.getToken(getActivity()));
+        params.put("mail",          txtEmail.getText().toString());
+        params.put("password",      txtPass.getText().toString());
+        params.put("nombre",        txtName.getText().toString());
+        params.put("apellidoP",     txtLastNameA.getText().toString());
+        params.put("apellidoM",     txtLastNameB.getText().toString());
+
+        WebBridge.send("Login.ashx?update", params, getString(R.string.txt_sending), getActivity(), this);
+
+    }
+
+
     @Override
     public void onWebBridgeSuccess(String url, JSONObject json) {
         Log.e("JSON SUCCESS", json.toString());
         try {
-            if(json.getInt("error_code") == 200){
-                JSONArray   data        = json.getJSONArray("data");
-                JSONObject  jsonObject  = data.getJSONObject(0);
+            if (json.getInt("ResponseCode") == 200) {
 
-                txtName.setText(jsonObject.getString("nombre"));
-                txtLastNameA.setText(jsonObject.getString("appaterno"));
-                txtLastNameB.setText(jsonObject.getString("apmaterno"));
-                txtEmail.setText(jsonObject.getString("email"));
-                txtCompany.setText(jsonObject.getString("razon_social_subdistribuidor"));
-                txtRFC.setText(jsonObject.getString("rfc_subdistribuidor"));
-                txtAddress.setText(jsonObject.getString("direccion_subdistribuidor"));
-                txtZip.setText(jsonObject.getString("cp_subdistribuidor"));
-                txtPhone.setText(jsonObject.getString("tel_subdistribuidor"));
+                JSONArray jsonArrayNews = json.getJSONArray("Object");
 
-            }else {
-                String errorMessage = json.getString("error_message");
-                new AlertDialog.Builder(getActivity().getBaseContext()).setTitle(R.string.txt_error).setMessage(errorMessage).setNeutralButton(R.string.bt_close, null).show();
+            } else if (json.getInt("ResponseCode") == 500) {
+
+                String error = json.getJSONObject("Errors").getString("600");
+                new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+
             }
 
-        }catch (JSONException jsonE){
+        } catch (JSONException jsonE) {
             Log.e("JSON EXCEPTION", jsonE.toString());
         }
 

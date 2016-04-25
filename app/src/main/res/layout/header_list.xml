@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#009FDD"
+    android:background="@android:color/transparent"
     android:paddingBottom="10dp">
 
     <View
@@ -37,8 +37,18 @@
             android:layout_marginLeft="10sp"
             android:id="@+id/ib_header_list"
             android:onClick="closeDrawer"
+            android:visibility="invisible"
             android:layout_marginRight="10sp"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40sp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:id="@+id/txt_username"
+        android:textColor="@color/colorGray"/>
 
 </RelativeLayout>
