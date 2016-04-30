@@ -1,27 +1,19 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer.purchases;
 
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.farmer.FarmerActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +22,7 @@ import org.json.JSONObject;
 /**
  * Created by kreativeco on 22/02/16.
  */
-public class SalesElementAdapter extends RecyclerView.Adapter<SalesElementAdapter.SalesViewHolder> {
+public class PurchasesElementAdapter extends RecyclerView.Adapter<PurchasesElementAdapter.SalesViewHolder> {
 
     private JSONArray sales;
     Activity activity;
@@ -76,7 +68,7 @@ public class SalesElementAdapter extends RecyclerView.Adapter<SalesElementAdapte
                 @Override
                 public void onClick(View v) {
                     dialog.cancel();
-                    Intent intent = new Intent(salesActivity, AddSell.class);
+                    Intent intent = new Intent(salesActivity, AddPurchase.class);
                     intent.putExtra("jsonData", salesData.toString());
                     intent.putExtra("option", 1);
                     salesActivity.startActivity(intent);
@@ -99,7 +91,7 @@ public class SalesElementAdapter extends RecyclerView.Adapter<SalesElementAdapte
         }
 
         public void runSales(int option, JSONObject jsonObjectdata){
-            Intent intent = new Intent(salesActivity, Sales.class);
+            Intent intent = new Intent(salesActivity, FarmerActivity.class);
             intent.putExtra("option", option);
             intent.putExtra("jsonData", jsonObjectdata.toString());
             salesActivity.startActivity(intent);
@@ -107,7 +99,7 @@ public class SalesElementAdapter extends RecyclerView.Adapter<SalesElementAdapte
 
     }
 
-    public SalesElementAdapter(JSONArray sales, Activity activity) {
+    public PurchasesElementAdapter(JSONArray sales, Activity activity) {
         this.sales = sales;
         this.activity = activity;
         salesActivity = this.activity;

@@ -22,7 +22,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.kreativeco.sysbioscience.R;
-import com.kreativeco.sysbioscience.sales.Sales;
+import com.kreativeco.sysbioscience.farmer.FarmerActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,7 +107,7 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
         }
 
         public void runSales(int option, JSONObject jsonObjectdata){
-            Intent intent = new Intent(farmerActivity, Sales.class);
+            Intent intent = new Intent(farmerActivity, FarmerActivity.class);
             intent.putExtra("option", option);
             intent.putExtra("jsonData", jsonObjectdata.toString());
             farmerActivity.startActivity(intent);
@@ -123,7 +123,7 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
     }
 
     public static void runSales() {
-        Intent sales = new Intent(context, Sales.class);
+        Intent sales = new Intent(context, FarmerActivity.class);
         sales.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(sales);
     }

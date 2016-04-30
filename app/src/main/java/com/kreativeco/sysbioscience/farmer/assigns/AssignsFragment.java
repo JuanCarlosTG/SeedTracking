@@ -1,4 +1,4 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer.assigns;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
@@ -24,7 +25,7 @@ import java.util.HashMap;
 /**
  * Created by kreativeco on 01/02/16.
  */
-public class LicenseFragment extends Fragment implements WebBridge.WebBridgeListener {
+public class AssignsFragment extends Fragment implements WebBridge.WebBridgeListener {
 
     View v;
     private RecyclerView rvLicenses;
@@ -59,7 +60,7 @@ public class LicenseFragment extends Fragment implements WebBridge.WebBridgeList
             boolean status = json.getInt("ResponseCode") == 200;
             if (status) {
                 JSONArray jsonArrayLicenses = json.getJSONArray("Object");
-                RecyclerView.Adapter rvAdapter = new LicensesElementAdapter(jsonArrayLicenses, getActivity());
+                RecyclerView.Adapter rvAdapter = new AssignsElementAdapter(jsonArrayLicenses, getActivity());
                 rvLicenses.setAdapter(rvAdapter);
             } else {
                 String error = json.getString("Errors");

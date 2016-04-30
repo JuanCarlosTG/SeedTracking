@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +23,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
-import com.kreativeco.sysbioscience.sales.CurrentDataFarmer;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
 import com.kreativeco.sysbioscience.utils.ListStates;
@@ -33,7 +32,6 @@ import com.kreativeco.sysbioscience.utils.WebBridge;
 
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;

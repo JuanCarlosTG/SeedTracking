@@ -1,4 +1,4 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer.purchases;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
@@ -24,7 +25,7 @@ import java.util.HashMap;
 /**
  * Created by kreativeco on 01/02/16.
  */
-public class SalesFragment extends Fragment implements WebBridge.WebBridgeListener {
+public class PurchasesFragment extends Fragment implements WebBridge.WebBridgeListener {
 
     View v;
     private RecyclerView rvSales;
@@ -44,7 +45,7 @@ public class SalesFragment extends Fragment implements WebBridge.WebBridgeListen
         btnAddSales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddSell.class);
+                Intent intent = new Intent(getActivity(), AddPurchase.class);
                 intent.putExtra("jsonData", "");
                 intent.putExtra("option", 0);
                 getActivity().startActivity(intent);
@@ -61,7 +62,7 @@ public class SalesFragment extends Fragment implements WebBridge.WebBridgeListen
             boolean status = json.getInt("ResponseCode") == 200;
             if (status) {
                 JSONArray jsonArraySales = json.getJSONArray("Object");
-                RecyclerView.Adapter rvAdapter = new SalesElementAdapter(jsonArraySales, getActivity());
+                RecyclerView.Adapter rvAdapter = new PurchasesElementAdapter(jsonArraySales, getActivity());
                 rvSales.setAdapter(rvAdapter);
             } else {
                 String error = json.getString("Errors");

@@ -63,13 +63,13 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".sales.AddSell"
+            android:name=".farmer.purchases.AddPurchase"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".sales.AddAssign"
+            android:name=".farmer.assigns.AddAssign"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -117,7 +117,7 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".sales.Sales"
+            android:name=".farmer.FarmerActivity"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" >

@@ -1,4 +1,4 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer.assigns;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -20,7 +20,7 @@ import org.json.JSONObject;
 /**
  * Created by kreativeco on 22/02/16.
  */
-public class LicensesElementAdapter extends RecyclerView.Adapter<LicensesElementAdapter.LicensesViewHolder> {
+public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAdapter.LicensesViewHolder> {
 
     private JSONArray licenses;
     Activity activity;
@@ -90,7 +90,7 @@ public class LicensesElementAdapter extends RecyclerView.Adapter<LicensesElement
 
     }
 
-    public LicensesElementAdapter(JSONArray licenses, Activity activity) {
+    public AssignsElementAdapter(JSONArray licenses, Activity activity) {
         this.licenses = licenses;
         this.activity = activity;
         licensesActivity = this.activity;

@@ -1,9 +1,9 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer.currentdatas;
 
 /**
  * Created by JuanC on 23/04/2016.
  */
-public class CurrentDataSales {
+public class CurrentDataPurchases {
 
     private static String salesCantity          = "";
     private static String saleDate              = "";
@@ -28,7 +28,7 @@ public class CurrentDataSales {
     }
 
     public static void setSalesCantity(String salesCantity) {
-        CurrentDataSales.salesCantity = salesCantity;
+        CurrentDataPurchases.salesCantity = salesCantity;
     }
 
     public static String getSaleDate() {
@@ -36,7 +36,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleDate(String saleDate) {
-        CurrentDataSales.saleDate = saleDate;
+        CurrentDataPurchases.saleDate = saleDate;
     }
 
     public static String getSaleId() {
@@ -44,7 +44,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleId(String saleId) {
-        CurrentDataSales.saleId = saleId;
+        CurrentDataPurchases.saleId = saleId;
     }
 
     public static String getSaleRequest() {
@@ -52,7 +52,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleRequest(String saleRequest) {
-        CurrentDataSales.saleRequest = saleRequest;
+        CurrentDataPurchases.saleRequest = saleRequest;
     }
 
     public static String getSaleUserSell() {
@@ -60,7 +60,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleUserSell(String saleUserSell) {
-        CurrentDataSales.saleUserSell = saleUserSell;
+        CurrentDataPurchases.saleUserSell = saleUserSell;
     }
 
     public static String getSaleNumberAgreement() {
@@ -68,7 +68,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleNumberAgreement(String saleNumberAgreement) {
-        CurrentDataSales.saleNumberAgreement = saleNumberAgreement;
+        CurrentDataPurchases.saleNumberAgreement = saleNumberAgreement;
     }
 
     public static String getSaleNameState() {
@@ -76,7 +76,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleNameState(String saleNameState) {
-        CurrentDataSales.saleNameState = saleNameState;
+        CurrentDataPurchases.saleNameState = saleNameState;
     }
 
     public static String getSaleNameMunicipality() {
@@ -84,7 +84,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleNameMunicipality(String saleNameMunicipality) {
-        CurrentDataSales.saleNameMunicipality = saleNameMunicipality;
+        CurrentDataPurchases.saleNameMunicipality = saleNameMunicipality;
     }
 
     public static String getSaleKG() {
@@ -92,7 +92,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleKG(String saleKG) {
-        CurrentDataSales.saleKG = saleKG;
+        CurrentDataPurchases.saleKG = saleKG;
     }
 
     public static String getSaleTypeSell() {
@@ -100,7 +100,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleTypeSell(String saleTypeSell) {
-        CurrentDataSales.saleTypeSell = saleTypeSell;
+        CurrentDataPurchases.saleTypeSell = saleTypeSell;
     }
 
     public static String getSaleSeed() {
@@ -108,7 +108,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleSeed(String saleSeed) {
-        CurrentDataSales.saleSeed = saleSeed;
+        CurrentDataPurchases.saleSeed = saleSeed;
     }
 
     public static String getSaleVariety() {
@@ -116,7 +116,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleVariety(String saleVariety) {
-        CurrentDataSales.saleVariety = saleVariety;
+        CurrentDataPurchases.saleVariety = saleVariety;
     }
 
     public static int getSaleIdFarmer() {
@@ -124,7 +124,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleIdFarmer(int saleIdFarmer) {
-        CurrentDataSales.saleIdFarmer = saleIdFarmer;
+        CurrentDataPurchases.saleIdFarmer = saleIdFarmer;
     }
 
     public static int getSaleIdState() {
@@ -132,7 +132,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleIdState(int saleIdState) {
-        CurrentDataSales.saleIdState = saleIdState;
+        CurrentDataPurchases.saleIdState = saleIdState;
     }
 
     public static int getSaleIdMunicipality() {
@@ -140,7 +140,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleIdMunicipality(int saleIdMunicipality) {
-        CurrentDataSales.saleIdMunicipality = saleIdMunicipality;
+        CurrentDataPurchases.saleIdMunicipality = saleIdMunicipality;
     }
 
     public static int getSaleIdTypeSell() {
@@ -148,7 +148,7 @@ public class CurrentDataSales {
     }
 
     public static void setSaleIdTypeSell(int saleIdTypeSell) {
-        CurrentDataSales.saleIdTypeSell = saleIdTypeSell;
+        CurrentDataPurchases.saleIdTypeSell = saleIdTypeSell;
     }
 
 
@@ -157,6 +157,6 @@ public class CurrentDataSales {
     }
 
     public static void setSaleIdVariety(int saleIdVariety) {
-        CurrentDataSales.saleIdVariety = saleIdVariety;
+        CurrentDataPurchases.saleIdVariety = saleIdVariety;
     }
 }

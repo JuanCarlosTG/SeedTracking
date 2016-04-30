@@ -1,19 +1,13 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer.datafarmer;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +19,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.kreativeco.sysbioscience.AddProperty;
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
+import com.kreativeco.sysbioscience.farmer.FarmerActivity;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
 import com.kreativeco.sysbioscience.utils.ListStates;
@@ -36,10 +31,7 @@ import com.kreativeco.sysbioscience.utils.WebBridge;
 import org.json.JSONObject;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -138,7 +130,7 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
     }
 
     public void getImage(int imageSelector) {
-        ((Sales) getActivity()).clickCamera(imageSelector);
+        ((FarmerActivity) getActivity()).clickCamera(imageSelector);
     }
 
     private void setDataFarmer() {

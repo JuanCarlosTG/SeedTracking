@@ -1,12 +1,9 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer;
 
 import android.Manifest;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,9 +22,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
+import com.kreativeco.sysbioscience.farmer.datafarmer.DataFragment;
 import com.kreativeco.sysbioscience.utils.ListIds;
 
 import org.json.JSONException;
@@ -38,7 +36,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Sales extends SectionActivity {
+public class FarmerActivity extends SectionActivity {
 
     RelativeLayout rlHeader;
     LinearLayout llTabHeader;
@@ -51,7 +49,7 @@ public class Sales extends SectionActivity {
     private int imageSelector;
     String strFileLocation = null;
     public ViewPager viewPager;
-    public FragmentAdapterSales fragmentAdapterSales;
+    public FragmentAdapterFarmer fragmentAdapterFarmer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +58,9 @@ public class Sales extends SectionActivity {
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
-        fragmentAdapterSales = new FragmentAdapterSales
+        fragmentAdapterFarmer = new FragmentAdapterFarmer
                 (getFragmentManager(), 4);
-        viewPager.setAdapter(fragmentAdapterSales);
+        viewPager.setAdapter(fragmentAdapterFarmer);
 
         rlHeader =(RelativeLayout) findViewById(R.id.rl_header);
         llTabHeader = (LinearLayout) findViewById(R.id.ll_tab_header);
@@ -233,24 +231,6 @@ public class Sales extends SectionActivity {
                 CurrentDataFarmer.setFarmerCanLogin(jsonObjectData.getBoolean("CanLogin"));
                 CurrentDataFarmer.setFarmerActive(jsonObjectData.getBoolean("Activo"));
 
-                /*CurrentDataSales.setSalesCantity(jsonObjectData.getString("Cantidad"));
-                CurrentDataSales.setSaleDate(jsonObjectData.getString("Fecha"));
-                CurrentDataSales.setSaleId(jsonObjectData.getString("Id"));
-                CurrentDataSales.setSaleIdFarmer(jsonObjectData.getString("IdAgricultor"));
-                CurrentDataSales.setSaleIdState(jsonObjectData.getString("IdEstado"));
-                CurrentDataSales.setSaleIdMunicipality(jsonObjectData.getString("IdMunicipio"));
-                CurrentDataSales.setSalesCantity(jsonObjectData.getString("IdSolicitud"));
-                CurrentDataSales.setSaleIdTypeSell(jsonObjectData.getString("IdTipoCompra"));
-                CurrentDataSales.setSaleUserSell(jsonObjectData.getString("IdUsuarioCompra"));
-                CurrentDataSales.setSaleIdVariety(jsonObjectData.getString("IdVariedad"));
-                CurrentDataSales.setSaleNumberAgreement(jsonObjectData.getString("NoConvenio"));
-                CurrentDataSales.setSaleNameState(jsonObjectData.getString("NombreEstado"));
-                CurrentDataSales.setSaleNameMunicipality(jsonObjectData.getString("NombreMunicipio"));
-                CurrentDataSales.setSaleKG(jsonObjectData.getString("RemanenteKG"));
-                CurrentDataSales.setSaleSeed(jsonObjectData.getString("Semilla"));
-                CurrentDataSales.setSaleTypeSell(jsonObjectData.getString("TipoCompra"));
-                CurrentDataSales.setSaleVariety(jsonObjectData.getString("Variedad"));*/
-
                 txtTitle.setText(jsonObjectData.getString("NombreCompleto"));
                 Log.e("Jsondata", jsonObjectData.toString());
             }catch (JSONException jsonException){
@@ -339,7 +319,7 @@ public class Sales extends SectionActivity {
         if (requestCode == START_CAMERA && resultCode == RESULT_OK) {
 
             FragmentManager fm = getFragmentManager();
-            DataFragment fragment = (DataFragment) fragmentAdapterSales.getItem(1);
+            DataFragment fragment = (DataFragment) fragmentAdapterFarmer.getItem(1);
 
             if(imageSelector == 0){
                 CurrentDataFarmer.setStrFileFarmer(strFileLocation);

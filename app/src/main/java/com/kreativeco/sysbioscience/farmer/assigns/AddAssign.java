@@ -1,4 +1,4 @@
-package com.kreativeco.sysbioscience.sales;
+package com.kreativeco.sysbioscience.farmer.assigns;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -11,10 +11,11 @@ import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataPurchases;
+import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
 import com.kreativeco.sysbioscience.utils.ListSellType;
 import com.kreativeco.sysbioscience.utils.ListStates;
-import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListVarieties;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
@@ -28,7 +29,7 @@ import java.util.HashMap;
 /**
  * Created by JuanC on 24/04/2016.
  */
-public class AddSell extends SectionActivity implements WebBridge.WebBridgeListener{
+public class AddAssign extends SectionActivity implements WebBridge.WebBridgeListener{
 
     JSONObject jsonObjectData;
     EditText txtBill, txtCantity;
@@ -39,17 +40,17 @@ public class AddSell extends SectionActivity implements WebBridge.WebBridgeListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_sell);
+        setContentView(R.layout.activity_add_assign);
         overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
 
-        txtBill = (EditText) findViewById(R.id.txt_bill);
+        /*txtBill = (EditText) findViewById(R.id.txt_bill);
         txtCantity = (EditText) findViewById(R.id.txt_cantity);
         btnState = (Button) findViewById(R.id.btn_state);
         btnMunicipality = (Button) findViewById(R.id.btn_municipality);
         btnVariety = (Button) findViewById(R.id.btn_variety);
         btnSellType = (Button) findViewById(R.id.btn_sell_type);
-        btnAddSell = (Button) findViewById(R.id.btn_add_sell);
+        btnAddSell = (Button) findViewById(R.id.btn_add_sell);*/
 
         ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
         headerBackButton.setOnClickListener(new View.OnClickListener() {
@@ -60,68 +61,7 @@ public class AddSell extends SectionActivity implements WebBridge.WebBridgeListe
             }
         });
 
-        btnState.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                btnMunicipality.setText("");
-                btnVariety.setText("");
-                ListIds.setIdLocality(-1);
-                ListIds.setIdVariety(-1);
-                selectState();
-            }
-        });
 
-        btnMunicipality.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ListIds.getIdState() == -1) return;
-                btnVariety.setText("");
-                ListIds.setIdVariety(-1);
-                selectMunicipality();
-            }
-        });
-
-        btnVariety.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ListIds.getIdState() == -1 || ListIds.getIdLocality() == -1) return;
-                selectVariety();
-            }
-        });
-
-        btnSellType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectSellType();
-            }
-        });
-
-        Intent intent = getIntent();
-        if (intent != null) {
-
-            int option = intent.getIntExtra("option", 0);
-            if (option == 0) {
-                btnAddSell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        saveSell();
-                        //finish();
-                    }
-                });
-                return;
-            }
-
-            if (option == 1) {
-                String json = intent.getStringExtra("jsonData");
-                handleJSON(json);
-                btnAddSell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        updateSell();
-                    }
-                });
-            }
-        }
     }
 
     private void updateSell() {
@@ -146,7 +86,7 @@ public class AddSell extends SectionActivity implements WebBridge.WebBridgeListe
 
         HashMap<String, Object> params = new HashMap<>();
 
-        params.put("idAgricultor", CurrentDataSales.getSaleIdFarmer());
+        params.put("idAgricultor", CurrentDataPurchases.getSaleIdFarmer());
         params.put("noConvenio", txtBill.getText().toString());
         params.put("idVariedad", ListIds.getIdVariety());
         params.put("cantidad", txtCantity.getText().toString());
@@ -156,7 +96,7 @@ public class AddSell extends SectionActivity implements WebBridge.WebBridgeListe
 
 
         params.put("metodo", "actualizar");
-        params.put("idCompra", CurrentDataSales.getSaleId());
+        params.put("idCompra", CurrentDataPurchases.getSaleId());
         WebBridge.send("Compras.ashx?update", params, "Guardando", this, this);
 
     }
@@ -184,7 +124,7 @@ public class AddSell extends SectionActivity implements WebBridge.WebBridgeListe
 
         HashMap<String, Object> params = new HashMap<>();
 
-        params.put("idAgricultor", CurrentDataSales.getSaleIdFarmer());
+        params.put("idAgricultor", CurrentDataPurchases.getSaleIdFarmer());
         params.put("noConvenio", txtBill.getText().toString());
         params.put("idVariedad", ListIds.getIdVariety());
         params.put("cantidad", txtCantity.getText().toString());
@@ -197,22 +137,22 @@ public class AddSell extends SectionActivity implements WebBridge.WebBridgeListe
     }
 
     private void selectState() {
-        Intent listStates = new Intent(AddSell.this, ListStates.class);
+        Intent listStates = new Intent(AddAssign.this, ListStates.class);
         startActivityForResult(listStates, 1);
     }
 
     private void selectMunicipality() {
-        Intent listLocalities = new Intent(AddSell.this, ListMunicipality.class);
+        Intent listLocalities = new Intent(AddAssign.this, ListMunicipality.class);
         startActivityForResult(listLocalities, 2);
     }
 
     private void selectVariety() {
-        Intent listVarieties = new Intent(AddSell.this, ListVarieties.class);
+        Intent listVarieties = new Intent(AddAssign.this, ListVarieties.class);
         startActivityForResult(listVarieties, 3);
     }
 
     private void selectSellType() {
-        Intent listSellType = new Intent(AddSell.this, ListSellType.class);
+        Intent listSellType = new Intent(AddAssign.this, ListSellType.class);
         startActivityForResult(listSellType, 4);
     }
 
@@ -221,36 +161,36 @@ public class AddSell extends SectionActivity implements WebBridge.WebBridgeListe
             try {
                 jsonObjectData = new JSONObject(json);
 
-                CurrentDataSales.setSalesCantity(jsonObjectData.getString("Cantidad"));
-                CurrentDataSales.setSaleDate(jsonObjectData.getString("Fecha"));
-                CurrentDataSales.setSaleId(jsonObjectData.getString("Id"));
-                CurrentDataSales.setSaleUserSell(jsonObjectData.getString("IdUsuarioCompra"));
-                CurrentDataSales.setSaleIdVariety(jsonObjectData.getInt("IdVariedad"));
-                CurrentDataSales.setSaleNameState(jsonObjectData.getString("NombreEstado"));
-                CurrentDataSales.setSaleNameMunicipality(jsonObjectData.getString("NombreMunicipio"));
-                CurrentDataSales.setSaleKG(jsonObjectData.getString("RemanenteKG"));
-                CurrentDataSales.setSaleSeed(jsonObjectData.getString("Semilla"));
-                CurrentDataSales.setSaleTypeSell(jsonObjectData.getString("TipoCompra"));
-                CurrentDataSales.setSaleVariety(jsonObjectData.getString("Variedad"));
-                CurrentDataSales.setSaleIdTypeSell(jsonObjectData.getInt("IdTipoCompra"));
-                CurrentDataSales.setSaleIdFarmer(jsonObjectData.getInt("IdAgricultor"));
-                CurrentDataSales.setSaleIdState(jsonObjectData.getInt("IdEstado"));
-                CurrentDataSales.setSaleIdMunicipality(jsonObjectData.getInt("IdMunicipio"));
-                CurrentDataSales.setSaleRequest(jsonObjectData.getString("IdSolicitud"));
-                CurrentDataSales.setSaleNumberAgreement(jsonObjectData.getString("NoConvenio"));
+                CurrentDataPurchases.setSalesCantity(jsonObjectData.getString("Cantidad"));
+                CurrentDataPurchases.setSaleDate(jsonObjectData.getString("Fecha"));
+                CurrentDataPurchases.setSaleId(jsonObjectData.getString("Id"));
+                CurrentDataPurchases.setSaleUserSell(jsonObjectData.getString("IdUsuarioCompra"));
+                CurrentDataPurchases.setSaleIdVariety(jsonObjectData.getInt("IdVariedad"));
+                CurrentDataPurchases.setSaleNameState(jsonObjectData.getString("NombreEstado"));
+                CurrentDataPurchases.setSaleNameMunicipality(jsonObjectData.getString("NombreMunicipio"));
+                CurrentDataPurchases.setSaleKG(jsonObjectData.getString("RemanenteKG"));
+                CurrentDataPurchases.setSaleSeed(jsonObjectData.getString("Semilla"));
+                CurrentDataPurchases.setSaleTypeSell(jsonObjectData.getString("TipoCompra"));
+                CurrentDataPurchases.setSaleVariety(jsonObjectData.getString("Variedad"));
+                CurrentDataPurchases.setSaleIdTypeSell(jsonObjectData.getInt("IdTipoCompra"));
+                CurrentDataPurchases.setSaleIdFarmer(jsonObjectData.getInt("IdAgricultor"));
+                CurrentDataPurchases.setSaleIdState(jsonObjectData.getInt("IdEstado"));
+                CurrentDataPurchases.setSaleIdMunicipality(jsonObjectData.getInt("IdMunicipio"));
+                CurrentDataPurchases.setSaleRequest(jsonObjectData.getString("IdSolicitud"));
+                CurrentDataPurchases.setSaleNumberAgreement(jsonObjectData.getString("NoConvenio"));
 
-                ListIds.setIdState(CurrentDataSales.getSaleIdState());
-                ListIds.setIdSellType(CurrentDataSales.getSaleIdTypeSell());
-                ListIds.setIdVariety(CurrentDataSales.getSaleIdVariety());
-                ListIds.setIdLocality(CurrentDataSales.getSaleIdMunicipality());
+                ListIds.setIdState(CurrentDataPurchases.getSaleIdState());
+                ListIds.setIdSellType(CurrentDataPurchases.getSaleIdTypeSell());
+                ListIds.setIdVariety(CurrentDataPurchases.getSaleIdVariety());
+                ListIds.setIdLocality(CurrentDataPurchases.getSaleIdMunicipality());
 
-                txtBill.setText(CurrentDataSales.getSaleNumberAgreement());
-                txtCantity.setText(CurrentDataSales.getSalesCantity());
+                txtBill.setText(CurrentDataPurchases.getSaleNumberAgreement());
+                txtCantity.setText(CurrentDataPurchases.getSalesCantity());
 
-                btnState.setText(CurrentDataSales.getSaleNameState());
-                btnMunicipality.setText(CurrentDataSales.getSaleNameMunicipality());
-                btnSellType.setText(CurrentDataSales.getSaleTypeSell());
-                btnVariety.setText(CurrentDataSales.getSaleVariety());
+                btnState.setText(CurrentDataPurchases.getSaleNameState());
+                btnMunicipality.setText(CurrentDataPurchases.getSaleNameMunicipality());
+                btnSellType.setText(CurrentDataPurchases.getSaleTypeSell());
+                btnVariety.setText(CurrentDataPurchases.getSaleVariety());
 
                 Log.e("Jsondata", jsonObjectData.toString());
             } catch (JSONException jsonException) {
