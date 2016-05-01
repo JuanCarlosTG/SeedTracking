@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataPurchases;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
+import com.kreativeco.sysbioscience.utils.ListPurchases;
 import com.kreativeco.sysbioscience.utils.ListSellType;
 import com.kreativeco.sysbioscience.utils.ListStates;
 import com.kreativeco.sysbioscience.utils.ListVarieties;
@@ -32,8 +34,9 @@ import java.util.HashMap;
 public class AddAssign extends SectionActivity implements WebBridge.WebBridgeListener{
 
     JSONObject jsonObjectData;
-    EditText txtBill, txtCantity;
-    Button btnState, btnMunicipality, btnVariety, btnSellType, btnAddSell;
+    EditText txtCantity;
+    TextView txtVariety;
+    Button btnPurchases, btnPeriod, btnProperty, btnSellType, btnDateSeed;
     int idState, idMunicipality, idVariety, idSellType;
     String stateName, municipalityName, varietyName, sellTypeName;
 
@@ -44,13 +47,14 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
 
-        /*txtBill = (EditText) findViewById(R.id.txt_bill);
+        txtVariety = (TextView) findViewById(R.id.txt_variety);
         txtCantity = (EditText) findViewById(R.id.txt_cantity);
-        btnState = (Button) findViewById(R.id.btn_state);
-        btnMunicipality = (Button) findViewById(R.id.btn_municipality);
-        btnVariety = (Button) findViewById(R.id.btn_variety);
+
+        btnPurchases = (Button) findViewById(R.id.btn_purchases);
+        btnPeriod = (Button) findViewById(R.id.btn_period);
+        btnProperty = (Button) findViewById(R.id.btn_property);
         btnSellType = (Button) findViewById(R.id.btn_sell_type);
-        btnAddSell = (Button) findViewById(R.id.btn_add_sell);*/
+        btnDateSeed = (Button) findViewById(R.id.btn_date);
 
         ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
         headerBackButton.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +71,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
     private void updateSell() {
 
         ArrayList<String> errors = new ArrayList<String>();
-        if (txtBill.getText().length() < 1) errors.add(getString(R.string.txt_error_contract));
+        if (txtVariety.getText().length() < 1) errors.add(getString(R.string.txt_error_contract));
         if (txtCantity.getText().length() < 1) errors.add(getString(R.string.txt_error_cantity));
         if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
         if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
@@ -87,7 +91,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         HashMap<String, Object> params = new HashMap<>();
 
         params.put("idAgricultor", CurrentDataPurchases.getSaleIdFarmer());
-        params.put("noConvenio", txtBill.getText().toString());
+        params.put("noConvenio", txtVariety.getText().toString());
         params.put("idVariedad", ListIds.getIdVariety());
         params.put("cantidad", txtCantity.getText().toString());
         params.put("idTipoCompra", ListIds.getIdSellType());
@@ -104,7 +108,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
     private void saveSell() {
 
         ArrayList<String> errors = new ArrayList<String>();
-        if (txtBill.getText().length() < 1) errors.add(getString(R.string.txt_error_contract));
+        if (txtVariety.getText().length() < 1) errors.add(getString(R.string.txt_error_contract));
         if (txtCantity.getText().length() < 1 || Integer.parseInt(txtCantity.getText().toString()) <= 0)
             errors.add(getString(R.string.txt_error_cantity));
         if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
@@ -125,7 +129,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         HashMap<String, Object> params = new HashMap<>();
 
         params.put("idAgricultor", CurrentDataPurchases.getSaleIdFarmer());
-        params.put("noConvenio", txtBill.getText().toString());
+        params.put("noConvenio", txtVariety.getText().toString());
         params.put("idVariedad", ListIds.getIdVariety());
         params.put("cantidad", txtCantity.getText().toString());
         params.put("idTipoCompra", ListIds.getIdSellType());
@@ -136,9 +140,9 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         WebBridge.send("Compras.ashx?insert", params, "Guardando", this, this);
     }
 
-    private void selectState() {
-        Intent listStates = new Intent(AddAssign.this, ListStates.class);
-        startActivityForResult(listStates, 1);
+    public void selectPurchases(View view) {
+        Intent listPurchases = new Intent(AddAssign.this, ListPurchases.class);
+        startActivityForResult(listPurchases, 1);
     }
 
     private void selectMunicipality() {
@@ -184,13 +188,13 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
                 ListIds.setIdVariety(CurrentDataPurchases.getSaleIdVariety());
                 ListIds.setIdLocality(CurrentDataPurchases.getSaleIdMunicipality());
 
-                txtBill.setText(CurrentDataPurchases.getSaleNumberAgreement());
+                txtVariety.setText(CurrentDataPurchases.getSaleNumberAgreement());
                 txtCantity.setText(CurrentDataPurchases.getSalesCantity());
 
-                btnState.setText(CurrentDataPurchases.getSaleNameState());
-                btnMunicipality.setText(CurrentDataPurchases.getSaleNameMunicipality());
+                btnPurchases.setText(CurrentDataPurchases.getSaleNameState());
+                btnProperty.setText(CurrentDataPurchases.getSaleNameMunicipality());
                 btnSellType.setText(CurrentDataPurchases.getSaleTypeSell());
-                btnVariety.setText(CurrentDataPurchases.getSaleVariety());
+                btnDateSeed.setText(CurrentDataPurchases.getSaleVariety());
 
                 Log.e("Jsondata", jsonObjectData.toString());
             } catch (JSONException jsonException) {
@@ -208,15 +212,12 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
 
         if (requestCode == 1) {
             if (resultCode == 1) {
-                idState = data.getIntExtra("idState", 0);
-                ListIds.setIdState(idState);
-                stateName = data.getStringExtra("nameState");
-                btnState.setText(stateName);
-
+                txtVariety.setText(ListIds.getVarietyPurchase());
+                btnPurchases.setText(ListIds.getNamePurchase());
             }
         }
 
-        if (requestCode == 2) {
+        /*if (requestCode == 2) {
             if (resultCode == 2) {
                 idMunicipality = data.getIntExtra("idMunicipality", 0);
                 ListIds.setIdLocality(idMunicipality);
@@ -242,7 +243,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
                 sellTypeName = data.getStringExtra("name");
                 btnSellType.setText(sellTypeName);
             }
-        }
+        }*/
     }
 
     @Override

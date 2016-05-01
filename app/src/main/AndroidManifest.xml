@@ -99,6 +99,12 @@
             android:theme="@style/AppTheme" />
 
         <activity
+            android:name=".utils.ListPurchases"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".AddBuy"
             android:label=""
             android:screenOrientation="portrait"

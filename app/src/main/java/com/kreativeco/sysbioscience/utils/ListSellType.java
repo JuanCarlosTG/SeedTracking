@@ -1,10 +1,8 @@
 package com.kreativeco.sysbioscience.utils;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -14,8 +12,6 @@ import com.kreativeco.sysbioscience.SectionActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 /**
  * Created by JuanC on 25/04/2016.

@@ -13,6 +13,11 @@ public class ListIds {
     private static String stringState = "";
     private static String stringLocality = "";
 
+    private static int idPurchase;
+    private static int idPurchaseVariety;
+    private static String namePurchase;
+    private static String varietyPurchase;
+
     public static int getIdState() {
         return idState;
     }
@@ -68,5 +73,37 @@ public class ListIds {
 
     public static void setStringLocality(String stringLocality) {
         ListIds.stringLocality = stringLocality;
+    }
+
+    public static int getIdPurchase() {
+        return idPurchase;
+    }
+
+    public static void setIdPurchase(int idPurchase) {
+        ListIds.idPurchase = idPurchase;
+    }
+
+    public static int getIdPurchaseVariety() {
+        return idPurchaseVariety;
+    }
+
+    public static void setIdPurchaseVariety(int idPurchaseVariety) {
+        ListIds.idPurchaseVariety = idPurchaseVariety;
+    }
+
+    public static String getNamePurchase() {
+        return namePurchase;
+    }
+
+    public static void setNamePurchase(String namePurchase) {
+        ListIds.namePurchase = namePurchase;
+    }
+
+    public static String getVarietyPurchase() {
+        return varietyPurchase;
+    }
+
+    public static void setVarietyPurchase(String varietyPurchase) {
+        ListIds.varietyPurchase = varietyPurchase;
     }
 }

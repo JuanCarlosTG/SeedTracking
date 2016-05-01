@@ -35,12 +35,13 @@
                 android:text="Año 2016"/>
 
             <Button style="@style/et_farmer"
-                android:id="@+id/btn_state"
+                android:id="@+id/btn_purchases"
+                android:onClick="selectPurchases"
                 android:drawableRight="@drawable/ic_arrow"
                 android:hint="Compra"/>
 
             <TextView style="@style/et_farmer"
-                android:id="@+id/txt_bill"
+                android:id="@+id/txt_variety"
                 android:layout_marginTop="20sp"
                 android:text="-----"/>
 
