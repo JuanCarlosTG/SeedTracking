@@ -38,6 +38,9 @@ public class SellTypeElementAdapter extends RecyclerView.Adapter<SellTypeElement
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ListIds.setIdSellType(idSellType);
+                    ListIds.setNameSellType(nameSellType);
+
                     Intent i = new Intent();
                     i.putExtra("id", idSellType);
                     i.putExtra("name", nameSellType);

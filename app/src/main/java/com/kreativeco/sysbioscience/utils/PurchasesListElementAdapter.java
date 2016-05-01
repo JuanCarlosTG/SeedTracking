@@ -25,7 +25,7 @@ public class PurchasesListElementAdapter extends RecyclerView.Adapter<PurchasesL
     Activity activity;
     private static Activity purchasesActivity;
     private static Context context;
-    private static final int RESULT_OK = 1;
+    private static final int RESULT_OK = 5;
 
     public static class PurchasesViewHolder extends RecyclerView.ViewHolder {
 

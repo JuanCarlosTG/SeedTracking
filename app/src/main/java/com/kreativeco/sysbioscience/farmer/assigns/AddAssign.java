@@ -15,6 +15,8 @@ import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataPurchases;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
+import com.kreativeco.sysbioscience.utils.ListPeriods;
+import com.kreativeco.sysbioscience.utils.ListProperties;
 import com.kreativeco.sysbioscience.utils.ListPurchases;
 import com.kreativeco.sysbioscience.utils.ListSellType;
 import com.kreativeco.sysbioscience.utils.ListStates;
@@ -142,20 +144,20 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
 
     public void selectPurchases(View view) {
         Intent listPurchases = new Intent(AddAssign.this, ListPurchases.class);
-        startActivityForResult(listPurchases, 1);
+        startActivityForResult(listPurchases, 5);
     }
 
-    private void selectMunicipality() {
-        Intent listLocalities = new Intent(AddAssign.this, ListMunicipality.class);
-        startActivityForResult(listLocalities, 2);
+    public void selectProperty(View view) {
+        Intent listProperties = new Intent(AddAssign.this, ListProperties.class);
+        startActivityForResult(listProperties, 6);
     }
 
-    private void selectVariety() {
-        Intent listVarieties = new Intent(AddAssign.this, ListVarieties.class);
-        startActivityForResult(listVarieties, 3);
+    public void selectPeriod(View view) {
+        Intent listPeriods = new Intent(AddAssign.this, ListPeriods.class);
+        startActivityForResult(listPeriods, 7);
     }
 
-    private void selectSellType() {
+    public void selectSellType(View view) {
         Intent listSellType = new Intent(AddAssign.this, ListSellType.class);
         startActivityForResult(listSellType, 4);
     }
@@ -210,28 +212,22 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         Log.e("requestCode", requestCode + "");
         Log.e("resultCode", resultCode + "");
 
-        if (requestCode == 1) {
-            if (resultCode == 1) {
+        if (requestCode == 5) {
+            if (resultCode == 5) {
                 txtVariety.setText(ListIds.getVarietyPurchase());
                 btnPurchases.setText(ListIds.getNamePurchase());
             }
         }
 
-        /*if (requestCode == 2) {
-            if (resultCode == 2) {
-                idMunicipality = data.getIntExtra("idMunicipality", 0);
-                ListIds.setIdLocality(idMunicipality);
-                municipalityName = data.getStringExtra("municipalityName");
-                btnMunicipality.setText(municipalityName);
+        if (requestCode == 6) {
+            if (resultCode == 6) {
+                btnProperty.setText(ListIds.getNameProperty());
             }
         }
 
-        if (requestCode == 3) {
-            if (resultCode == 3) {
-                idVariety = data.getIntExtra("idVariety", 0);
-                ListIds.setIdVariety(idVariety);
-                varietyName = data.getStringExtra("nameVariety");
-                btnVariety.setText(varietyName);
+        if (requestCode == 7) {
+            if (resultCode == 7) {
+                btnPeriod.setText(ListIds.getNamePeriod());
             }
         }
 
@@ -239,11 +235,10 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
             if (resultCode == 4) {
 
                 idSellType = data.getIntExtra("id", 0);
-                ListIds.setIdSellType(idSellType);
                 sellTypeName = data.getStringExtra("name");
                 btnSellType.setText(sellTypeName);
             }
-        }*/
+        }
     }
 
     @Override

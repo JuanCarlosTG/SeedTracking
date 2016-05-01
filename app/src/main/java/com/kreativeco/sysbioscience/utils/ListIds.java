@@ -18,6 +18,14 @@ public class ListIds {
     private static String namePurchase;
     private static String varietyPurchase;
 
+    private static int idProperty;
+    private static String nameProperty;
+
+    private static int idPeriod;
+    private static String namePeriod;
+
+    private static String nameSellType;
+
     public static int getIdState() {
         return idState;
     }
@@ -105,5 +113,45 @@ public class ListIds {
 
     public static void setVarietyPurchase(String varietyPurchase) {
         ListIds.varietyPurchase = varietyPurchase;
+    }
+
+    public static int getIdProperty() {
+        return idProperty;
+    }
+
+    public static void setIdProperty(int idProperty) {
+        ListIds.idProperty = idProperty;
+    }
+
+    public static String getNameProperty() {
+        return nameProperty;
+    }
+
+    public static void setNameProperty(String nameProperty) {
+        ListIds.nameProperty = nameProperty;
+    }
+
+    public static String getNameSellType() {
+        return nameSellType;
+    }
+
+    public static void setNameSellType(String nameSellType) {
+        ListIds.nameSellType = nameSellType;
+    }
+
+    public static int getIdPeriod() {
+        return idPeriod;
+    }
+
+    public static void setIdPeriod(int idPeriod) {
+        ListIds.idPeriod = idPeriod;
+    }
+
+    public static String getNamePeriod() {
+        return namePeriod;
+    }
+
+    public static void setNamePeriod(String namePeriod) {
+        ListIds.namePeriod = namePeriod;
     }
 }

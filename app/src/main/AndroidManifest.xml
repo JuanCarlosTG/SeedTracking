@@ -105,6 +105,18 @@
             android:theme="@style/AppTheme" />
 
         <activity
+            android:name=".utils.ListProperties"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".utils.ListPeriods"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".AddBuy"
             android:label=""
             android:screenOrientation="portrait"
