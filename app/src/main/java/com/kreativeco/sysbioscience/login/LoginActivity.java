@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LoginActivity extends SectionActivity implements WebBridge.WebBridgeListener{
@@ -52,11 +53,24 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
 
         HashMap<String, Object> consultar = new HashMap<>();
         consultar.put("metodo", "consultar");
-        WebBridge.send("Noticias.ashx", consultar, "Obeteniendo", this, this);
+        WebBridge.send("Noticias.ashx", consultar, this, this);
 
     }
 
     public void runHome(View view) {
+
+        ArrayList<String> errors = new ArrayList<String>();
+        if (tvUser.getText().length() < 1) errors.add("Debes escribir un suario");
+        if (tvPass.getText().length() < 1) errors.add("Debes escribir una contraseña");
+
+        if (errors.size() != 0) {
+            String msg = "";
+            for (String s : errors) {
+                msg += "- " + s + "\n";
+            }
+            new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+            return;
+        }
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("mail", tvUser.getText().toString());

@@ -109,11 +109,10 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
             errors.add(getString(R.string.txt_error_cantity));
         if (txtArea.getText().length() < 1) errors.add(getString(R.string.txt_error_area));
 
-        /*if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
+        if (ListIds.getIdPeriod() == -1) errors.add("Selecciona un periodo.");
         if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
-        if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_state));
-        if (ListIds.getIdState() == -1) errors.add(getString(R.string.txt_error_region));
-*/
+        if (ListIds.getIdProperty() == -1) errors.add("Selecciona un predio.");
+        if (ListIds.getIdSeedType() == -1) errors.add("Selecciona un tipo de siembra.");
 
         if (errors.size() != 0) {
             String msg = "";
@@ -139,9 +138,10 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("IdStatusAsignacion", 1);
         params.put("Token", User.getToken(this));
 
+        params.put("metodo", "actualizar");
+        params.put("idAsignacion", CurrentDataAssigns.getAssignId());
 
         WebBridge.send("Asignaciones.ashx?update", params, "Guardando", this, this);
-        params.put("idAsignacion", CurrentDataPurchases.getSaleId());
 
     }
 
@@ -152,11 +152,10 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
             errors.add(getString(R.string.txt_error_cantity));
         if (txtArea.getText().length() < 1) errors.add(getString(R.string.txt_error_area));
 
-        /*if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
+        if (ListIds.getIdPeriod() == -1) errors.add("Selecciona un periodo.");
         if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
-        if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_state));
-        if (ListIds.getIdState() == -1) errors.add(getString(R.string.txt_error_region));
-*/
+        if (ListIds.getIdProperty() == -1) errors.add("Selecciona un predio.");
+        if (ListIds.getIdSeedType() == -1) errors.add("Selecciona un tipo de siembra.");
 
         if (errors.size() != 0) {
             String msg = "";
@@ -224,6 +223,11 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
                 CurrentDataAssigns.setAssignArea(jsonObjectData.getInt("SuperficieSiembra"));
                 CurrentDataAssigns.setAssignIdAssignStatus(jsonObjectData.getInt("IdStatusAsignacion"));
 
+                ListIds.setIdPeriod(CurrentDataAssigns.getAssignIdPeriod());
+                ListIds.setIdSellType(CurrentDataAssigns.getAssignIdPurchase());
+                ListIds.setIdProperty(CurrentDataAssigns.getAssignIdProperty());
+                ListIds.setIdSeedType(CurrentDataAssigns.getAssignIdSeedType());
+
                 CurrentDataAssigns.setAssignVariety(jsonObjectData.getString("Variedad"));
                 CurrentDataAssigns.setAssignPeriod(jsonObjectData.getString("Ciclo"));
                 CurrentDataAssigns.setAssignProperty(jsonObjectData.getString("Predio"));
@@ -239,11 +243,6 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
                 params.put("metodo", "consultarPorAgricultor");
                 params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
                 WebBridge.send("Compras.ashx", params, "Obteniendo compras", this, this);
-
-                /*ListIds.setIdState(CurrentDataPurchases.getSaleIdState());
-                ListIds.setIdSellType(CurrentDataPurchases.getSaleIdTypeSell());
-                ListIds.setIdVariety(CurrentDataPurchases.getSaleIdVariety());
-                ListIds.setIdLocality(CurrentDataPurchases.getSaleIdMunicipality());*/
 
                 txtVariety.setText(CurrentDataAssigns.getAssignVariety());
                 txtCantity.setText(Integer.toString(CurrentDataAssigns.getAssignCantity()));

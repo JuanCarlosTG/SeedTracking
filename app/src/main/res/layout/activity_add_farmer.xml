@@ -37,6 +37,7 @@
                 android:hint="@string/txt_farmer_3"/>
 
             <TextView
+                android:layout_marginTop="20sp"
                 style="@style/tv_farmer"
                 android:text="@string/txt_contact"/>
 
@@ -51,6 +52,7 @@
                 android:hint="@string/txt_farmer_6"/>
 
             <TextView
+                android:layout_marginTop="20sp"
                 style="@style/tv_farmer"
                 android:text="@string/txt_location"/>
 
@@ -74,6 +76,7 @@
                 android:inputType="number"/>
 
             <TextView
+                android:layout_marginTop="20sp"
                 style="@style/tv_farmer"
                 android:text="@string/txt_location"/>
 

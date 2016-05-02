@@ -1,5 +1,6 @@
 package com.kreativeco.sysbioscience.login;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import com.kreativeco.sysbioscience.utils.WebBridge;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -30,6 +32,18 @@ public class RecoverPassActivity extends SectionActivity implements WebBridge.We
     }
 
     public void recoverPass(View view){
+
+        ArrayList<String> errors = new ArrayList<String>();
+        if (txtRecoverMail.getText().length() < 1) errors.add("Mail no válido");
+
+        if (errors.size() != 0) {
+            String msg = "";
+            for (String s : errors) {
+                msg += "- " + s + "\n";
+            }
+            new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+            return;
+        }
         HashMap<String, Object> params = new HashMap<>();
         params.put("metodo", "recuperaPwd");
         params.put("mail", txtRecoverMail.getText().toString());

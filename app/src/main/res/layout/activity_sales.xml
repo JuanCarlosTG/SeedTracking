@@ -37,6 +37,12 @@
             android:orientation="horizontal"
             android:id="@+id/rg_tab">
 
+            <RadioButton style="@style/bt_tab_bottom"
+                android:drawableTop="@drawable/option2"
+                android:tag="1"
+                android:id="@+id/radio_button_1"
+                android:text="@string/bt_datas"/>
+
             <RadioButton
                 style="@style/bt_tab_bottom"
                 android:drawableTop="@drawable/option1"
@@ -44,11 +50,6 @@
                 android:id="@+id/radio_button_0"
                 android:text="@string/bt_buys"/>
 
-            <RadioButton style="@style/bt_tab_bottom"
-                android:drawableTop="@drawable/option2"
-                android:tag="1"
-                android:id="@+id/radio_button_1"
-                android:text="@string/bt_datas"/>
 
             <RadioButton
                 style="@style/bt_tab_bottom"

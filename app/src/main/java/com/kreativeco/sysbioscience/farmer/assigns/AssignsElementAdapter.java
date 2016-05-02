@@ -123,10 +123,6 @@ public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAd
             holder.assignsIdAssign.setText(assignIdUserAssign);
             holder.assignsData = assign;
 
-            if (assign.getInt("IdCompra") != 1){
-                holder.assignsActions.setEnabled(false);
-                holder.assignsActions.setAlpha(0.5f);
-            }
 
         } catch (JSONException jsonE) {
 

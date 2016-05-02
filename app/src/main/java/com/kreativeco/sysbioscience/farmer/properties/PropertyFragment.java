@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.farmer.assigns.AssignsElementAdapter;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
 import com.kreativeco.sysbioscience.farmer.purchases.AddPurchase;
 import com.kreativeco.sysbioscience.utils.User;
@@ -62,9 +63,14 @@ public class PropertyFragment extends Fragment implements WebBridge.WebBridgeLis
             boolean status = json.getInt("ResponseCode") == 200;
             if (status) {
                 JSONArray jsonArraySales = json.getJSONArray("Object");
-                Log.e("JSON", jsonArraySales.toString());
-                RecyclerView.Adapter rvAdapter = new PropertiesElementAdapter(jsonArraySales, getActivity());
-                rvProperties.setAdapter(rvAdapter);
+                if(jsonArraySales.length() == 0){
+                    new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage("No hay registros disponibles").setNeutralButton(R.string.bt_close, null).show();
+                    return;
+                }else {
+                    RecyclerView.Adapter rvAdapter = new PropertiesElementAdapter(jsonArraySales, getActivity());
+                    rvProperties.setAdapter(rvAdapter);
+                }
+
             } else {
                 String error = json.getString("Errors");
                 new AlertDialog.Builder(getActivity().getBaseContext()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();

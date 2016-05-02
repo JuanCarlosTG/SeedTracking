@@ -35,6 +35,7 @@
                         android:layout_margin="5sp"
                         android:textSize="14sp"
                         android:text="texto"
+                        android:textColor="@color/colorGrayDark"
                         android:textStyle="bold" />
 
                     <TextView
@@ -43,6 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="texto"
+                        android:textColor="@color/colorGrayDark"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
@@ -62,6 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="No asignado"
+                        android:textColor="@color/colorGrayDark"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
@@ -78,8 +81,8 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:layout_width="30sp"
-                    android:layout_height="30sp"
+                    android:layout_width="40sp"
+                    android:layout_height="40sp"
                     android:layout_gravity="center"
                     android:background="@drawable/bt_more"
                     android:gravity="center"
