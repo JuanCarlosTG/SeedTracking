@@ -36,7 +36,6 @@ public class ListPossession extends SectionActivity{
             }
         });
 
-
         recyclerPossessions = (RecyclerView) findViewById(R.id.recycler_list);
         recyclerPossessions.setHasFixedSize(false);
 

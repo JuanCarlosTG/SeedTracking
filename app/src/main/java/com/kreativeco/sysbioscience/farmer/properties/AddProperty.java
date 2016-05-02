@@ -19,6 +19,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.Inet4Address;
+
 /**
  * Created by JuanC on 24/04/2016.
  */
@@ -40,6 +42,14 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         btnLocality     = (Button) findViewById(R.id.btn_locality);
         btnCoordinates  = (Button) findViewById(R.id.btn_coordinates);
         btnAddProperty  = (Button) findViewById(R.id.btn_add_property);
+
+        btnCoordinates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent coordinates = new Intent(AddProperty.this, CoordinatesActivity.class);
+                startActivity(coordinates);
+            }
+        });
 
 
         btnState.setOnClickListener(new View.OnClickListener() {

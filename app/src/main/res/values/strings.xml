@@ -150,6 +150,8 @@
     <string name="txt_menu_logout">SALIR</string>
 
     <string name="google_maps_key">AIzaSyAPK1YbcXW54zMT8sV4HFyo8IYfBQQFW3Q</string>
+<string name="google_maps_key_debug">AIzaSyBvJdkSk_mzzpMYFzDyFcyDYts7Sos1KtQ</string>
+
 
 
 </resources>
