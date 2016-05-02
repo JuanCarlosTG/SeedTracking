@@ -1,34 +1,23 @@
 package com.kreativeco.sysbioscience.farmer.properties;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
-import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataAssigns;
-import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
-import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataPurchases;
 import com.kreativeco.sysbioscience.utils.ListIds;
-import com.kreativeco.sysbioscience.utils.ListPeriods;
-import com.kreativeco.sysbioscience.utils.ListProperties;
-import com.kreativeco.sysbioscience.utils.ListPurchases;
-import com.kreativeco.sysbioscience.utils.ListSeedType;
-import com.kreativeco.sysbioscience.utils.User;
+import com.kreativeco.sysbioscience.utils.ListMunicipality;
+import com.kreativeco.sysbioscience.utils.ListPossession;
+import com.kreativeco.sysbioscience.utils.ListStates;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by JuanC on 24/04/2016.
@@ -36,32 +25,41 @@ import java.util.HashMap;
 public class AddProperty extends SectionActivity implements WebBridge.WebBridgeListener{
 
     JSONObject jsonObjectData;
-    EditText txtCantity, txtSeedLote, txtArea;
-    TextView txtVariety;
-    Button btnPurchases, btnPeriod, btnProperty, btnSellType, btnDateSeed;
-    Button btnAddSeed;
-    int idState, idMunicipality, idVariety, idSellType;
-    String stateName, municipalityName, varietyName, sellTypeName;
+
+    Button btnPossession, btnState, btnLocality, btnCoordinates, btnAddProperty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_assign);
+        setContentView(R.layout.activity_add_property);
         overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
 
-        txtVariety = (TextView) findViewById(R.id.txt_variety);
-        txtCantity = (EditText) findViewById(R.id.txt_cantity);
-        txtSeedLote = (EditText) findViewById(R.id.txt_seed_lote);
-        txtArea = (EditText) findViewById(R.id.txt_area);
+        btnPossession   = (Button) findViewById(R.id.btn_possession_type);
+        btnState        = (Button) findViewById(R.id.btn_state);
+        btnLocality     = (Button) findViewById(R.id.btn_locality);
+        btnCoordinates  = (Button) findViewById(R.id.btn_coordinates);
+        btnAddProperty  = (Button) findViewById(R.id.btn_add_property);
 
-        btnPurchases = (Button) findViewById(R.id.btn_purchases);
-        btnPeriod = (Button) findViewById(R.id.btn_period);
-        btnProperty = (Button) findViewById(R.id.btn_property);
-        btnSellType = (Button) findViewById(R.id.btn_sell_type);
-        btnDateSeed = (Button) findViewById(R.id.btn_date);
 
-        btnAddSeed = (Button) findViewById(R.id.btn_add_seed);
+        btnState.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnLocality.setText("");
+                ListIds.setIdLocality(-1);
+                ListIds.setIdVariety(-1);
+                selectState(v);
+            }
+        });
+
+        btnLocality.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ListIds.getIdState() == -1) return;
+                ListIds.setIdVariety(-1);
+                selectLocality(v);
+            }
+        });
 
         ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
         headerBackButton.setOnClickListener(new View.OnClickListener() {
@@ -77,11 +75,11 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
 
             int option = intent.getIntExtra("option", 0);
             if (option == 0) {
-                btnAddSeed.setOnClickListener(new View.OnClickListener() {
+                btnAddProperty.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        saveAssign();
-                        //finish();
+                        //saveAssign();
+
                     }
                 });
                 return;
@@ -89,11 +87,11 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
 
             if (option == 1) {
                 String json = intent.getStringExtra("jsonData");
-                handleJSON(json);
-                btnAddSeed.setOnClickListener(new View.OnClickListener() {
+                //handleJSON(json);
+                btnAddProperty.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        updateAssign();
+                        //updateAssign();
                     }
                 });
             }
@@ -102,18 +100,18 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
 
     }
 
-    private void updateAssign() {
+    /*private void updateAssign() {
 
         ArrayList<String> errors = new ArrayList<String>();
         if (txtCantity.getText().length() < 1 || Integer.parseInt(txtCantity.getText().toString()) <= 0)
             errors.add(getString(R.string.txt_error_cantity));
         if (txtArea.getText().length() < 1) errors.add(getString(R.string.txt_error_area));
 
-        /*if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
+        *//*if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
         if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
         if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_state));
         if (ListIds.getIdState() == -1) errors.add(getString(R.string.txt_error_region));
-*/
+*//*
 
         if (errors.size() != 0) {
             String msg = "";
@@ -152,11 +150,11 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
             errors.add(getString(R.string.txt_error_cantity));
         if (txtArea.getText().length() < 1) errors.add(getString(R.string.txt_error_area));
 
-        /*if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
+        *//*if (ListIds.getIdVariety() == -1) errors.add(getString(R.string.txt_error_variety));
         if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
         if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_state));
         if (ListIds.getIdState() == -1) errors.add(getString(R.string.txt_error_region));
-*/
+*//*
 
         if (errors.size() != 0) {
             String msg = "";
@@ -185,22 +183,24 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
 
         params.put("metodo", "insertar");
         WebBridge.send("Asignaciones.ashx?insert", params, "Guardando", this, this);
+    }*/
+
+    public void selectPossession(View view) {
+        Intent listPossession = new Intent(AddProperty.this, ListPossession.class);
+        startActivityForResult(listPossession, 9);
     }
 
-    public void selectPurchases(View view) {
-        Intent listPurchases = new Intent(AddProperty.this, ListPurchases.class);
-        startActivityForResult(listPurchases, 5);
+    public void selectState(View view) {
+        Intent listStates = new Intent(AddProperty.this, ListStates.class);
+        startActivityForResult(listStates, 1);
     }
 
-    public void selectProperty(View view) {
-        Intent listProperties = new Intent(AddProperty.this, ListProperties.class);
-        startActivityForResult(listProperties, 6);
+    public void selectLocality(View view) {
+        Intent listLocality = new Intent(AddProperty.this, ListMunicipality.class);
+        startActivityForResult(listLocality, 2);
     }
 
-    public void selectPeriod(View view) {
-        Intent listPeriods = new Intent(AddProperty.this, ListPeriods.class);
-        startActivityForResult(listPeriods, 7);
-    }
+    /*
 
     public void selectSeedType(View view) {
         Intent listSeedType = new Intent(AddProperty.this, ListSeedType.class);
@@ -240,10 +240,10 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
                 params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
                 WebBridge.send("Compras.ashx", params, "Obteniendo compras", this, this);
 
-                /*ListIds.setIdState(CurrentDataPurchases.getSaleIdState());
+                *//*ListIds.setIdState(CurrentDataPurchases.getSaleIdState());
                 ListIds.setIdSellType(CurrentDataPurchases.getSaleIdTypeSell());
                 ListIds.setIdVariety(CurrentDataPurchases.getSaleIdVariety());
-                ListIds.setIdLocality(CurrentDataPurchases.getSaleIdMunicipality());*/
+                ListIds.setIdLocality(CurrentDataPurchases.getSaleIdMunicipality());*//*
 
                 txtVariety.setText(CurrentDataAssigns.getAssignVariety());
                 txtCantity.setText(Integer.toString(CurrentDataAssigns.getAssignCantity()));
@@ -259,7 +259,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
                 Log.e("JSON", jsonException.toString());
             }
         }
-    }
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -268,28 +268,27 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         Log.e("requestCode", requestCode + "");
         Log.e("resultCode", resultCode + "");
 
-        if (requestCode == 5) {
-            if (resultCode == 5) {
-                txtVariety.setText(ListIds.getVarietyPurchase());
-                btnPurchases.setText(ListIds.getNamePurchase());
+        if (requestCode == 9) {
+            if (resultCode == 9) {
+                btnPossession.setText(ListIds.getNamePossession());
             }
         }
 
-        if (requestCode == 6) {
-            if (resultCode == 6) {
-                btnProperty.setText(ListIds.getNameProperty());
+        if (requestCode == 1) {
+            if (resultCode == 1) {
+                btnState.setText(ListIds.getStringState());
             }
         }
 
-        if (requestCode == 7) {
-            if (resultCode == 7) {
-                btnPeriod.setText(ListIds.getNamePeriod());
+        if (requestCode == 2) {
+            if (resultCode == 2) {
+                btnLocality.setText(ListIds.getStringLocality());
             }
         }
 
         if (requestCode == 8) {
             if (resultCode == 8) {
-                btnSellType.setText(ListIds.getNameSeedType());
+                btnCoordinates.setText(ListIds.getNameSeedType());
             }
         }
     }
@@ -302,7 +301,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
                     ListIds.clear();
                 }else if(url.contains("Compras.ashx")){
                     JSONArray purchases = json.getJSONArray("Object");
-                    getPurchase(purchases);
+                    //getPurchase(purchases);
                 }
 
             }
@@ -311,7 +310,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         }
     }
 
-    private void getPurchase(JSONArray purchases) {
+    /*private void getPurchase(JSONArray purchases) {
 
         for(int i = 0; i < purchases.length(); i ++) {
 
@@ -329,7 +328,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
             }
 
         }
-    }
+    }*/
 
     @Override
     public void onWebBridgeFailure(String url, String response) {

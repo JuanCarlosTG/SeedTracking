@@ -16,6 +16,16 @@ repositories {
 
 
 android {
+
+    signingConfigs {
+        config {
+            keyAlias 'seedtracking'
+            keyPassword 'seedtracking666'
+            storeFile file('C:\\Users\\JuanC\\Documents\\ProyectosAndroid\\SeedTracking\\app\\keystore\\seedtracking.jks')
+            storePassword 'seedtracking666'
+        }
+    }
+
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 

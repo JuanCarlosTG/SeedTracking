@@ -33,6 +33,9 @@
     <string name="txt_sell_5">Cantidad</string>
     <string name="txt_sell_6">Tipo de compra</string>
 
+    <string name="txt_possession_1">Nombre Predio</string>
+    <string name="txt_possession_2">Referencias</string>
+
     <!--
     <string name="txt_farmer_14">REGIÖN</string>
     <string name="txt_farmer_15">REPRESENTANTE</string>
@@ -136,10 +139,6 @@
     <string name="txt_error_seed_lote">Debes indicar el tipo de compra</string>
     <string name="txt_error_area">Indicanos la superficie de que usarás para sembrar la semilla en un formato válido. Puedes usar decimales.</string>
 
-
-
-
-
     <string name="txt_sending">Enviando</string>
     <string name="title_activity_login">INGRESAR</string>
     <string name="title_activity_recover">RECUPERAR</string>
@@ -149,6 +148,8 @@
     <string name="txt_menu_farmers">AGRICULTORES</string>
     <string name="txt_menu_profile">PERFIL</string>
     <string name="txt_menu_logout">SALIR</string>
+
+    <string name="google_maps_key">AIzaSyAPK1YbcXW54zMT8sV4HFyo8IYfBQQFW3Q</string>
 
 
 </resources>

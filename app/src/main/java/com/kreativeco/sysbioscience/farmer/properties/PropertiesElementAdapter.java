@@ -67,7 +67,7 @@ public class PropertiesElementAdapter extends RecyclerView.Adapter<PropertiesEle
                 @Override
                 public void onClick(View v) {
                     dialog.cancel();
-                    Intent intent = new Intent(propertiesActivity, AddPurchase.class);
+                    Intent intent = new Intent(propertiesActivity, AddProperty.class);
                     intent.putExtra("jsonData", propertiesData.toString());
                     intent.putExtra("option", 1);
                     propertiesActivity.startActivity(intent);

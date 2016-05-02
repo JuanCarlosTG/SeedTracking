@@ -1,46 +1,81 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
 
-    <android.support.design.widget.AppBarLayout
+    <include layout="@layout/header_with_back"
+        android:id="@+id/header"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pleca_green"
+        android:id="@+id/pleca_green"
+        android:layout_below="@id/header"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pleca_blue"
+        android:layout_below="@+id/pleca_green"
+        android:id="@+id/pleca_blue"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/header"
+        android:layout_toRightOf="@+id/pleca_blue"
+        android:layout_toEndOf="@+id/pleca_blue"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+        <Button style="@style/et_farmer"
+            android:id="@+id/btn_possession_type"
+            android:onClick="selectPossession"
+            android:drawableRight="@drawable/ic_arrow"
+            android:hint="Posesión"/>
+
+        <EditText style="@style/et_farmer"
+            android:id="@+id/txt_name_possession"
+            android:hint="@string/txt_possession_1"/>
+
+        <EditText style="@style/et_farmer"
+            android:id="@+id/txt_references"
+            android:hint="@string/txt_possession_2"/>
+
+        <Button style="@style/et_farmer"
+            android:id="@+id/btn_state"
+            android:drawableRight="@drawable/ic_arrow"
+            android:hint="Estado"/>
+
+        <Button style="@style/et_farmer"
+            android:id="@+id/btn_locality"
+            android:drawableRight="@drawable/ic_arrow"
+            android:hint="Municipio"/>
+
+        <EditText style="@style/et_farmer"
+            android:id="@+id/txt_area"
+            android:inputType="number"
+            android:hint="Superficie"/>
+
+        <Button style="@style/et_farmer"
+            android:id="@+id/btn_coordinates"
+            android:drawableRight="@drawable/ic_arrow"
+            android:hint="Coordenadas"/>
+
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimaryDark"
-            android:fitsSystemWindows="true"
-            android:minHeight="?attr/actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:background="@drawable/button_login"
+            android:text="@string/btn_send"
+            android:textSize="12sp"
+            android:padding="2sp"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/btn_add_property"/>
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:id="@+id/imgToolIcon"/>
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Agregar/Editar Predio"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-        </android.support.v7.widget.Toolbar>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_add_property" />
-
-
-</android.support.design.widget.CoordinatorLayout>
-
+</RelativeLayout>

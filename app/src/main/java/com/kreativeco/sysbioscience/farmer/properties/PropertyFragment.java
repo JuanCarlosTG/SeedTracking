@@ -45,7 +45,7 @@ public class PropertyFragment extends Fragment implements WebBridge.WebBridgeLis
         btnAddProperty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddPurchase.class);
+                Intent intent = new Intent(getActivity(), AddProperty.class);
                 intent.putExtra("jsonData", "");
                 intent.putExtra("option", 0);
                 getActivity().startActivity(intent);

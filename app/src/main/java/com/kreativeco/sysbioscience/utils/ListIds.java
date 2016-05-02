@@ -13,22 +13,25 @@ public class ListIds {
     private static String stringState = "";
     private static String stringLocality = "";
 
-    private static int idPurchase;
-    private static int idPurchaseVariety;
-    private static String namePurchase;
-    private static String varietyPurchase;
+    private static int idPurchase = -1;
+    private static int idPurchaseVariety = -1;
+    private static String namePurchase = "";
+    private static String varietyPurchase = "";
 
-    private static int idProperty;
-    private static String nameProperty;
+    private static int idProperty = -1;
+    private static String nameProperty = "";
 
-    private static int idPeriod;
-    private static String namePeriod;
+    private static int idPeriod = -1;
+    private static String namePeriod = "";
 
-    private static int idSeedType;
-    private static String nameSeedType;
+    private static int idSeedType = -1;
+    private static String nameSeedType = "";
+
+    private static int idPossession = -1;
+    private static String namePossession = "";
 
 
-    private static String nameSellType;
+    private static String nameSellType = "";
 
     public static int getIdState() {
         return idState;
@@ -173,5 +176,21 @@ public class ListIds {
 
     public static void setNameSeedType(String nameSeedType) {
         ListIds.nameSeedType = nameSeedType;
+    }
+
+    public static int getIdPossession() {
+        return idPossession;
+    }
+
+    public static void setIdPossession(int idPossession) {
+        ListIds.idPossession = idPossession;
+    }
+
+    public static String getNamePossession() {
+        return namePossession;
+    }
+
+    public static void setNamePossession(String namePossession) {
+        ListIds.namePossession = namePossession;
     }
 }

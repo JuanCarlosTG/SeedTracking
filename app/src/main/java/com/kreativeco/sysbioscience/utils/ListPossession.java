@@ -16,9 +16,9 @@ import org.json.JSONObject;
 /**
  * Created by JuanC on 25/04/2016.
  */
-public class ListSellType extends SectionActivity{
+public class ListPossession extends SectionActivity{
 
-    private RecyclerView recyclerStates;
+    private RecyclerView recyclerPossessions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,29 +36,30 @@ public class ListSellType extends SectionActivity{
             }
         });
 
-        recyclerStates = (RecyclerView) findViewById(R.id.recycler_list);
-        recyclerStates.setHasFixedSize(false);
+
+        recyclerPossessions = (RecyclerView) findViewById(R.id.recycler_list);
+        recyclerPossessions.setHasFixedSize(false);
 
         RecyclerView.LayoutManager rvLayoutManager = new LinearLayoutManager(getBaseContext());
-        recyclerStates.setLayoutManager(rvLayoutManager);
+        recyclerPossessions.setLayoutManager(rvLayoutManager);
 
         JSONObject data1 = new JSONObject();
         JSONObject data2 = new JSONObject();
         try {
             data1.put("id", 1);
-            data1.put("name", "Compra");
+            data1.put("name", "Propia");
             data2.put("id", 2);
-            data2.put("name", "Donacion");
+            data2.put("name", "Rentada");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JSONArray sellType = new JSONArray();
-        sellType.put(data1);
-        sellType.put(data2);
+        JSONArray possessionsArray = new JSONArray();
+        possessionsArray.put(data1);
+        possessionsArray.put(data2);
 
-        RecyclerView.Adapter rvAdapter = new SellTypeElementAdapter(sellType, this);
-        recyclerStates.setAdapter(rvAdapter);
+        RecyclerView.Adapter rvAdapter = new PossessionElementAdapter(possessionsArray, this);
+        recyclerPossessions.setAdapter(rvAdapter);
 
     }
 

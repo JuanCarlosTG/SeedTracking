@@ -69,6 +69,12 @@
             android:theme="@style/AppTheme" />
 
         <activity
+            android:name=".farmer.properties.AddProperty"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".farmer.assigns.AddAssign"
             android:label=""
             android:screenOrientation="portrait"
@@ -82,6 +88,12 @@
 
         <activity
             android:name=".utils.ListMunicipality"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".utils.ListPossession"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -130,12 +142,6 @@
 
         <activity
             android:name=".login.DetailBlogActivity"
-            android:label=""
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-
-        <activity
-            android:name=".AddProperty"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
