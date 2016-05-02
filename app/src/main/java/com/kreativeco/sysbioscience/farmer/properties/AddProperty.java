@@ -1,4 +1,4 @@
-package com.kreativeco.sysbioscience.farmer.assigns;
+package com.kreativeco.sysbioscience.farmer.properties;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -33,7 +33,7 @@ import java.util.HashMap;
 /**
  * Created by JuanC on 24/04/2016.
  */
-public class AddAssign extends SectionActivity implements WebBridge.WebBridgeListener{
+public class AddProperty extends SectionActivity implements WebBridge.WebBridgeListener{
 
     JSONObject jsonObjectData;
     EditText txtCantity, txtSeedLote, txtArea;
@@ -188,22 +188,22 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
     }
 
     public void selectPurchases(View view) {
-        Intent listPurchases = new Intent(AddAssign.this, ListPurchases.class);
+        Intent listPurchases = new Intent(AddProperty.this, ListPurchases.class);
         startActivityForResult(listPurchases, 5);
     }
 
     public void selectProperty(View view) {
-        Intent listProperties = new Intent(AddAssign.this, ListProperties.class);
+        Intent listProperties = new Intent(AddProperty.this, ListProperties.class);
         startActivityForResult(listProperties, 6);
     }
 
     public void selectPeriod(View view) {
-        Intent listPeriods = new Intent(AddAssign.this, ListPeriods.class);
+        Intent listPeriods = new Intent(AddProperty.this, ListPeriods.class);
         startActivityForResult(listPeriods, 7);
     }
 
     public void selectSeedType(View view) {
-        Intent listSeedType = new Intent(AddAssign.this, ListSeedType.class);
+        Intent listSeedType = new Intent(AddProperty.this, ListSeedType.class);
         startActivityForResult(listSeedType, 8);
     }
 

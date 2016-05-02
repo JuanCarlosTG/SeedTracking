@@ -20,30 +20,30 @@ import org.json.JSONObject;
 /**
  * Created by kreativeco on 22/02/16.
  */
-public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAdapter.LicensesViewHolder> {
+public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAdapter.AssignsViewHolder> {
 
-    private JSONArray licenses;
+    private JSONArray assigns;
     Activity activity;
-    private static Activity licensesActivity;
+    private static Activity assignsActivity;
     private static Context context;
 
-    public static class LicensesViewHolder extends RecyclerView.ViewHolder {
+    public static class AssignsViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView licensesProperty;
-        public TextView licensesIdAssign;
-        public TextView licensesVariety;
-        public Button licensesActions;
-        public JSONObject licensesData;
+        public TextView assignsProperty;
+        public TextView assignsIdAssign;
+        public TextView assignsVariety;
+        public Button assignsActions;
+        public JSONObject assignsData;
 
 
-        public LicensesViewHolder(final View itemView) {
+        public AssignsViewHolder(final View itemView) {
             super(itemView);
 
-            licensesProperty       = (TextView) itemView.findViewById(R.id.txt_property);
-            licensesIdAssign       = (TextView) itemView.findViewById(R.id.txt_id_assign);
-            licensesVariety   = (TextView) itemView.findViewById(R.id.txt_variety);
-            licensesActions = (Button) itemView.findViewById(R.id.btn_licenses_actions);
-            licensesActions.setOnClickListener(new View.OnClickListener() {
+            assignsProperty       = (TextView) itemView.findViewById(R.id.txt_property);
+            assignsIdAssign       = (TextView) itemView.findViewById(R.id.txt_id_assign);
+            assignsVariety   = (TextView) itemView.findViewById(R.id.txt_variety);
+            assignsActions = (Button) itemView.findViewById(R.id.btn_assigns_actions);
+            assignsActions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     showMenuActions(v);
@@ -53,7 +53,7 @@ public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAd
 
         public void showMenuActions(View view){
 
-            final Dialog dialog = new Dialog(licensesActivity);
+            final Dialog dialog = new Dialog(assignsActivity);
             dialog.setContentView(R.layout.alert_dialog_licenses);
             dialog.setTitle("Selecciona una opción");
             dialog.show();
@@ -66,10 +66,10 @@ public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAd
                 @Override
                 public void onClick(View v) {
                     dialog.cancel();
-                    Intent intent = new Intent(licensesActivity, AddAssign.class);
-                    intent.putExtra("jsonData", licensesData.toString());
+                    Intent intent = new Intent(assignsActivity, AddAssign.class);
+                    intent.putExtra("jsonData", assignsData.toString());
                     intent.putExtra("option", 1);
-                    licensesActivity.startActivity(intent);
+                    assignsActivity.startActivity(intent);
                 }
             });
 
@@ -90,42 +90,42 @@ public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAd
 
     }
 
-    public AssignsElementAdapter(JSONArray licenses, Activity activity) {
-        this.licenses = licenses;
+    public AssignsElementAdapter(JSONArray assigns, Activity activity) {
+        this.assigns = assigns;
         this.activity = activity;
-        licensesActivity = this.activity;
+        assignsActivity = this.activity;
         this.context = activity.getBaseContext();
     }
 
     @Override
-    public LicensesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View licensesView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_licenses, parent, false);
-        return new LicensesViewHolder(licensesView);
+    public AssignsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View assignsView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.card_assigns, parent, false);
+        return new AssignsViewHolder(assignsView);
     }
 
     @Override
-    public void onBindViewHolder(final LicensesViewHolder holder, int position) {
+    public void onBindViewHolder(final AssignsViewHolder holder, int position) {
 
         try {
-            JSONObject license = licenses.getJSONObject(position);
+            JSONObject assign = assigns.getJSONObject(position);
 
-            String type = license.getInt("IdCompra") == 1 ? "compra)": "donación)";
-            String licenseProperty = license.getString("Predio") +" ("+ type;
-            String licenseVariety = license.getString("Variedad")
-                    + " - " + license.getString("CantidadKG") + " Kg - "
-                    + license.getString("SuperficieSiembra") + " Km2";
-            String licenseIdUserAssign = license.getString("IdUsuarioAsignacion");
+            String type = assign.getInt("IdCompra") == 1 ? "compra)": "donación)";
+            String assignProperty = assign.getString("Predio") +" ("+ type;
+            String assignVariety = assign.getString("Variedad")
+                    + " - " + assign.getString("CantidadKG") + " Kg - "
+                    + assign.getString("SuperficieSiembra") + " Km2";
+            String assignIdUserAssign = assign.getString("IdUsuarioAsignacion");
 
 
-            holder.licensesVariety.setText(licenseVariety);
-            holder.licensesProperty.setText(licenseProperty);
-            holder.licensesIdAssign.setText(licenseIdUserAssign);
-            holder.licensesData = license;
+            holder.assignsVariety.setText(assignVariety);
+            holder.assignsProperty.setText(assignProperty);
+            holder.assignsIdAssign.setText(assignIdUserAssign);
+            holder.assignsData = assign;
 
-            if (license.getInt("IdCompra") != 1){
-                holder.licensesActions.setEnabled(false);
-                holder.licensesActions.setAlpha(0.5f);
+            if (assign.getInt("IdCompra") != 1){
+                holder.assignsActions.setEnabled(false);
+                holder.assignsActions.setAlpha(0.5f);
             }
 
         } catch (JSONException jsonE) {
@@ -136,7 +136,7 @@ public class AssignsElementAdapter extends RecyclerView.Adapter<AssignsElementAd
 
     @Override
     public int getItemCount() {
-        return licenses.length();
+        return assigns.length();
     }
 
 

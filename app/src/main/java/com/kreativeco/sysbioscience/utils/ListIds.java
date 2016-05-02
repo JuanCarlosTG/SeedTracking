@@ -24,6 +24,10 @@ public class ListIds {
     private static int idPeriod;
     private static String namePeriod;
 
+    private static int idSeedType;
+    private static String nameSeedType;
+
+
     private static String nameSellType;
 
     public static int getIdState() {
@@ -153,5 +157,21 @@ public class ListIds {
 
     public static void setNamePeriod(String namePeriod) {
         ListIds.namePeriod = namePeriod;
+    }
+
+    public static int getIdSeedType() {
+        return idSeedType;
+    }
+
+    public static void setIdSeedType(int idSeedType) {
+        ListIds.idSeedType = idSeedType;
+    }
+
+    public static String getNameSeedType() {
+        return nameSeedType;
+    }
+
+    public static void setNameSeedType(String nameSeedType) {
+        ListIds.nameSeedType = nameSeedType;
     }
 }

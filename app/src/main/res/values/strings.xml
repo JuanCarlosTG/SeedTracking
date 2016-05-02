@@ -132,6 +132,12 @@
     <string name="txt_error_cantity">No haz indicado una cantidad mayor a 0</string>
     <string name="txt_error_variety">Debes indicar la variedad</string>
     <string name="txt_error_selltype">Debes indicar el tipo de compra</string>
+    <string name="txt_error_seed_type">Selecciona un tipo de siembra.</string>
+    <string name="txt_error_seed_lote">Debes indicar el tipo de compra</string>
+    <string name="txt_error_area">Indicanos la superficie de que usarás para sembrar la semilla en un formato válido. Puedes usar decimales.</string>
+
+
+
 
 
     <string name="txt_sending">Enviando</string>
