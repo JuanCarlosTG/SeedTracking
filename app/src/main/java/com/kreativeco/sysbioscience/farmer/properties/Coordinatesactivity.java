@@ -20,6 +20,11 @@ public class CoordinatesActivity extends SectionActivity implements OnMapReadyCa
 
     MapFragment map;
 
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+    private boolean mPermissionDenied = false;
+
+    private GoogleMap mMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

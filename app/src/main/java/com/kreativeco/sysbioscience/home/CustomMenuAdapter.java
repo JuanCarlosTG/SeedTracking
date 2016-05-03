@@ -80,6 +80,7 @@ public class CustomMenuAdapter extends ArrayAdapter<ListModelMenu> {
 
         if(position == 3){
             holder.separator.setVisibility(View.GONE);
+            //holder.textView.setLayoutParams(params);
         }
 
         /*if(position == 1 || position == 2 || position == 4 || position == 5 || position == 6){

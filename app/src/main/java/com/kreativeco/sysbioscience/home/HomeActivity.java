@@ -5,11 +5,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.News;
@@ -61,6 +64,20 @@ public class HomeActivity extends SectionActivity{
             statusBarList.getLayoutParams().height = getStatusBarHeight();
         }
 
+        final int marginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 200, this.getResources().getDisplayMetrics());
+        final int marginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, this.getResources().getDisplayMetrics());
+
+        //final int marginLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 60, homeActivity.getResources().getDisplayMetrics());
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        );
+
+        RelativeLayout rlParent = (RelativeLayout) footer.findViewById(R.id.rl_parent);
+        params.setMargins(0, marginTop, 0, marginBottom);
+        rlParent.setLayoutParams(params);
+
         mDrawerOptions.addHeaderView(header);
         mDrawerOptions.addFooterView(footer);
         mDrawerOptions.setAdapter(adapterActivity);
@@ -92,7 +109,8 @@ public class HomeActivity extends SectionActivity{
                     Profile profile = new Profile();
                     getFragmentManager().beginTransaction().replace(R.id.flContent, profile).commit();
                 } else if (position == 4) {
-
+                    AboutFragment about = new AboutFragment();
+                    getFragmentManager().beginTransaction().replace(R.id.flContent, about).commit();
                 }
                 mDrawer.closeDrawers();
 

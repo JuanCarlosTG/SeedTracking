@@ -113,9 +113,9 @@ public class WebBridge {
 
 		WebBridge wb = new WebBridge();
 		wb.callback  = callback;
-        wb.client    = new AsyncHttpClient(true, 80, 443);
-        wb.client.setUserAgent("GIRORM Android Client 1.0");
-        //wb.client = new AsyncHttpClient();
+        //wb.client    = new AsyncHttpClient(true, 80, 443);
+        //wb.client.setUserAgent("GIRORM Android Client 1.0");
+        wb.client = new AsyncHttpClient();
         wb.client.setTimeout(60000);
 
         //PersistentCookieStore cookie = new PersistentCookieStore(activity);

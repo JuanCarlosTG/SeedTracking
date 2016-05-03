@@ -7,9 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,6 +50,9 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
 
         public FarmerViewHolder(final View itemView) {
             super(itemView);
+
+            CardView cardView = (CardView) itemView;
+            cardView.setCardBackgroundColor(Color.argb(0, 255, 255, 255));
 
             farmerImage = (ImageView) itemView.findViewById(R.id.iv_farmer);
             farmerName = (TextView) itemView.findViewById(R.id.tv_name);

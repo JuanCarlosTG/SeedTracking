@@ -16,6 +16,7 @@
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
+        android:name=".SeedTrackingHelper"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -193,7 +194,7 @@
             android:value="@integer/google_play_services_version" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key_debug"/>
+            android:value="@string/google_maps_key"/>
 
 
     </application>
