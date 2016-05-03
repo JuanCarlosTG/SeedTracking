@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -142,6 +143,7 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
             txtDate.setText(strDate);
 
             Glide.with(this).load(strImage).into(imageNews);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

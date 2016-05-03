@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/ll_calendar_tools">
+
+        <Button
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:background="@android:color/transparent"
+            android:text="&#60;"
+            android:id="@+id/btn_previous_month"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:id="@+id/tv_current_date"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".25"
+            android:background="@android:color/transparent"
+            android:text="&#62;"
+            android:id="@+id/btn_next_month"
+            android:textStyle="bold"
+            android:textSize="30sp"/>
+
+
+    </LinearLayout>
+
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/compact_calendar_view"
+        android:layout_width="fill_parent"
+        android:paddingRight="10dp"
+        android:layout_below="@+id/ll_calendar_tools"
+        android:paddingLeft="10dp"
+        android:layout_height="250dp"
+        app:compactCalendarTextSize="12sp"
+        app:compactCalendarBackgroundColor="@color/colorWhite"
+        app:compactCalendarTextColor="@color/colorPrimary"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/colorGreen"
+        app:compactCalendarCurrentDayBackgroundColor="@color/colorGreen"
+        />
+
+</RelativeLayout>

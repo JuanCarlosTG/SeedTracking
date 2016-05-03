@@ -14,9 +14,11 @@ import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataPurchases;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
+import com.kreativeco.sysbioscience.utils.ListMunicipalityRequest;
 import com.kreativeco.sysbioscience.utils.ListSellType;
 import com.kreativeco.sysbioscience.utils.ListStates;
 import com.kreativeco.sysbioscience.utils.ListIds;
+import com.kreativeco.sysbioscience.utils.ListStatesRequest;
 import com.kreativeco.sysbioscience.utils.ListVarieties;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
@@ -199,12 +201,12 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
     }
 
     private void selectState() {
-        Intent listStates = new Intent(AddPurchase.this, ListStates.class);
+        Intent listStates = new Intent(AddPurchase.this, ListStatesRequest.class);
         startActivityForResult(listStates, 1);
     }
 
     private void selectMunicipality() {
-        Intent listLocalities = new Intent(AddPurchase.this, ListMunicipality.class);
+        Intent listLocalities = new Intent(AddPurchase.this, ListMunicipalityRequest.class);
         startActivityForResult(listLocalities, 2);
     }
 

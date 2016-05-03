@@ -11,8 +11,10 @@ import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
+import com.kreativeco.sysbioscience.utils.ListMunicipalityRequest;
 import com.kreativeco.sysbioscience.utils.ListPossession;
 import com.kreativeco.sysbioscience.utils.ListStates;
+import com.kreativeco.sysbioscience.utils.ListStatesRequest;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
 import org.json.JSONArray;
@@ -201,12 +203,12 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
     }
 
     public void selectState(View view) {
-        Intent listStates = new Intent(AddProperty.this, ListStates.class);
+        Intent listStates = new Intent(AddProperty.this, ListStatesRequest.class);
         startActivityForResult(listStates, 1);
     }
 
     public void selectLocality(View view) {
-        Intent listLocality = new Intent(AddProperty.this, ListMunicipality.class);
+        Intent listLocality = new Intent(AddProperty.this, ListMunicipalityRequest.class);
         startActivityForResult(listLocality, 2);
     }
 

@@ -92,13 +92,31 @@
             android:theme="@style/AppTheme" />
 
         <activity
+            android:name=".farmer.assigns.AssignCalendar"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".utils.ListStates"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity
+            android:name=".utils.ListStatesRequest"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
             android:name=".utils.ListMunicipality"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".utils.ListMunicipalityRequest"
             android:label=""
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />

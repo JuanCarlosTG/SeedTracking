@@ -9,6 +9,9 @@ public class Constants {
     private static String spotFullImage = "";
     private static String spotTitle = "";
 
+    private static String assignCalendarDate   = "";
+    private static String assignCalendarDateFormatted = "";
+
     public static String getSpotDescription() {
         return spotDescription;
     }
@@ -35,5 +38,21 @@ public class Constants {
 
     public static void setSpotTitle(String spotTitle) {
         Constants.spotTitle = spotTitle;
+    }
+
+    public static String getAssignCalendarDate() {
+        return assignCalendarDate;
+    }
+
+    public static void setAssignCalendarDate(String assignCalendarDate) {
+        Constants.assignCalendarDate = assignCalendarDate;
+    }
+
+    public static String getAssignCalendarDateFormatted() {
+        return assignCalendarDateFormatted;
+    }
+
+    public static void setAssignCalendarDateFormatted(String assignCalendarDateFormatted) {
+        Constants.assignCalendarDateFormatted = assignCalendarDateFormatted;
     }
 }

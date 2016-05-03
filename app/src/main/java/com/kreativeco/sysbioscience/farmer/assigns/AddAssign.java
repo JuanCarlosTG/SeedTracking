@@ -15,6 +15,7 @@ import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataAssigns;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataPurchases;
+import com.kreativeco.sysbioscience.utils.Constants;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListPeriods;
 import com.kreativeco.sysbioscience.utils.ListProperties;
@@ -60,6 +61,14 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         btnProperty = (Button) findViewById(R.id.btn_property);
         btnSellType = (Button) findViewById(R.id.btn_sell_type);
         btnDateSeed = (Button) findViewById(R.id.btn_date);
+
+        btnDateSeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent calendar = new Intent(AddAssign.this, AssignCalendar.class);
+                startActivity(calendar);
+            }
+        });
 
         btnAddSeed = (Button) findViewById(R.id.btn_add_seed);
 
@@ -108,6 +117,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         if (txtCantity.getText().length() < 1 || Integer.parseInt(txtCantity.getText().toString()) <= 0)
             errors.add(getString(R.string.txt_error_cantity));
         if (txtArea.getText().length() < 1) errors.add(getString(R.string.txt_error_area));
+        if (btnDateSeed.getText().length() < 1) errors.add("Agrega una fecha");
 
         if (ListIds.getIdPeriod() == -1) errors.add("Selecciona un periodo.");
         if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
@@ -151,6 +161,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         if (txtCantity.getText().length() < 1 || Integer.parseInt(txtCantity.getText().toString()) <= 0)
             errors.add(getString(R.string.txt_error_cantity));
         if (txtArea.getText().length() < 1) errors.add(getString(R.string.txt_error_area));
+        if (btnDateSeed.getText().length() < 1) errors.add("Agrega una fecha");
 
         if (ListIds.getIdPeriod() == -1) errors.add("Selecciona un periodo.");
         if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
@@ -177,7 +188,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("idTipoSiembra", ListIds.getIdSeedType());
         params.put("loteSemilla", txtSeedLote.getText().toString());
         params.put("superficie", txtArea.getText().toString());
-        params.put("fechaSiembra", "2016-05-31");
+        params.put("fechaSiembra", btnDateSeed.getText().toString());
         params.put("IdStatusAsignacion", 1);
         params.put("Token", User.getToken(this));
 
@@ -333,5 +344,12 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
     @Override
     public void onWebBridgeFailure(String url, String response) {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        btnDateSeed.setText(Constants.getAssignCalendarDate());
     }
 }
