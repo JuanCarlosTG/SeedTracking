@@ -13,7 +13,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.RequestParams;
 
-import org.apache.http.Header;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -137,7 +136,7 @@ public class WebBridge {
         AsyncHttpResponseHandler handler = new AsyncHttpResponseHandler() {
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+            public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
                 String response = null;
                 try {
                     response = new String(responseBody, "UTF-8");
@@ -148,7 +147,7 @@ public class WebBridge {
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+            public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
                 String response = "";
                 try {
                     response = new String(responseBody, "UTF-8");
@@ -161,6 +160,7 @@ public class WebBridge {
                 //Log.e("Header", headers.toString());
                 failure(response);
             }
+
         };
 
         if (p != null) {
