@@ -64,6 +64,8 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
             }
         });
 
+        setTitle("COMPRAS");
+
         btnState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -249,6 +251,7 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
                 ListIds.setIdLocality(CurrentDataPurchases.getSaleIdMunicipality());
 
                 txtBill.setText(CurrentDataPurchases.getSaleNumberAgreement());
+                txtBill.setEnabled(false);
                 txtCantity.setText(CurrentDataPurchases.getSalesCantity());
 
                 btnState.setText(CurrentDataPurchases.getSaleNameState());

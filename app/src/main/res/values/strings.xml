@@ -76,6 +76,8 @@
     <string name="bt_tab_bottom_9">Noticias</string>
     <string name="bt_tab_bottom_10">ACERCA DE</string>
     <string name="btn_logout">SALIR</string>
+    <string name="btn_add_pin">AGREGAR PIN</string>
+    <string name="btn_confirm">ACEPTAR</string>
 
     <string name="btn_enter">ENVIAR</string>
     <string name="btn_forgot_pass">¿Olvidaste tu contraseña?</string>
@@ -152,8 +154,14 @@
     <string name="txt_menu_about">ACERCA DE</string>
 
     <string name="google_maps_key">AIzaSyAPK1YbcXW54zMT8sV4HFyo8IYfBQQFW3Q</string>
-<string name="google_maps_key_debug">AIzaSyBvJdkSk_mzzpMYFzDyFcyDYts7Sos1KtQ</string>
+    <string name="google_maps_key_debug">AIzaSyBvJdkSk_mzzpMYFzDyFcyDYts7Sos1KtQ</string>
+    <string name="google_maps_key_windows">AIzaSyDZwUzUXkHWpw-D1i8RjEv3Mcf93Yj6h4U</string>
 
 
+
+    <string name="bt_cancel">Cancelar</string>
+    <string name="txt_getting_location">Obteniendo Ubicación</string>
+    <string name="txt_gps_alert">¡Tu GPS está deshabilitado! ¿Te gustaría activarlo?</string>
+    <string name="txt_gps_activate">Habilitar GPS</string>
 
 </resources>

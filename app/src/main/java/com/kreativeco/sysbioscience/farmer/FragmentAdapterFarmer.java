@@ -27,9 +27,9 @@ public class FragmentAdapterFarmer extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                return new PurchasesFragment();
-            case 1:
                 return new DataFragment();
+            case 1:
+                return new PurchasesFragment();
             case 2:
                 return new AssignsFragment();
             case 3:

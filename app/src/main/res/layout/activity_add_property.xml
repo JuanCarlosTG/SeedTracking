@@ -53,10 +53,26 @@
             android:drawableRight="@drawable/ic_arrow"
             android:hint="Municipio"/>
 
-        <EditText style="@style/et_farmer"
-            android:id="@+id/txt_area"
-            android:inputType="number"
-            android:hint="Superficie"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText style="@style/et_farmer"
+                android:id="@+id/txt_area"
+                android:inputType="number"
+                android:hint="Superficie"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kms"
+                android:layout_centerVertical="true"
+                android:layout_alignEnd="@+id/txt_area"
+                android:layout_alignRight="@+id/txt_area"/>
+
+        </RelativeLayout>
+
+
 
         <Button style="@style/et_farmer"
             android:id="@+id/btn_coordinates"

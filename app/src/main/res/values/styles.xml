@@ -3,6 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="@android:style/Theme.Light.NoTitleBar"/>
 
+    <style name="AppTheme_location" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+    </style>
+
     <style name="et_farmer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

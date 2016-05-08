@@ -86,14 +86,14 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
             btnData.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    runSales(1, farmerData);
+                    runSales(0, farmerData);
                     dialog.cancel();
                 }
             });
 
             btnSales.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {runSales(0, farmerData);
+                public void onClick(View v) {runSales(1, farmerData);
                     dialog.cancel();}
             });
 

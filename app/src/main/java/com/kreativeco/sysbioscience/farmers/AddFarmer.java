@@ -68,6 +68,8 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
             }
         });
 
+        setTitle("Agricultor");
+
         etName = (EditText) findViewById(R.id.et_name);
         etLastNameA = (EditText) findViewById(R.id.et_last_name_a);
         etLastNameB = (EditText) findViewById(R.id.et_last_name_b);
@@ -133,6 +135,7 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
     }
 
     public void saveFarmer(View view) {
+
         ArrayList<String> errors = new ArrayList<String>();
         if (etName.getText().length() < 1) errors.add(getString(R.string.txt_error_name));
         if (etLastNameA.getText().length() < 1)
@@ -146,7 +149,7 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         if (etID.getText().length() < 1) errors.add(getString(R.string.txt_error_id));
         if (etAddress.getText().length() < 1) errors.add(getString(R.string.txt_error_address));
         if (etZip.getText().length() < 5) errors.add(getString(R.string.txt_error_zip));
-        if (strFileLocation == null) errors.add(getString(R.string.txt_error_photo));
+        if (CurrentDataFarmer.getStrFileContract().equals("")) errors.add(getString(R.string.txt_error_photo));
         if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_region));
 
         if (errors.size() != 0) {
@@ -177,11 +180,15 @@ public class AddFarmer extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("activo",        true);
         params.put("notifSubdistribuidor",true);
 
-        if (strFileLocation != null) {
-            File file = new File(strFileLocation);
-            params.put("archivoContrato", file);
-            params.put("archivoFoto",     file);
+        if (!CurrentDataFarmer.getFarmerContract().equals("")) {
+            File fileFarmer = new File(CurrentDataFarmer.getFarmerContract());
+            params.put("archivoContrato", fileFarmer);
         }
+
+        if (!CurrentDataFarmer.getStrFileFarmer().equals("")) {
+            File photoFile = new File(CurrentDataFarmer.getStrFileFarmer());
+            params.put("archivoFoto", photoFile);
+        }else params.put("archivoFoto", "image.jpg");
 
         WebBridge.send("Agricultor.ashx?insert", params, getString(R.string.txt_sending), this, this);
 

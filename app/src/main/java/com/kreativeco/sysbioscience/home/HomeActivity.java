@@ -4,7 +4,6 @@ package com.kreativeco.sysbioscience.home;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,11 +20,6 @@ import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.login.profile.Profile;
 import com.kreativeco.sysbioscience.utils.User;
-import com.kreativeco.sysbioscience.utils.WebBridge;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
 
 public class HomeActivity extends SectionActivity{
 
@@ -33,8 +27,6 @@ public class HomeActivity extends SectionActivity{
 
     private DrawerLayout mDrawer;
     private ListView mDrawerOptions;
-    private String[] adapter = {"Noticias", "Agricultores ", "Perfil"};
-    ArrayAdapter<String> adapterArray;
     CustomMenuAdapter adapterActivity;
 
     @Override
@@ -103,12 +95,16 @@ public class HomeActivity extends SectionActivity{
                 if (position == 1) {
                     News news = new News();
                     getFragmentManager().beginTransaction().replace(R.id.flContent, news).commit();
+                    setTitle("Noticias");
                 } else if (position == 2) {
                     getFragmentManager().beginTransaction().replace(R.id.flContent, farmers).commit();
+                    setTitle("Agricultores");
                 } else if (position == 3) {
                     Profile profile = new Profile();
+                    setTitle("Perfil");
                     getFragmentManager().beginTransaction().replace(R.id.flContent, profile).commit();
                 } else if (position == 4) {
+                    setTitle("Acerca De");
                     AboutFragment about = new AboutFragment();
                     getFragmentManager().beginTransaction().replace(R.id.flContent, about).commit();
                 }

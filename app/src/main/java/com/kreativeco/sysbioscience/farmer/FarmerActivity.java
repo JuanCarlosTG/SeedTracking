@@ -61,6 +61,7 @@ public class FarmerActivity extends SectionActivity {
         fragmentAdapterFarmer = new FragmentAdapterFarmer
                 (getFragmentManager(), 4);
         viewPager.setAdapter(fragmentAdapterFarmer);
+        viewPager.setOffscreenPageLimit(1);
 
         rlHeader =(RelativeLayout) findViewById(R.id.rl_header);
         llTabHeader = (LinearLayout) findViewById(R.id.ll_tab_header);
@@ -147,8 +148,7 @@ public class FarmerActivity extends SectionActivity {
                     radioGroup.check(R.id.radio_button_3);
                     break;
                 default:
-                    radioGroup.check(R.id.radio_button_0);
-                    viewPager.setCurrentItem(0);
+                    break;
             }
 
         }
@@ -176,7 +176,7 @@ public class FarmerActivity extends SectionActivity {
                         radioGroup.check(R.id.radio_button_3);
                         break;
                     default:
-                        radioGroup.check(R.id.radio_button_0);
+                        break;
                 }
             }
 

@@ -83,8 +83,7 @@
             android:name=".farmer.properties.CoordinatesActivity"
             android:label=""
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-
+            android:theme="@style/AppTheme_location" />
 
         <activity
             android:name=".farmer.assigns.AddAssign"
@@ -165,12 +164,6 @@
             android:theme="@style/AppTheme" />
 
         <activity
-            android:name=".AddBuy"
-            android:label=""
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-
-        <activity
             android:name=".login.DetailBlogActivity"
             android:label=""
             android:screenOrientation="portrait"
@@ -194,7 +187,7 @@
             android:value="@integer/google_play_services_version" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key"/>
+            android:value="@string/google_maps_key_windows"/>
 
 
     </application>

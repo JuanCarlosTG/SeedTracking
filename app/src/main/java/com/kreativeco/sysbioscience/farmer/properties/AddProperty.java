@@ -54,6 +54,8 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         });
 
 
+        setTitle("PREDIOS");
+
         btnState.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

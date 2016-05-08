@@ -70,6 +70,9 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
             }
         });
 
+        setTitle("ASIGNACIONES");
+
+
         btnAddSeed = (Button) findViewById(R.id.btn_add_seed);
 
         ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);

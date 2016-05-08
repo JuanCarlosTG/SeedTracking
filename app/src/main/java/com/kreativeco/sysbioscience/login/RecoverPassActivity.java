@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
@@ -27,6 +28,17 @@ public class RecoverPassActivity extends SectionActivity implements WebBridge.We
         setContentView(R.layout.activity_recover_pass);
         setStatusBarColor(SectionActivity.STATUS_BAR_COLOR);
         setTitle(getString(R.string.title_activity_recover));
+        overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
+
+
+        ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
+        headerBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
+            }
+        });
 
         txtRecoverMail = (EditText) findViewById(R.id.txt_recover_mail);
     }
