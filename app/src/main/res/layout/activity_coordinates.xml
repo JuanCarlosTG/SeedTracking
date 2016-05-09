@@ -59,6 +59,7 @@
         android:text="@string/btn_confirm"
         android:layout_margin="5sp"
         android:textStyle="bold"
+        android:onClick="validateCoordinates"
         android:textColor="@color/colorWhite"
         android:background="@color/colorGreen"
         android:layout_alignParentRight="true"

@@ -30,8 +30,10 @@ public class ListIds {
     private static int idPossession = -1;
     private static String namePossession = "";
 
-
     private static String nameSellType = "";
+
+    private static String stringPoints   = "";
+    private static String stringCoordinatesCounter = "";
 
     public static int getIdState() {
         return idState;
@@ -192,5 +194,21 @@ public class ListIds {
 
     public static void setNamePossession(String namePossession) {
         ListIds.namePossession = namePossession;
+    }
+
+    public static String getStringPoints() {
+        return stringPoints;
+    }
+
+    public static void setStringPoints(String stringPoints) {
+        ListIds.stringPoints = stringPoints;
+    }
+
+    public static String getStringCoordinatesCounter() {
+        return stringCoordinatesCounter;
+    }
+
+    public static void setStringCoordinatesCounter(String stringCoordinatesCounter) {
+        ListIds.stringCoordinatesCounter = stringCoordinatesCounter;
     }
 }

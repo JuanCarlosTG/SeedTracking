@@ -94,7 +94,7 @@ public class PurchasesFragment extends Fragment implements WebBridge.WebBridgeLi
         params.put("token", User.getToken(getActivity()));
         params.put("metodo", "consultarPorAgricultor");
         params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
-
         WebBridge.send("Compras.ashx", params, "Obteniedo datos", getActivity(), this);
+
     }
 }

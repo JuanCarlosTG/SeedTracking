@@ -35,7 +35,7 @@ import java.util.HashMap;
 public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeListener{
 
     JSONObject jsonObjectData;
-    EditText txtBill, txtCantity;
+    EditText txtBill, txtCantity, txtSeedLote;
     Button btnState, btnMunicipality, btnVariety, btnSellType, btnAddSell;
     int idState, idMunicipality, idVariety, idSellType;
     String stateName, municipalityName, varietyName, sellTypeName;
@@ -52,6 +52,7 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
         btnState = (Button) findViewById(R.id.btn_state);
         btnMunicipality = (Button) findViewById(R.id.btn_municipality);
         btnVariety = (Button) findViewById(R.id.btn_variety);
+        txtSeedLote = (EditText) findViewById(R.id.txt_seed_lote);
         btnSellType = (Button) findViewById(R.id.btn_sell_type);
         btnAddSell = (Button) findViewById(R.id.btn_add_sell);
 
@@ -156,6 +157,7 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
         params.put("noConvenio", txtBill.getText().toString());
         params.put("idVariedad", ListIds.getIdVariety());
         params.put("cantidad", txtCantity.getText().toString());
+        params.put("loteSemilla", txtSeedLote.getText().toString());
         params.put("idTipoCompra", ListIds.getIdSellType());
         params.put("idMunicipio", ListIds.getIdLocality());
         params.put("Token", User.getToken(this));
@@ -194,6 +196,7 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
         params.put("noConvenio", txtBill.getText().toString());
         params.put("idVariedad", ListIds.getIdVariety());
         params.put("cantidad", txtCantity.getText().toString());
+        params.put("loteSemilla", txtSeedLote.getText().toString());
         params.put("idTipoCompra", ListIds.getIdSellType());
         params.put("idMunicipio", ListIds.getIdLocality());
         params.put("Token", User.getToken(this));
@@ -317,6 +320,11 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
         try {
             if(json.getInt("ResponseCode") == 200){
                 ListIds.clear();
+                //TODO
+                if(json.getBoolean("IsValid")) {
+                    finish();
+                    overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

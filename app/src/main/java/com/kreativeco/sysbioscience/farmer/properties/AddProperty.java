@@ -49,10 +49,9 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
             @Override
             public void onClick(View v) {
                 Intent coordinates = new Intent(AddProperty.this, CoordinatesActivity.class);
-                startActivity(coordinates);
+                startActivityForResult(coordinates, 10);
             }
         });
-
 
         setTitle("PREDIOS");
 
@@ -300,11 +299,12 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
             }
         }
 
-        if (requestCode == 8) {
-            if (resultCode == 8) {
-                btnCoordinates.setText(ListIds.getNameSeedType());
+        if (requestCode == 10) {
+            if (resultCode == 10) {
+                btnCoordinates.setText(ListIds.getStringCoordinatesCounter());
             }
         }
+
     }
 
     @Override

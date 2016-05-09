@@ -33,7 +33,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.PermissionUtils;
+
+import java.util.ArrayList;
 
 
 /**
@@ -42,7 +45,8 @@ import com.kreativeco.sysbioscience.utils.PermissionUtils;
 public class CoordinatesActivity extends AppCompatActivity implements LocationListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback,
-        GoogleMap.OnMarkerDragListener{
+        GoogleMap.OnMarkerDragListener,
+        GoogleMap.OnMarkerClickListener{
 
     LocationManager locationManager = null;
     private boolean mShowPermissionDeniedDialog = false;
@@ -52,15 +56,15 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
     private LatLng lastPin;
     private LatLng currentPin;
 
-    private Marker firstMarker;
-    private Marker lastMarker;
-    private Marker currentMarker;
+    ArrayList<Marker> markerArrayList = new ArrayList<>();
+    ArrayList<Polyline> polylineArrayList = new ArrayList<>();
 
     private int pinsCounter = 0;
 
     private int currentApiVersion;
     private boolean isLocationEnable = false;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+    private static final int RESULT_OK = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,29 +75,25 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
         final int flags = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 //| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
-                //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                //| View.SYSTEM_UI_FLAG_FULLSCREEN
-                //| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        //| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        //| View.SYSTEM_UI_FLAG_FULLSCREEN
+        //| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
         // This work only for android 4.4+
-        if(currentApiVersion >= Build.VERSION_CODES.KITKAT)
-        {
+        if (currentApiVersion >= Build.VERSION_CODES.KITKAT) {
 
             getWindow().getDecorView().setSystemUiVisibility(flags);
 
             final View decorView = getWindow().getDecorView();
-            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener()
-                    {
+            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
 
-                        @Override
-                        public void onSystemUiVisibilityChange(int visibility)
-                        {
-                            if((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0)
-                            {
-                                decorView.setSystemUiVisibility(flags);
-                            }
-                        }
-                    });
+                @Override
+                public void onSystemUiVisibilityChange(int visibility) {
+                    if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+                        decorView.setSystemUiVisibility(flags);
+                    }
+                }
+            });
         }
 
         setContentView(R.layout.activity_coordinates);
@@ -109,12 +109,13 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
     public void onMapReady(GoogleMap map) {
         mMap = map;
         mMap.setOnMarkerDragListener(this);
+        mMap.setOnMarkerClickListener(this);
         updateMyLocation();
     }
 
     private boolean checkReady() {
         if (mMap == null) {
-            Toast.makeText(this, R.string.txt_gps_alert, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.txt_gps_alert, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -164,7 +165,7 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
         }
     }
 
-    public void launchLocationManager(){
+    public void launchLocationManager() {
         int code = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 
         if (code == ConnectionResult.SUCCESS) {
@@ -246,14 +247,15 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
     }
 
 
-    public void addNewPin(View view){
+    public void addNewPin(View view) {
 
-        if(firstPin == null) return;
+        if (firstPin == null) return;
 
-        pinsCounter ++;
+        pinsCounter++;
 
-        MarkerOptions o = new MarkerOptions().position(currentPin).title("Pin uno").draggable(true).visible(true);
-        mMap.addMarker(o);
+        Marker marker = mMap.addMarker(new MarkerOptions().position(currentPin).title("pin " + pinsCounter).draggable(true).visible(true));
+
+        markerArrayList.add(marker);
 
     }
 
@@ -270,20 +272,103 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
     @Override
     public void onMarkerDragEnd(Marker marker) {
 
-        if (pinsCounter == 1){
+        if (pinsCounter == 1) {
             firstPin = marker.getPosition();
-            marker.setDraggable(false);
             lastPin = firstPin;
-        } else{
-            Polyline line = mMap.addPolyline(new PolylineOptions()
-                    .add(new LatLng(lastPin.latitude, lastPin.longitude), new LatLng(marker.getPosition().latitude, marker.getPosition().longitude))
-                    .width(5)
-                    .color(Color.parseColor("#74C302")));
-            lastPin = marker.getPosition();
+        } else {
 
+            lastPin = marker.getPosition();
         }
 
-        Log.e("onMarkerDragEnd", marker.getPosition().toString());
+        for (Polyline line : polylineArrayList) {
+            line.remove();
+        }
 
+        polylineArrayList.clear();
+
+        if (markerArrayList.size() >= 3) {
+
+            for (int i = 0; i < markerArrayList.size(); i++) {
+
+                if (i != (markerArrayList.size() - 1)) {
+                    Polyline line = mMap.addPolyline(new PolylineOptions()
+                            .add(new LatLng(markerArrayList.get(i).getPosition().latitude,
+                                            markerArrayList.get(i).getPosition().longitude),
+                                    new LatLng(markerArrayList.get(i + 1).getPosition().latitude,
+                                            markerArrayList.get(i + 1).getPosition().longitude))
+                            .width(5)
+                            .color(Color.parseColor("#74C302")));
+
+                    polylineArrayList.add(line);
+                } else {
+                    Polyline line = mMap.addPolyline(new PolylineOptions()
+                            .add(new LatLng(markerArrayList.get(i).getPosition().latitude,
+                                            markerArrayList.get(i).getPosition().longitude),
+                                    new LatLng(markerArrayList.get(0).getPosition().latitude,
+                                            markerArrayList.get(0).getPosition().longitude))
+                            .width(5)
+                            .color(Color.parseColor("#74C302")));
+                    polylineArrayList.add(line);
+                }
+
+            }
+        }
+
+
+        Log.e("onMarkerDragEnd", marker.getPosition().toString());
+        Log.e("onMarkerDragEnd", markerArrayList.size() + "");
+
+    }
+
+    public void validateCoordinates(View view) {
+        if (markerArrayList.size() == 0) return;
+        else if (markerArrayList.size() == 1) {
+
+            String point = "POINT (" + markerArrayList.get(0).getPosition().longitude
+                    + "," + markerArrayList.get(0).getPosition().latitude +")";
+
+            ListIds.setStringPoints(point);
+            ListIds.setStringCoordinatesCounter("Coodenadas - 1 Punto");
+
+            setResult(RESULT_OK);
+            finish();
+            overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
+
+        } else if (markerArrayList.size() < 3) {
+
+            new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage("El poligono debe ser por lo menos de 3 puntos").setNeutralButton(R.string.bt_close, null).show();
+            return;
+
+
+        }else if(markerArrayList.size() >= 3){
+
+            String points = "";
+            for (int i = 0; i<markerArrayList.size(); i ++){
+
+                if(i < (markerArrayList.size() - 1)){
+                    points += markerArrayList.get(i).getPosition().latitude + " "
+                            + markerArrayList.get(i).getPosition().longitude + ", ";
+                }else {
+                    points += markerArrayList.get(i).getPosition().latitude + " "
+                            + markerArrayList.get(i).getPosition().longitude + ", "
+                            + markerArrayList.get(0).getPosition().latitude + " "
+                            + markerArrayList.get(0).getPosition().longitude + "";
+
+                }
+            }
+
+            ListIds.setStringPoints("POLYGON (("+ points +"))");
+            ListIds.setStringCoordinatesCounter("Coodenadas - " + markerArrayList.size() + " Puntos");
+
+            setResult(RESULT_OK);
+            finish();
+            overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
+
+        }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
     }
 }
