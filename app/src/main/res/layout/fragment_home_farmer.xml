@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/pleca_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:background="@drawable/pleca_green" />
+
+    <ImageView
+        android:id="@+id/pleca_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pleca_green"
+        android:background="@drawable/pleca_blue" />
+
+    <LinearLayout
+        android:id="@+id/ll_tab_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_toRightOf="@+id/pleca_green"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/rg_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:id="@+id/radio_button_0"
+                style="@style/bt_tab_bottom_2"
+                android:checked="true"
+                android:drawableLeft="@drawable/option3"
+                android:tag="0"
+                android:text="ASIGNACIONES" />
+
+            <RadioButton
+                android:id="@+id/radio_button_1"
+                style="@style/bt_tab_bottom_2"
+                android:checked="false"
+                android:drawableLeft="@drawable/option4"
+                android:tag="1"
+                android:text="PREDIOS" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_properties"
+        android:layout_below="@+id/ll_tab_header"
+        android:layout_toRightOf="@+id/pleca_blue"
+        android:layout_toEndOf="@+id/pleca_blue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_add_properties"
+        android:background="@android:color/transparent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <ImageButton
+        android:id="@+id/btn_add_properties"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16sp"
+        android:background="@drawable/ic_add" />
+
+
+</RelativeLayout>

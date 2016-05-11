@@ -56,6 +56,12 @@
             android:theme="@android:style/Theme.Light.NoTitleBar"/>
 
         <activity
+            android:name=".farmers.HomeFarmer"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"/>
+
+        <activity
             android:name=".MainActivity"
             android:label=""
             android:screenOrientation="portrait"
@@ -177,7 +183,6 @@
 
         </activity>
 
-
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c1d1e2d38ffbdf02d0fa1a2c30c91b6359b1fc1f" />
@@ -187,7 +192,7 @@
             android:value="@integer/google_play_services_version" />
 
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key_windows"/>
+            android:value="@string/google_maps_key"/>
 
 
     </application>

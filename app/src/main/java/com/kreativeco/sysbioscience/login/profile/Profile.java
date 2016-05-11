@@ -123,7 +123,7 @@ public class Profile extends Fragment implements WebBridge.WebBridgeListener {
 
             } else if (json.getInt("ResponseCode") == 500) {
 
-                String error = json.getJSONObject("Errors").getString("600");
+                String error = json.getString("Errors");
                 new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
 
             }

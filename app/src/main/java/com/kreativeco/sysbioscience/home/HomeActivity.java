@@ -1,13 +1,15 @@
 package com.kreativeco.sysbioscience.home;
 
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -15,9 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.News;
+import com.kreativeco.sysbioscience.farmer.assigns.AddAssign;
 import com.kreativeco.sysbioscience.farmers.Farmers;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
+import com.kreativeco.sysbioscience.login.LoginActivity;
 import com.kreativeco.sysbioscience.login.profile.Profile;
 import com.kreativeco.sysbioscience.utils.User;
 
@@ -58,8 +62,6 @@ public class HomeActivity extends SectionActivity{
 
         final int marginTop = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 200, this.getResources().getDisplayMetrics());
         final int marginBottom = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 10, this.getResources().getDisplayMetrics());
-
-        //final int marginLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 60, homeActivity.getResources().getDisplayMetrics());
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -107,6 +109,8 @@ public class HomeActivity extends SectionActivity{
                     setTitle("Acerca De");
                     AboutFragment about = new AboutFragment();
                     getFragmentManager().beginTransaction().replace(R.id.flContent, about).commit();
+                } else if(position == 5){
+                    askForLogout();
                 }
                 mDrawer.closeDrawers();
 
@@ -117,6 +121,35 @@ public class HomeActivity extends SectionActivity{
 
     public void closeDrawer(View view){
         mDrawer.closeDrawers();
+    }
+
+    public void askForLogout(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.alert_dialog_logout);
+        dialog.setTitle("Selecciona una opción");
+        dialog.show();
+
+        Button btnClose = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btnEdit = (Button) dialog.findViewById(R.id.btn_logout);
+
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                User.clear(HomeActivity.this);
+                Intent login = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(login);
+                finish();
+            }
+        });
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
     }
 
 }

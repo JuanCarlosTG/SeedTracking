@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
+import com.kreativeco.sysbioscience.farmers.HomeFarmer;
 import com.kreativeco.sysbioscience.home.HomeActivity;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
@@ -34,6 +35,7 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
     private TextView txtDate;
     private ImageView imageNews;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,8 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
 
         tvUser = (EditText) findViewById(R.id.tv_user);
         tvPass = (EditText) findViewById(R.id.tv_pass);
-        tvUser.setText("jgarza@sistema.com");
+        //tvUser.setText("jgarza@sistema.com");
+        tvUser.setText("mig16.tar.gz@gmail.com");
         tvPass.setText("123456");
 
         txtTitleNews    = (TextView) findViewById(R.id.txt_title_news);
@@ -88,6 +91,7 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
         try {
             boolean status = json.getInt("ResponseCode") == 200;
             if (status) {
+
                 if(url.contains("Noticias")){
 
                     JSONArray jsonArrayNews = json.getJSONArray("Object");
@@ -100,17 +104,30 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
                     }
 
                 }else{
-                    Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+
                     User.logged(true, this, json.getJSONObject("Object").getString("Token"));
+
                     User.set("IdTipoUsuario", json.getJSONObject("Object").getString("IdTipoUsuario"), this);
                     User.set("NombreCompleto", json.getJSONObject("Object").getString("NombreCompleto"), this);
                     User.set("ApellidoP", json.getJSONObject("Object").getString("ApellidoP"), this);
                     User.set("ApellidoM", json.getJSONObject("Object").getString("ApellidoM"), this);
                     User.set("Nombre", json.getJSONObject("Object").getString("Nombre"), this);
                     User.set("Mail", json.getJSONObject("Object").getString("Mail"), this);
+                    User.set("TipoUsuario", json.getJSONObject("Object").getString("TipoUsuario"), this);
 
-                    startActivity(home);
-                    finish();
+                    if(User.get("TipoUsuario", this).equals("Subdistribuidor")){
+                        //Log.e("TipoUsuario", User.get("TipoUsuario", this));
+                        Intent home = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(home);
+                        finish();
+                    }else if (User.get("TipoUsuario", this).equals("Agricultor"))
+                    {
+                        Intent home = new Intent(LoginActivity.this, HomeFarmer.class);
+                        startActivity(home);
+                        finish();
+                    }
+
+
                 }
             }else if(json.getInt("ResponseCode") == 500){
                 if (url.contains("Login.ashx")){

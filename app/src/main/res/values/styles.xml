@@ -83,6 +83,24 @@
 
     </style>
 
+    <style name="bt_tab_bottom_2" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/tab_text_1</item>
+        <item name="android:textColor">@drawable/tab_text_color</item>
+        <item name="android:button">@null</item>
+        <item name="android:checked">false</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingRight">30sp</item>
+        <item name="android:paddingLeft">30sp</item>
+        <item name="android:layout_gravity">center_horizontal|center</item>
+        <item name="android:paddingBottom">15sp</item>
+        <item name="android:paddingTop">15sp</item>
+    </style>
+
+
     <style name="text_alignment_center">
         <item name="android:gravity">center</item>
         <item name="android:layout_gravity">center</item>
