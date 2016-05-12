@@ -166,7 +166,7 @@ public class HomeFarmer extends SectionActivity {
     public void askForLogout(){
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.alert_dialog_logout);
-        dialog.setTitle("Selecciona una opción");
+        dialog.setTitle("¿Está seguro que quiere cerrar la sesión?");
         dialog.show();
 
         Button btnClose = (Button) dialog.findViewById(R.id.btn_cancel);

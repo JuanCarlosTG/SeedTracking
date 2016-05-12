@@ -17,7 +17,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.News;
-import com.kreativeco.sysbioscience.farmer.assigns.AddAssign;
 import com.kreativeco.sysbioscience.farmers.Farmers;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
@@ -126,7 +125,7 @@ public class HomeActivity extends SectionActivity{
     public void askForLogout(){
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.alert_dialog_logout);
-        dialog.setTitle("Selecciona una opción");
+        dialog.setTitle("¿Está seguro que quiere cerrar la sesión?");
         dialog.show();
 
         Button btnClose = (Button) dialog.findViewById(R.id.btn_cancel);
