@@ -26,6 +26,7 @@ public class News extends Fragment implements WebBridge.WebBridgeListener{
 
     View v;
     private RecyclerView recyclerViewBlog;
+    TextView txtNoItems;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +36,8 @@ public class News extends Fragment implements WebBridge.WebBridgeListener{
 
         recyclerViewBlog = (RecyclerView) v.findViewById(R.id.recycler_view_blog);
 
+        txtNoItems = (TextView) v.findViewById(R.id.txt_no_items);
+        txtNoItems.setVisibility(View.GONE);
 
         recyclerViewBlog.setHasFixedSize(false);
         RecyclerView.LayoutManager rvLayoutManager = new LinearLayoutManager(getActivity());
@@ -54,6 +57,10 @@ public class News extends Fragment implements WebBridge.WebBridgeListener{
         try {
             if (json.getInt("ResponseCode") == 200) {
                 JSONArray jsonArrayBlog = json.getJSONArray("Object");
+                if(jsonArrayBlog.length() == 0) {
+                    txtNoItems.setVisibility(View.VISIBLE);
+                    return;
+                }
                 RecyclerView.Adapter rvAdapter = new BlogElementAdapter(jsonArrayBlog, getActivity());
                 recyclerViewBlog.setAdapter(rvAdapter);
             } else {

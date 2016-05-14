@@ -45,7 +45,7 @@ public class HomeActivity extends SectionActivity{
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         View header = getLayoutInflater().inflate(R.layout.header_list, null);
-        View footer = getLayoutInflater().inflate(R.layout.footer_list, null);
+        //View footer = getLayoutInflater().inflate(R.layout.footer_list, null);
         View statusBarList = header.findViewById(R.id.status_bar_list);
 
         TextView txtHeaderList = (TextView) header.findViewById(R.id.txt_username);
@@ -67,12 +67,12 @@ public class HomeActivity extends SectionActivity{
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
 
-        RelativeLayout rlParent = (RelativeLayout) footer.findViewById(R.id.rl_parent);
+        //RelativeLayout rlParent = (RelativeLayout) footer.findViewById(R.id.rl_parent);
         params.setMargins(0, marginTop, 0, marginBottom);
-        rlParent.setLayoutParams(params);
+        //rlParent.setLayoutParams(params);
 
         mDrawerOptions.addHeaderView(header);
-        mDrawerOptions.addFooterView(footer);
+        //mDrawerOptions.addFooterView(footer);
         mDrawerOptions.setAdapter(adapterActivity);
 
 
@@ -125,7 +125,7 @@ public class HomeActivity extends SectionActivity{
     public void askForLogout(){
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.alert_dialog_logout);
-        dialog.setTitle("¿Está seguro que quiere cerrar la sesión?");
+        dialog.setTitle("¿Está seguro que quiere\ncerrar la sesión?");
         dialog.show();
 
         Button btnClose = (Button) dialog.findViewById(R.id.btn_cancel);

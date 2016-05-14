@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataFarmer;
@@ -30,6 +31,8 @@ public class PurchasesFragment extends Fragment implements WebBridge.WebBridgeLi
 
     View v;
     private RecyclerView rvSales;
+    TextView txtNoItems;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,6 +56,9 @@ public class PurchasesFragment extends Fragment implements WebBridge.WebBridgeLi
             }
         });
 
+        txtNoItems = (TextView) v.findViewById(R.id.txt_no_items);
+        txtNoItems.setVisibility(View.GONE);
+
         return v;
 
     }
@@ -64,9 +70,10 @@ public class PurchasesFragment extends Fragment implements WebBridge.WebBridgeLi
             if (status) {
                 JSONArray jsonArraySales = json.getJSONArray("Object");
                 if(jsonArraySales.length() == 0){
-                    new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage("No hay registros disponibles").setNeutralButton(R.string.bt_close, null).show();
+                    txtNoItems.setVisibility(View.VISIBLE);
                     return;
                 }else {
+                    txtNoItems.setVisibility(View.GONE);
                     RecyclerView.Adapter rvAdapter = new PurchasesElementAdapter(jsonArraySales, getActivity());
                     rvSales.setAdapter(rvAdapter);
                 }

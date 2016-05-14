@@ -73,13 +73,13 @@ public class HomeFarmer extends SectionActivity {
             });
         }
 
-        adapterActivity = new CustomMenuAdapter(this, R.layout.custom_menu_item, ItemsMenu.getCustomListView());
+        adapterActivity = new CustomMenuAdapter(this, R.layout.custom_menu_item, ItemsMenu.getCustomListViewFarmer());
 
         mDrawerOptions = (ListView) findViewById(R.id.left_drawer);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         View header = getLayoutInflater().inflate(R.layout.header_list, null);
-        View footer = getLayoutInflater().inflate(R.layout.footer_list, null);
+        //View footer = getLayoutInflater().inflate(R.layout.footer_list, null);
         View statusBarList = header.findViewById(R.id.status_bar_list);
 
         TextView txtHeaderList = (TextView) header.findViewById(R.id.txt_username);
@@ -101,12 +101,12 @@ public class HomeFarmer extends SectionActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT
         );
 
-        RelativeLayout rlParent = (RelativeLayout) footer.findViewById(R.id.rl_parent);
+        //RelativeLayout rlParent = (RelativeLayout) footer.findViewById(R.id.rl_parent);
         params.setMargins(0, marginTop, 0, marginBottom);
-        rlParent.setLayoutParams(params);
+        //rlParent.setLayoutParams(params);
 
         mDrawerOptions.addHeaderView(header);
-        mDrawerOptions.addFooterView(footer);
+        //mDrawerOptions.addFooterView(footer);
         mDrawerOptions.setAdapter(adapterActivity);
 
         btnMenu = (ImageButton) findViewById(R.id.i_btn_header);

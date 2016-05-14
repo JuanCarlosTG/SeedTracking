@@ -149,6 +149,7 @@
 
     <string name="txt_menu_news">NOTICIAS</string>
     <string name="txt_menu_farmers">AGRICULTORES</string>
+    <string name="txt_menu_assigns">ASIGNACIONES</string>
     <string name="txt_menu_profile">PERFIL</string>
     <string name="txt_menu_logout">SALIR</string>
     <string name="txt_menu_about">ACERCA DE</string>

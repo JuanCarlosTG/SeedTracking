@@ -45,8 +45,8 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
 
         tvUser = (EditText) findViewById(R.id.tv_user);
         tvPass = (EditText) findViewById(R.id.tv_pass);
-        //tvUser.setText("jgarza@sistema.com");
-        tvUser.setText("mig16.tar.gz@gmail.com");
+        tvUser.setText("jgarza@sistema.com");
+        //tvUser.setText("mig16.tar.gz@gmail.com");
         tvPass.setText("123456");
 
         txtTitleNews    = (TextView) findViewById(R.id.txt_title_news);

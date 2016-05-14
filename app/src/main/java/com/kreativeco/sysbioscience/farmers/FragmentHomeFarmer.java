@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.farmer.assigns.AddAssign;
@@ -37,6 +38,7 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
     LinearLayout llTabHeader;
     RadioGroup radioGroup;
     int webBridgeSelector = 1;
+    TextView txtNoItems;
 
     View v;
     private RecyclerView rvProperties;
@@ -49,6 +51,9 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
         v = inflater.inflate(R.layout.fragment_home_farmer, null);
         rvProperties = (RecyclerView) v.findViewById(R.id.rv_properties);
         rvProperties.setHasFixedSize(false);
+
+        txtNoItems = (TextView) v.findViewById(R.id.txt_no_items);
+        txtNoItems.setVisibility(View.GONE);
 
         RecyclerView.LayoutManager rvLayoutManager = new LinearLayoutManager(getActivity().getBaseContext());
         rvProperties.setLayoutManager(rvLayoutManager);
@@ -101,6 +106,7 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
 
 
     public void getProperties(){
+        txtNoItems.setVisibility(View.GONE);
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", User.getToken(getActivity()));
         params.put("metodo", "consultarPorAgricultor");
@@ -111,6 +117,7 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
 
 
     public void getAssigns(){
+        txtNoItems.setVisibility(View.GONE);
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", User.getToken(getActivity()));
         params.put("metodo", "consultarPorAgricultor");
@@ -126,13 +133,16 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
             if (status) {
                 JSONArray jsonArray = json.getJSONArray("Object");
                 if(jsonArray.length() == 0){
-                    new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage("No hay registros disponibles").setNeutralButton(R.string.bt_close, null).show();
+                    txtNoItems.setVisibility(View.VISIBLE);
+                    //new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage("No hay registros disponibles").setNeutralButton(R.string.bt_close, null).show();
                     return;
                 }else {
                     if(webBridgeSelector == 1){
+                        txtNoItems.setVisibility(View.GONE);
                         RecyclerView.Adapter rvAdapter = new AssignsElementAdapter(jsonArray, getActivity());
                         rvProperties.setAdapter(rvAdapter);
                     }else {
+                        txtNoItems.setVisibility(View.GONE);
                         RecyclerView.Adapter rvAdapter = new PropertiesElementAdapter(jsonArray, getActivity());
                         rvProperties.setAdapter(rvAdapter);
                     }
