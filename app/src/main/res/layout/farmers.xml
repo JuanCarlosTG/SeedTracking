@@ -17,12 +17,57 @@
         android:layout_below="@+id/pleca_green"
         android:id="@+id/pleca_blue"/>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_search"
+        android:gravity="center_vertical"
+        android:layout_toRightOf="@+id/pleca_green"
+        android:layout_toEndOf="@+id/pleca_green">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_search"
+            android:gravity="center"
+            android:padding="12sp"
+            android:maxLines="1"
+            android:background="@drawable/search"
+            android:hint="Agricultor"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"
+            android:layout_marginStart="20sp"
+            android:layout_centerVertical="true"
+            android:padding="8sp"
+            android:id="@+id/search_farmer"
+            android:background="@drawable/search_icon"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20sp"
+            android:layout_marginEnd="20sp"
+            android:id="@+id/btn_close_search"
+            android:padding="5sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/close_search"/>
+
+    </RelativeLayout>
+
+
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/rv_farmers"
         android:background="@android:color/transparent"
         android:layout_above="@+id/i_btn_add_farmer"
+        android:layout_below="@+id/ll_search"
         android:layout_toRightOf="@+id/pleca_blue"
         android:layout_toEndOf="@+id/pleca_blue">
 
