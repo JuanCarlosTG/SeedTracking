@@ -123,9 +123,23 @@ public class Profile extends Fragment implements WebBridge.WebBridgeListener {
 
             } else if (json.getInt("ResponseCode") == 500) {
 
-                String error = json.getString("Errors");
-                new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+                JSONArray errors = json.getJSONArray("Errors");
+                ArrayList<String> errorArray = new ArrayList<String>();
 
+                for (int i = 0; i < errors.length(); i++) {
+
+                    errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                }
+
+                if (errorArray.size() != 0) {
+                    String msg = "";
+                    for (String s : errorArray) {
+                        msg += "- " + s + "\n";
+                    }
+                    new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                }
             }
 
         } catch (JSONException jsonE) {

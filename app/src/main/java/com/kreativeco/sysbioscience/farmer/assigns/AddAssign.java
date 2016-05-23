@@ -167,7 +167,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         if (btnDateSeed.getText().length() < 1) errors.add("Agrega una fecha");
 
         if (ListIds.getIdPeriod() == -1) errors.add("Selecciona un periodo.");
-        if (ListIds.getIdSellType() == -1) errors.add(getString(R.string.txt_error_selltype));
+        if (ListIds.getIdPurchase() == -1) errors.add(getString(R.string.txt_error_selltype));
         if (ListIds.getIdProperty() == -1) errors.add("Selecciona un predio.");
         if (ListIds.getIdSeedType() == -1) errors.add("Selecciona un tipo de siembra.");
 
@@ -184,7 +184,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
 
         params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
 
-        params.put("idCompra", ListIds.getIdSellType());
+        params.put("idCompra", ListIds.getIdPurchase());
         params.put("idCiclo", ListIds.getIdPeriod());
         params.put("cantidad", txtCantity.getText().toString());
         params.put("idPredio", ListIds.getIdProperty());
@@ -194,7 +194,6 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("fechaSiembra", btnDateSeed.getText().toString());
         params.put("IdStatusAsignacion", 1);
         params.put("Token", User.getToken(this));
-
 
         params.put("metodo", "insertar");
         WebBridge.send("Asignaciones.ashx?insert", params, "Guardando", this, this);
@@ -313,11 +312,31 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
             if(json.getInt("ResponseCode") == 200){
                 if(url.contains("Asignaciones.ashx")){
                     ListIds.clear();
+                    finish();
                 }else if(url.contains("Compras.ashx")){
                     JSONArray purchases = json.getJSONArray("Object");
                     getPurchase(purchases);
                 }
 
+            } else if (json.getInt("ResponseCode") == 500 || json.getInt("ResponseCode") == 800) {
+
+                JSONArray errors = json.getJSONArray("Errors");
+                ArrayList<String> errorArray = new ArrayList<String>();
+
+                for (int i = 0; i < errors.length(); i++) {
+
+                    errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                }
+
+                if (errorArray.size() != 0) {
+                    String msg = "";
+                    for (String s : errorArray) {
+                        msg += "- " + s + "\n";
+                    }
+                    new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                }
             }
         } catch (JSONException e) {
             Log.e("ERROR", e.toString());

@@ -130,6 +130,8 @@
     <string name="txt_error_state">Debes introducir el campo estado</string>
     <string name="txt_error_region">Debes introducir el campo municipio</string>
     <string name="txt_error_photo">Debes tomar una foto primero</string>
+    <string name="txt_error_alerts">Por favor selecciona un contrato de tu galería o tómale una foto</string>
+    <string name="txt_error_terms">Por favor acepta los términos y condiciones.</string>
 
     <string name="txt_error_confirm_pass">Las contraseñas no coinciden</string>
     <string name="txt_error_size_pass">Las contraseñas debe ser de por lo menos 6 caracteres</string>

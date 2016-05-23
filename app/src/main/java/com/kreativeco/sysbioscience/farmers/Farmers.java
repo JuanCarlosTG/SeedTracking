@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.utils.User;
@@ -21,6 +24,7 @@ import com.kreativeco.sysbioscience.utils.WebBridge;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -33,6 +37,7 @@ public class Farmers extends Fragment implements WebBridge.WebBridgeListener{
     private RecyclerView rvFarmer;
     private ImageButton btnSearch, btnCloseSearch;
     private EditText txtSearch;
+    private int method = 0;
 
 
     @Override
@@ -55,13 +60,27 @@ public class Farmers extends Fragment implements WebBridge.WebBridgeListener{
             @Override
             public void onClick(View v) {
                 searchFarmer(v);
+                method = 1;
+            }
+        });
+
+
+        txtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    searchFarmer(txtSearch);
+                    return true;
+                }
+                return false;
             }
         });
 
         btnCloseSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFarmers();
+                txtSearch.setText("");
+                method = 0;
             }
         });
 
@@ -92,9 +111,29 @@ public class Farmers extends Fragment implements WebBridge.WebBridgeListener{
                 JSONArray jsonArrayFarmers = json.getJSONArray("Object");
                 RecyclerView.Adapter rvAdapter = new FarmerElementAdapter(jsonArrayFarmers, getActivity());
                 rvFarmer.setAdapter(rvAdapter);
-            } else {
-                String error = json.getString("Errors");
-                new AlertDialog.Builder(getActivity().getBaseContext()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+
+                if(jsonArrayFarmers.length() == 0 && method == 1)
+                    loadFarmers();
+
+            } else if (json.getInt("ResponseCode") == 500) {
+
+                JSONArray errors = json.getJSONArray("Errors");
+                ArrayList<String> errorArray = new ArrayList<String>();
+
+                for (int i = 0; i < errors.length(); i++) {
+
+                    errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                }
+
+                if (errorArray.size() != 0) {
+                    String msg = "";
+                    for (String s : errorArray) {
+                        msg += "- " + s + "\n";
+                    }
+                    new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                }
             }
 
         } catch (Exception e) {

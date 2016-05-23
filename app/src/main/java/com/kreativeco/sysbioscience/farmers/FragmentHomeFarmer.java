@@ -28,6 +28,7 @@ import com.kreativeco.sysbioscience.utils.WebBridge;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -110,7 +111,7 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", User.getToken(getActivity()));
         params.put("metodo", "consultarPorAgricultor");
-        params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
+        params.put("idAgricultor", User.get("Id", getActivity()));
         WebBridge.send("Predios.ashx", params, "Obteniedo datos", getActivity(), this);
         webBridgeSelector = 2;
     }
@@ -121,7 +122,7 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
         HashMap<String, Object> params = new HashMap<>();
         params.put("token", User.getToken(getActivity()));
         params.put("metodo", "consultarPorAgricultor");
-        params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
+        params.put("idAgricultor", User.get("Id", getActivity()));
         WebBridge.send("Asignaciones.ashx", params, "Obteniedo datos", getActivity(), this);
         webBridgeSelector = 1;
     }
@@ -134,7 +135,6 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
                 JSONArray jsonArray = json.getJSONArray("Object");
                 if(jsonArray.length() == 0){
                     txtNoItems.setVisibility(View.VISIBLE);
-                    //new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage("No hay registros disponibles").setNeutralButton(R.string.bt_close, null).show();
                     return;
                 }else {
                     if(webBridgeSelector == 1){
@@ -149,9 +149,25 @@ public class FragmentHomeFarmer extends Fragment implements WebBridge.WebBridgeL
 
                 }
 
-            } else {
-                String error = json.getString("Errors");
-                new AlertDialog.Builder(getActivity().getBaseContext()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+            } else if (json.getInt("ResponseCode") == 500) {
+
+                JSONArray errors = json.getJSONArray("Errors");
+                ArrayList<String> errorArray = new ArrayList<String>();
+
+                for (int i = 0; i < errors.length(); i++) {
+
+                    errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                }
+
+                if (errorArray.size() != 0) {
+                    String msg = "";
+                    for (String s : errorArray) {
+                        msg += "- " + s + "\n";
+                    }
+                    new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                }
             }
 
         } catch (Exception e) {

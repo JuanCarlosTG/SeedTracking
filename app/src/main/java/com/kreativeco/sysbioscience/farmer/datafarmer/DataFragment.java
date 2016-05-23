@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ import com.kreativeco.sysbioscience.utils.ListStates;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -45,6 +47,8 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
     private ImageButton iBtnBackArrow;
     private Button btnUpdateFarmer;
     Button btnState, btnMunicipality;
+    private CheckBox checkBoxTerms;
+    private CheckBox checkBoxAlerts;
 
     View v;
 
@@ -66,6 +70,8 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         addImageFarmer = (ImageView) v.findViewById(R.id.add_iv_farmer);
         addImageContract = (ImageView) v.findViewById(R.id.add_iv_contract);
         btnUpdateFarmer = (Button) v.findViewById(R.id.btn_update_farmer);
+        checkBoxAlerts = (CheckBox) v.findViewById(R.id.checkbox_alerts);
+        checkBoxTerms = (CheckBox) v.findViewById(R.id.checkbox_terms);
 
         btnUpdateFarmer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -188,6 +194,10 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
         if (etZip.getText().length() < 5) errors.add(getString(R.string.txt_error_zip));
         if (CurrentDataFarmer.getStrFileContract().equals("")) errors.add(getString(R.string.txt_error_photo));
         if (ListIds.getIdLocality() == -1) errors.add(getString(R.string.txt_error_region));
+        if (!checkBoxAlerts.isChecked()) errors.add(getString(R.string.txt_error_alerts));
+        if (!checkBoxTerms.isChecked()) errors.add(getString(R.string.txt_error_terms));
+
+
 
         if (errors.size() != 0) {
             String msg = "";
@@ -244,10 +254,29 @@ public class DataFragment extends Fragment implements WebBridge.WebBridgeListene
             boolean status = json.getInt("ResponseCode") == 200;
             if (status) {
                 Toast.makeText(getActivity(), getString(R.string.txt_success_farmer), Toast.LENGTH_SHORT).show();
-                //finish();
-            } else {
-                String error = json.getString("Errors");
-                new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+                getActivity().finish();
+            } else if(json.getInt("ResponseCode") == 500){
+                if (url.contains("Login.ashx")){
+
+                    JSONArray errors = json.getJSONArray("Errors");
+                    ArrayList<String> errorArray = new ArrayList<String>();
+
+                    for (int i = 0; i <errors.length(); i++){
+
+                        errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                    }
+
+                    if (errorArray.size() != 0) {
+                        String msg = "";
+                        for (String s : errorArray) {
+                            msg += "- " + s + "\n";
+                        }
+                        new AlertDialog.Builder(getActivity()).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                    }
+
+                }
             }
 
         } catch (Exception e) {

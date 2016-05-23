@@ -45,15 +45,15 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
 
         tvUser = (EditText) findViewById(R.id.tv_user);
         tvPass = (EditText) findViewById(R.id.tv_pass);
-        tvUser.setText("jgarza@sistema.com");
-        //tvUser.setText("mig16.tar.gz@gmail.com");
+
+        //tvUser.setText("jgarza@sistema.com");
+        tvUser.setText("mig16.tar.gz@gmail.com");
         tvPass.setText("123456");
 
         txtTitleNews    = (TextView) findViewById(R.id.txt_title_news);
         txtContent      = (TextView) findViewById(R.id.txt_content);
         txtDate         = (TextView) findViewById(R.id.txt_date);
         imageNews       = (ImageView) findViewById(R.id.image_news);
-
 
         HashMap<String, Object> consultar = new HashMap<>();
         consultar.put("metodo", "consultar");
@@ -64,8 +64,8 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
     public void runHome(View view) {
 
         ArrayList<String> errors = new ArrayList<String>();
-        if (tvUser.getText().length() < 1) errors.add("Debes escribir un suario");
-        if (tvPass.getText().length() < 1) errors.add("Debes escribir una contraseña");
+        if (tvUser.getText().length() < 6) errors.add("El usuario no puede ser menor a 6 caracteres");
+        if (tvPass.getText().length() < 6) errors.add("La contraseña debe tener al menos 6 caracteres");
 
         if (errors.size() != 0) {
             String msg = "";
@@ -114,6 +114,7 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
                     User.set("Nombre", json.getJSONObject("Object").getString("Nombre"), this);
                     User.set("Mail", json.getJSONObject("Object").getString("Mail"), this);
                     User.set("TipoUsuario", json.getJSONObject("Object").getString("TipoUsuario"), this);
+                    User.set("Id", json.getJSONObject("Object").getString("Id"), this);
 
                     if(User.get("TipoUsuario", this).equals("Subdistribuidor")){
                         //Log.e("TipoUsuario", User.get("TipoUsuario", this));
@@ -132,8 +133,25 @@ public class LoginActivity extends SectionActivity implements WebBridge.WebBridg
             }else if(json.getInt("ResponseCode") == 500){
                 if (url.contains("Login.ashx")){
                     User.clear(this);
-                    String error = json.getJSONObject("Errors").getString("600");
-                    new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+
+                    JSONArray errors = json.getJSONArray("Errors");
+                    ArrayList<String> errorArray = new ArrayList<String>();
+
+                    for (int i = 0; i <errors.length(); i++){
+
+                        errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                    }
+
+                    if (errorArray.size() != 0) {
+                        String msg = "";
+                        for (String s : errorArray) {
+                            msg += "- " + s + "\n";
+                        }
+                        new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                    }
+
                 }
             } else {
                 String error = json.getJSONObject("Errors").getString("600");

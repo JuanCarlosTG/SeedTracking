@@ -14,6 +14,7 @@ import com.kreativeco.sysbioscience.SectionActivity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -63,9 +64,25 @@ public class ListVarieties extends SectionActivity implements WebBridge.WebBridg
                 JSONArray varieties = json.getJSONArray("Object");
                 RecyclerView.Adapter rvAdapter = new VarietiesElementAdapter(varieties, this);
                 recyclerStates.setAdapter(rvAdapter);
-            } else {
-                String error = json.getString("Errors");
-                new AlertDialog.Builder(getBaseContext()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+            } else if (json.getInt("ResponseCode") == 500) {
+
+                JSONArray errors = json.getJSONArray("Errors");
+                ArrayList<String> errorArray = new ArrayList<String>();
+
+                for (int i = 0; i < errors.length(); i++) {
+
+                    errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                }
+
+                if (errorArray.size() != 0) {
+                    String msg = "";
+                    for (String s : errorArray) {
+                        msg += "- " + s + "\n";
+                    }
+                    new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                }
             }
 
         } catch (Exception e) {
@@ -78,22 +95,4 @@ public class ListVarieties extends SectionActivity implements WebBridge.WebBridg
 
     }
 
-
-
-    /*@Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                result_listUser = data.getStringExtra("list_name_user");
-                register_id = data.getStringExtra("register_id");
-
-                et_name_full = (CustomEditTextRegular) v.findViewById(R.id.et_name_full);
-                et_name_full.setKeyListener(null);
-                et_name_full.setText(result_listUser);
-
-            }
-        }
-    }*/
 }

@@ -23,6 +23,7 @@ import com.kreativeco.sysbioscience.utils.ListVarieties;
 import com.kreativeco.sysbioscience.utils.User;
 import com.kreativeco.sysbioscience.utils.WebBridge;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -324,6 +325,25 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
                 if(json.getBoolean("IsValid")) {
                     finish();
                     overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
+                }
+            }else if (json.getInt("ResponseCode") == 500) {
+
+                JSONArray errors = json.getJSONArray("Errors");
+                ArrayList<String> errorArray = new ArrayList<String>();
+
+                for (int i = 0; i < errors.length(); i++) {
+
+                    errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                }
+
+                if (errorArray.size() != 0) {
+                    String msg = "";
+                    for (String s : errorArray) {
+                        msg += "- " + s + "\n";
+                    }
+                    new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
                 }
             }
         } catch (JSONException e) {

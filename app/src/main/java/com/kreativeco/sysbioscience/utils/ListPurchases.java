@@ -17,6 +17,7 @@ import com.kreativeco.sysbioscience.farmer.purchases.PurchasesElementAdapter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -65,9 +66,25 @@ public class ListPurchases extends SectionActivity implements WebBridge.WebBridg
                 JSONArray purchases = json.getJSONArray("Object");
                 RecyclerView.Adapter rvAdapter = new PurchasesListElementAdapter(purchases, this);
                 recyclerList.setAdapter(rvAdapter);
-            } else {
-                String error = json.getString("Errors");
-                new AlertDialog.Builder(getBaseContext()).setTitle(R.string.txt_error).setMessage(error).setNeutralButton(R.string.bt_close, null).show();
+            } else if (json.getInt("ResponseCode") == 500) {
+
+                JSONArray errors = json.getJSONArray("Errors");
+                ArrayList<String> errorArray = new ArrayList<String>();
+
+                for (int i = 0; i < errors.length(); i++) {
+
+                    errorArray.add(errors.getJSONObject(i).getString("Message"));
+
+                }
+
+                if (errorArray.size() != 0) {
+                    String msg = "";
+                    for (String s : errorArray) {
+                        msg += "- " + s + "\n";
+                    }
+                    new AlertDialog.Builder(this).setTitle(R.string.txt_error).setMessage(msg.trim()).setNeutralButton(R.string.bt_close, null).show();
+
+                }
             }
 
         } catch (Exception e) {
