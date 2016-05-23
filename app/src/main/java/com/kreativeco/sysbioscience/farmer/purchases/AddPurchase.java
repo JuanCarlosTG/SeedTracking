@@ -248,6 +248,7 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
                 CurrentDataPurchases.setSaleIdMunicipality(jsonObjectData.getInt("IdMunicipio"));
                 CurrentDataPurchases.setSaleRequest(jsonObjectData.getString("IdSolicitud"));
                 CurrentDataPurchases.setSaleNumberAgreement(jsonObjectData.getString("NoConvenio"));
+                CurrentDataPurchases.setSaleSeedLote(jsonObjectData.getString("LoteSemilla"));
 
                 ListIds.setIdState(CurrentDataPurchases.getSaleIdState());
                 ListIds.setIdSellType(CurrentDataPurchases.getSaleIdTypeSell());
@@ -257,6 +258,7 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
                 txtBill.setText(CurrentDataPurchases.getSaleNumberAgreement());
                 txtBill.setEnabled(false);
                 txtCantity.setText(CurrentDataPurchases.getSalesCantity());
+                txtSeedLote.setText(CurrentDataPurchases.getSaleSeedLote());
 
                 btnState.setText(CurrentDataPurchases.getSaleNameState());
                 btnMunicipality.setText(CurrentDataPurchases.getSaleNameMunicipality());
@@ -321,7 +323,7 @@ public class AddPurchase extends SectionActivity implements WebBridge.WebBridgeL
         try {
             if(json.getInt("ResponseCode") == 200){
                 ListIds.clear();
-                //TODO
+
                 if(json.getBoolean("IsValid")) {
                     finish();
                     overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);

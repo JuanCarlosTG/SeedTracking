@@ -1,6 +1,8 @@
 package com.kreativeco.sysbioscience.farmers;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -164,32 +166,27 @@ public class HomeFarmer extends SectionActivity {
     }
 
     public void askForLogout(){
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.alert_dialog_logout);
-        dialog.setTitle("¿Está seguro que quiere cerrar la sesión?");
-        dialog.show();
 
-        Button btnClose = (Button) dialog.findViewById(R.id.btn_cancel);
-        Button btnEdit = (Button) dialog.findViewById(R.id.btn_logout);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 
-
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
+        dialog.setMessage("¿Está seguro que quiere cerrar la sesión?");
+        dialog.setCancelable(false);
+        dialog.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                dialogo1.cancel();
                 User.clear(HomeFarmer.this);
                 Intent login = new Intent(HomeFarmer.this, LoginActivity.class);
                 startActivity(login);
                 finish();
             }
         });
-
-        btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
+        dialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialogo1, int id) {
+                dialogo1.dismiss();
             }
         });
+        dialog.show();
+
     }
 }
 

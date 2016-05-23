@@ -86,8 +86,6 @@ public class Profile extends Fragment implements WebBridge.WebBridgeListener {
         if (txtEmail.getText().length() < 1) errors.add(getString(R.string.txt_error_mail));
         if (!txtPass.getText().toString().equals(txtConfirmPass.getText().toString()))
             errors.add(getString(R.string.txt_error_confirm_pass));
-        if (txtPass.getText().toString().length() < 3)
-            errors.add(getString(R.string.txt_error_size_pass));
 
         if (errors.size() != 0) {
             String msg = "";

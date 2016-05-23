@@ -22,6 +22,7 @@ public class CurrentDataPurchases {
     private static String saleTypeSell          = "";
     private static String saleSeed              = "";
     private static String saleVariety           = "";
+    private static String saleSeedLote          = "";
 
     public static String getSalesCantity() {
         return salesCantity;
@@ -158,5 +159,13 @@ public class CurrentDataPurchases {
 
     public static void setSaleIdVariety(int saleIdVariety) {
         CurrentDataPurchases.saleIdVariety = saleIdVariety;
+    }
+
+    public static String getSaleSeedLote() {
+        return saleSeedLote;
+    }
+
+    public static void setSaleSeedLote(String saleSeedLote) {
+        CurrentDataPurchases.saleSeedLote = saleSeedLote;
     }
 }

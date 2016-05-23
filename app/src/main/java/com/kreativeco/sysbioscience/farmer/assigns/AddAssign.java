@@ -192,7 +192,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("loteSemilla", txtSeedLote.getText().toString());
         params.put("superficie", txtArea.getText().toString());
         params.put("fechaSiembra", btnDateSeed.getText().toString());
-        params.put("IdStatusAsignacion", 1);
+        params.put("IdStatusAsignacion", "1");
         params.put("Token", User.getToken(this));
 
         params.put("metodo", "insertar");
