@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataProperties;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataPurchases;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
 import com.kreativeco.sysbioscience.utils.ListMunicipalityRequest;
@@ -33,7 +34,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
     JSONObject jsonObjectData;
 
     Button btnPossession, btnState, btnLocality, btnCoordinates, btnAddProperty;
-    EditText txtNameProperty, txtReferences;
+    EditText txtNameProperty, txtReferences, txtArea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         btnAddProperty  = (Button) findViewById(R.id.btn_add_property);
         txtNameProperty = (EditText) findViewById(R.id.txt_name_possession);
         txtReferences   = (EditText) findViewById(R.id.txt_references);
+        txtArea   = (EditText) findViewById(R.id.txt_area);
 
         btnCoordinates.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,8 +251,15 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
                 btnPossession.setText(CurrentDataProperties.getPropertyTipoPredio());
                 btnState.setText(CurrentDataProperties.getPropertyNombreEstado());
                 btnLocality.setText(CurrentDataProperties.getPropertyNombreMunicipio());
+                txtArea.setText(Integer.toString(CurrentDataProperties.getPropertySuperficie()));
 
-                //btnCoordinates  = (Button) findViewById(R.id.btn_coordinates);
+                if(CurrentDataProperties.getPropertyPoligono().contains("POINT"))
+                    btnCoordinates.setText("Coordenadas - 1 Punto");
+                else {
+                    String [] countPoints = CurrentDataProperties.getPropertyPoligono().split(",");
+                    String coordinates = Integer.toString(countPoints.length);
+                    btnCoordinates.setText("Coordenadas - " + coordinates + " Puntos");
+                }
 
                 Log.e("Jsondata PROPERTIES", jsonObjectData.toString());
             } catch (JSONException jsonException) {
