@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataProperties;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.ListMunicipality;
 import com.kreativeco.sysbioscience.utils.ListMunicipalityRequest;
@@ -31,6 +33,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
     JSONObject jsonObjectData;
 
     Button btnPossession, btnState, btnLocality, btnCoordinates, btnAddProperty;
+    EditText txtNameProperty, txtReferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         btnLocality     = (Button) findViewById(R.id.btn_locality);
         btnCoordinates  = (Button) findViewById(R.id.btn_coordinates);
         btnAddProperty  = (Button) findViewById(R.id.btn_add_property);
+        txtNameProperty = (EditText) findViewById(R.id.txt_name_possession);
+        txtReferences   = (EditText) findViewById(R.id.txt_references);
 
         btnCoordinates.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +105,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
 
             if (option == 1) {
                 String json = intent.getStringExtra("jsonData");
-                //handleJSON(json);
+                handleJSON(json);
                 btnAddProperty.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -218,61 +223,41 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
     public void selectSeedType(View view) {
         Intent listSeedType = new Intent(AddProperty.this, ListSeedType.class);
         startActivityForResult(listSeedType, 8);
-    }
+    }*/
 
     public void handleJSON(String json) {
         if (!json.isEmpty()) {
             try {
                 jsonObjectData = new JSONObject(json);
 
-                CurrentDataAssigns.setAssignId(jsonObjectData.getInt("Id"));
-                CurrentDataAssigns.setAssignIdPurchase(jsonObjectData.getInt("IdCompra"));
-                CurrentDataAssigns.setAssignIdFarmer(jsonObjectData.getInt("IdAgricultor"));
-                CurrentDataAssigns.setAssignIdVariety(jsonObjectData.getInt("IdVariedad"));
-                CurrentDataAssigns.setAssignIdUserAssign(jsonObjectData.getInt("IdUsuarioAsignacion"));
-                CurrentDataAssigns.setAssignIdPeriod(jsonObjectData.getInt("IdCiclo"));
-                CurrentDataAssigns.setAssignCantity(jsonObjectData.getInt("CantidadKG"));
-                CurrentDataAssigns.setAssignIdProperty(jsonObjectData.getInt("IdPredio"));
-                CurrentDataAssigns.setAssignIdSeedType(jsonObjectData.getInt("IdTipoSiembra"));
-                CurrentDataAssigns.setAssignArea(jsonObjectData.getInt("SuperficieSiembra"));
-                CurrentDataAssigns.setAssignIdAssignStatus(jsonObjectData.getInt("IdStatusAsignacion"));
-
-                CurrentDataAssigns.setAssignVariety(jsonObjectData.getString("Variedad"));
-                CurrentDataAssigns.setAssignPeriod(jsonObjectData.getString("Ciclo"));
-                CurrentDataAssigns.setAssignProperty(jsonObjectData.getString("Predio"));
-                CurrentDataAssigns.setAssignSeedType(jsonObjectData.getString("TipoSiembra"));
-                CurrentDataAssigns.setAssignStatus(jsonObjectData.getString("StatusAsignacion"));
-                CurrentDataAssigns.setAssignDateSeed(jsonObjectData.getString("FechaSiembra"));
-                CurrentDataAssigns.setAssignStages(jsonObjectData.getString("Etapas"));
-                CurrentDataAssigns.setAssignBeaconObj(jsonObjectData.getString("BeaconObj"));
+                CurrentDataProperties.setPropertyId(jsonObjectData.getInt("Id"));
+                CurrentDataProperties.setPropertyIdAgricultor(jsonObjectData.getInt("IdAgricultor"));
+                CurrentDataProperties.setPropertyIdTipoPredio(jsonObjectData.getInt("IdTipoPredio"));
+                CurrentDataProperties.setPropertyIdEstado(jsonObjectData.getInt("IdEstado"));
+                CurrentDataProperties.setPropertyIdMunicipio(jsonObjectData.getInt("IdMunicipio"));
+                CurrentDataProperties.setPropertySuperficie(jsonObjectData.getInt("Superficie"));
+                CurrentDataProperties.setPropertyTipoPredio(jsonObjectData.getString("TipoPredio"));
+                CurrentDataProperties.setPropertyNombre(jsonObjectData.getString("Nombre"));
+                CurrentDataProperties.setPropertyReferencias(jsonObjectData.getString("Referencias"));
+                CurrentDataProperties.setPropertyNombreEstado(jsonObjectData.getString("NombreEstado"));
+                CurrentDataProperties.setPropertyNombreMunicipio(jsonObjectData.getString("NombreMunicipio"));
+                CurrentDataProperties.setPropertyPoligono(jsonObjectData.getString("Poligono"));
 
 
-                HashMap<String, Object> params = new HashMap<>();
+                txtNameProperty.setText(CurrentDataProperties.getPropertyNombre());
+                txtReferences.setText(CurrentDataProperties.getPropertyReferencias());
+                btnPossession.setText(CurrentDataProperties.getPropertyTipoPredio());
+                btnState.setText(CurrentDataProperties.getPropertyNombreEstado());
+                btnLocality.setText(CurrentDataProperties.getPropertyNombreMunicipio());
 
-                params.put("metodo", "consultarPorAgricultor");
-                params.put("idAgricultor", CurrentDataFarmer.getFarmerId());
-                WebBridge.send("Compras.ashx", params, "Obteniendo compras", this, this);
+                //btnCoordinates  = (Button) findViewById(R.id.btn_coordinates);
 
-                *//*ListIds.setIdState(CurrentDataPurchases.getSaleIdState());
-                ListIds.setIdSellType(CurrentDataPurchases.getSaleIdTypeSell());
-                ListIds.setIdVariety(CurrentDataPurchases.getSaleIdVariety());
-                ListIds.setIdLocality(CurrentDataPurchases.getSaleIdMunicipality());*//*
-
-                txtVariety.setText(CurrentDataAssigns.getAssignVariety());
-                txtCantity.setText(Integer.toString(CurrentDataAssigns.getAssignCantity()));
-
-                btnProperty.setText(CurrentDataAssigns.getAssignProperty());
-                btnSellType.setText(CurrentDataAssigns.getAssignSeedType());
-                btnDateSeed.setText(CurrentDataAssigns.getAssignDateSeed());
-                btnPeriod.setText(CurrentDataAssigns.getAssignPeriod());
-                txtArea.setText(Integer.toString(CurrentDataAssigns.getAssignArea()));
-
-                Log.e("Jsondata", jsonObjectData.toString());
+                Log.e("Jsondata PROPERTIES", jsonObjectData.toString());
             } catch (JSONException jsonException) {
                 Log.e("JSON", jsonException.toString());
             }
         }
-    }*/
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

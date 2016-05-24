@@ -103,8 +103,8 @@ public class Profile extends Fragment implements WebBridge.WebBridgeListener {
         params.put("mail",          txtEmail.getText().toString());
         params.put("password",      txtPass.getText().toString());
         params.put("nombre",        txtName.getText().toString());
-        params.put("apellidoP",     txtLastNameA.getText().toString());
-        params.put("apellidoM",     txtLastNameB.getText().toString());
+        params.put("apellidoPaterno",     txtLastNameA.getText().toString());
+        params.put("apellidoMaterno",     txtLastNameB.getText().toString());
 
         WebBridge.send("Login.ashx?update", params, getString(R.string.txt_sending), getActivity(), this);
 
@@ -117,7 +117,7 @@ public class Profile extends Fragment implements WebBridge.WebBridgeListener {
         try {
             if (json.getInt("ResponseCode") == 200) {
 
-                JSONArray jsonArrayNews = json.getJSONArray("Object");
+                JSONObject jsonArrayProfile = json.getJSONObject("Object");
 
             } else if (json.getInt("ResponseCode") == 500) {
 
