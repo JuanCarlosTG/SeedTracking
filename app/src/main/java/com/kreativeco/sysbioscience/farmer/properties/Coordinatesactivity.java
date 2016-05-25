@@ -19,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -32,8 +33,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.kreativeco.sysbioscience.R;
+import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataProperties;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.PermissionUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -59,6 +64,7 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
     ArrayList<Polyline> polylineArrayList = new ArrayList<>();
 
     private int pinsCounter = 0;
+    private int option = 0;
 
     private int currentApiVersion;
     private boolean isLocationEnable = false;
@@ -95,11 +101,79 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
             });
         }
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            option = intent.getIntExtra("option", 0);
+        }
+
         setContentView(R.layout.activity_coordinates);
         overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+    }
+
+    public void preparePins() {
+
+        String points = CurrentDataProperties.getPropertyPoligono();
+        if(points.contains("POINT")){
+            points = points.replace("POINT", "");
+        } else if(points.contains("POLYGON")){
+            points = points.replace("POLYGON", "");
+            points = points.replace(",", "");
+        }
+
+        points = points.replace("(", "");
+        points = points.replace(")", "");
+        points = points.replaceFirst(" ", "");
+
+        String [] arrayCoordinates = points.split(" ");
+
+        if (arrayCoordinates.length == 2){
+
+            firstPin = new LatLng(Double.parseDouble(arrayCoordinates[1]), Double.parseDouble(arrayCoordinates[0]));
+            currentPin = firstPin;
+            addNewPin(null);
+
+        }else if(arrayCoordinates.length > 2){
+
+            for(int i = 0; i < arrayCoordinates.length; i += 2){
+
+                firstPin = new LatLng(Double.parseDouble(arrayCoordinates[ i + 1]), Double.parseDouble(arrayCoordinates[i]));
+                currentPin = firstPin;
+                addNewPin(null);
+
+            }
+
+            for (int i = 0; i < markerArrayList.size(); i++) {
+
+                if (i != (markerArrayList.size() - 1)) {
+                    Polyline line = mMap.addPolyline(new PolylineOptions()
+                            .add(new LatLng(markerArrayList.get(i).getPosition().latitude,
+                                            markerArrayList.get(i).getPosition().longitude),
+                                    new LatLng(markerArrayList.get(i + 1).getPosition().latitude,
+                                            markerArrayList.get(i + 1).getPosition().longitude))
+                            .width(5)
+                            .color(Color.parseColor("#74C302")));
+
+                    polylineArrayList.add(line);
+                } else {
+                    Polyline line = mMap.addPolyline(new PolylineOptions()
+                            .add(new LatLng(markerArrayList.get(i).getPosition().latitude,
+                                            markerArrayList.get(i).getPosition().longitude),
+                                    new LatLng(markerArrayList.get(0).getPosition().latitude,
+                                            markerArrayList.get(0).getPosition().longitude))
+                            .width(5)
+                            .color(Color.parseColor("#74C302")));
+                    polylineArrayList.add(line);
+                }
+
+            }
+
+        }
+
+
 
     }
 
@@ -183,10 +257,10 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
     @Override
     protected void onResume() {
         super.onResume();
-        if (mShowPermissionDeniedDialog) {
+        /*if (mShowPermissionDeniedDialog) {
             PermissionUtils.PermissionDeniedDialog.newInstance(false).show(getSupportFragmentManager(), "dialog");
             mShowPermissionDeniedDialog = false;
-        }
+        }*/
     }
 
     @Override
@@ -196,6 +270,8 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
         lastPin = new LatLng(location.getLatitude(), location.getLongitude());
         firstPin = lastPin;
         currentPin = lastPin;
+
+        preparePins();
 
         myLastLocation = location;
 

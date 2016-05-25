@@ -31,6 +31,7 @@ import java.net.Inet4Address;
  */
 public class AddProperty extends SectionActivity implements WebBridge.WebBridgeListener{
 
+    private int option;
     JSONObject jsonObjectData;
 
     Button btnPossession, btnState, btnLocality, btnCoordinates, btnAddProperty;
@@ -51,14 +52,6 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         txtNameProperty = (EditText) findViewById(R.id.txt_name_possession);
         txtReferences   = (EditText) findViewById(R.id.txt_references);
         txtArea   = (EditText) findViewById(R.id.txt_area);
-
-        btnCoordinates.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent coordinates = new Intent(AddProperty.this, CoordinatesActivity.class);
-                startActivityForResult(coordinates, 10);
-            }
-        });
 
         setTitle("PREDIOS");
 
@@ -93,25 +86,45 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
         Intent intent = getIntent();
         if (intent != null) {
 
-            int option = intent.getIntExtra("option", 0);
+            option = intent.getIntExtra("option", 0);
+
             if (option == 0) {
                 btnAddProperty.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //saveAssign();
-
                     }
                 });
+
+                btnCoordinates.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent coordinates = new Intent(AddProperty.this, CoordinatesActivity.class);
+                        coordinates.putExtra("option", option);
+                        startActivityForResult(coordinates, 10);
+                    }
+                });
+
                 return;
             }
 
             if (option == 1) {
-                String json = intent.getStringExtra("jsonData");
+                final String json = intent.getStringExtra("jsonData");
                 handleJSON(json);
                 btnAddProperty.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //updateAssign();
+                    }
+                });
+
+                btnCoordinates.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent coordinates = new Intent(AddProperty.this, CoordinatesActivity.class);
+                        coordinates.putExtra("jsonData", json);
+                        coordinates.putExtra("option", option);
+                        startActivityForResult(coordinates, 10);
                     }
                 });
             }
@@ -256,6 +269,7 @@ public class AddProperty extends SectionActivity implements WebBridge.WebBridgeL
                 if(CurrentDataProperties.getPropertyPoligono().contains("POINT"))
                     btnCoordinates.setText("Coordenadas - 1 Punto");
                 else {
+
                     String [] countPoints = CurrentDataProperties.getPropertyPoligono().split(",");
                     String coordinates = Integer.toString(countPoints.length);
                     btnCoordinates.setText("Coordenadas - " + coordinates + " Puntos");
