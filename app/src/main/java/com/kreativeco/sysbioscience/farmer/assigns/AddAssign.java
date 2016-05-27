@@ -41,8 +41,6 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
     TextView txtVariety;
     Button btnPurchases, btnPeriod, btnProperty, btnSellType, btnDateSeed;
     Button btnAddSeed;
-    int idState, idMunicipality, idVariety, idSellType;
-    String stateName, municipalityName, varietyName, sellTypeName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

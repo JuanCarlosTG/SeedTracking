@@ -19,7 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -36,9 +36,6 @@ import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.farmer.currentdatas.CurrentDataProperties;
 import com.kreativeco.sysbioscience.utils.ListIds;
 import com.kreativeco.sysbioscience.utils.PermissionUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -101,6 +98,7 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
             });
         }
 
+
         Intent intent = getIntent();
         if (intent != null) {
             option = intent.getIntExtra("option", 0);
@@ -108,6 +106,17 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
 
         setContentView(R.layout.activity_coordinates);
         overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
+
+
+        ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
+        headerBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                overridePendingTransition(R.anim.slide_right_from, R.anim.slide_right);
+            }
+        });
+
 
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -188,7 +197,7 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
 
     private boolean checkReady() {
         if (mMap == null) {
-            //Toast.makeText(this, R.string.txt_gps_alert, Toast.LENGTH_SHORT).show();
+
             return false;
         }
         return true;
@@ -388,7 +397,6 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
 
             }
         }
-
 
         Log.e("onMarkerDragEnd", marker.getPosition().toString());
         Log.e("onMarkerDragEnd", markerArrayList.size() + "");

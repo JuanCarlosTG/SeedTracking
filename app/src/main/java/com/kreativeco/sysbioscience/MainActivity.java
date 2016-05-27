@@ -117,12 +117,6 @@ public class MainActivity extends AppCompatActivity implements WebBridge.WebBrid
             case R.id.profile:
                 fragmentClass = Profile.class;
                 break;
-            /*case R.id.bitacoras:
-                fragmentClass = Profile.class;
-                break;
-            case R.id.etapas:
-                fragmentClass = Logout.class;
-                break;*/
             default:
                 fragmentClass = News.class;
                 break;
