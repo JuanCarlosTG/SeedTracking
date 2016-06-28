@@ -63,9 +63,11 @@ public class ListPurchases extends SectionActivity implements WebBridge.WebBridg
         try {
             boolean status = json.getInt("ResponseCode") == 200;
             if (status) {
+
                 JSONArray purchases = json.getJSONArray("Object");
                 RecyclerView.Adapter rvAdapter = new PurchasesListElementAdapter(purchases, this);
                 recyclerList.setAdapter(rvAdapter);
+
             } else if (json.getInt("ResponseCode") == 500) {
 
                 JSONArray errors = json.getJSONArray("Errors");

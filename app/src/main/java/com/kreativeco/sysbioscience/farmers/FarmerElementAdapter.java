@@ -44,6 +44,7 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
         public ImageView farmerImage;
         public TextView farmerName;
         public TextView farmerSite;
+        public TextView farmerStatus;
         public Button farmerActions;
         public JSONObject farmerData;
 
@@ -57,6 +58,7 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
             farmerImage = (ImageView) itemView.findViewById(R.id.iv_farmer);
             farmerName = (TextView) itemView.findViewById(R.id.tv_name);
             farmerSite = (TextView) itemView.findViewById(R.id.tv_site);
+            farmerStatus = (TextView) itemView.findViewById(R.id.txt_status);
             farmerActions = (Button) itemView.findViewById(R.id.btn_farmer_actions);
             farmerActions.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,6 +153,7 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
             String farmerName = farmer.getString("Nombre") + " "
                     + farmer.getString("ApellidoP") + " "
                     + farmer.getString("ApellidoM");
+            String farmerStatusAssign = farmer.getString("SemillaPorAsignar");
 
             farmerAddress = farmerAddress.equals("null") ? "Sin dirección asignada" : farmerAddress;
 
@@ -175,6 +178,9 @@ public class FarmerElementAdapter extends RecyclerView.Adapter<FarmerElementAdap
             holder.farmerName.setText(farmerName);
             holder.farmerSite.setText(farmerAddress);
             holder.farmerData = farmer;
+
+            if(farmerStatusAssign.equals("false")) holder.farmerStatus.setText("Semilla sin asignar");
+            else if (farmerStatusAssign.equals("true")) holder.farmerStatus.setText("Semilla asignada");
 
             Log.e("Farmer DATA", holder.farmerData.toString());
 

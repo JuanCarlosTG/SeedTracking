@@ -19,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -56,6 +57,8 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
     private LatLng firstPin;
     private LatLng lastPin;
     private LatLng currentPin;
+
+    private Button btnMapEarth, btnMapSatellite;
 
     ArrayList<Marker> markerArrayList = new ArrayList<>();
     ArrayList<Polyline> polylineArrayList = new ArrayList<>();
@@ -107,6 +110,9 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
         setContentView(R.layout.activity_coordinates);
         overridePendingTransition(R.anim.slide_left_from, R.anim.slide_left);
 
+
+        btnMapEarth = (Button) findViewById(R.id.btn_map_earth);
+        btnMapSatellite = (Button) findViewById(R.id.btn_map_satellite);
 
         ImageButton headerBackButton = (ImageButton) findViewById(R.id.i_btn_header);
         headerBackButton.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +198,7 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
         mMap = map;
         mMap.setOnMarkerDragListener(this);
         mMap.setOnMarkerClickListener(this);
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         updateMyLocation();
     }
 
@@ -201,6 +208,18 @@ public class CoordinatesActivity extends AppCompatActivity implements LocationLi
             return false;
         }
         return true;
+    }
+
+    public void setMapEarth(View view){
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        btnMapEarth.setAlpha(0.6f);
+        btnMapSatellite.setAlpha(1.0f);
+    }
+
+    public void setMapSatellite(View view){
+        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        btnMapEarth.setAlpha(1.0f);
+        btnMapSatellite.setAlpha(0.6f);
     }
 
 

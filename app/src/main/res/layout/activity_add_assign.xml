@@ -1,129 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <include layout="@layout/header_with_back"
-        android:id="@+id/header"/>
+    <include
+        android:id="@+id/header"
+        layout="@layout/header_with_back" />
 
     <ImageView
+        android:id="@+id/pleca_green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/pleca_green"
-        android:id="@+id/pleca_green"
-        android:layout_below="@id/header"/>
+        android:layout_below="@id/header"
+        android:background="@drawable/pleca_green" />
 
     <ImageView
+        android:id="@+id/pleca_blue"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/pleca_blue"
         android:layout_below="@+id/pleca_green"
-        android:id="@+id/pleca_blue"/>
+        android:background="@drawable/pleca_blue" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:layout_toEndOf="@+id/pleca_blue"
+        android:layout_toRightOf="@+id/pleca_blue"
+        android:background="#FFFFFF">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF"
-            android:layout_below="@+id/header"
-            android:layout_toRightOf="@+id/pleca_blue"
-            android:layout_toEndOf="@+id/pleca_blue"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView style="@style/et_farmer"
+            <TextView
                 android:id="@+id/txt_year"
+                style="@style/et_farmer"
                 android:layout_marginTop="20sp"
-                android:text="Año 2016"/>
-
-            <Button style="@style/et_farmer"
-                android:id="@+id/btn_purchases"
-                android:onClick="selectPurchases"
-                android:drawableRight="@drawable/ic_arrow"
-                android:hint="Compra"/>
-
-            <TextView style="@style/et_farmer"
-                android:id="@+id/txt_variety"
-                android:layout_marginTop="20sp"
-                android:text="-----"/>
-
-            <Button style="@style/et_farmer"
-                android:id="@+id/btn_period"
-                android:onClick="selectPeriod"
-                android:drawableRight="@drawable/ic_arrow"
-                android:hint="Periodo"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <EditText style="@style/et_farmer"
-                    android:id="@+id/txt_cantity"
-                    android:inputType="phone"
-                    android:hint="@string/txt_sell_5"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sacos"
-                    android:layout_centerVertical="true"
-                    android:layout_alignEnd="@+id/txt_cantity"
-                    android:layout_alignRight="@+id/txt_cantity"/>
-
-            </RelativeLayout>
-
-            <Button style="@style/et_farmer"
-                android:id="@+id/btn_property"
-                android:onClick="selectProperty"
-                android:drawableRight="@drawable/ic_arrow"
-                android:hint="Predio"/>
-
-            <Button style="@style/et_farmer"
-                android:id="@+id/btn_sell_type"
-                android:onClick="selectSeedType"
-                android:drawableRight="@drawable/ic_arrow"
-                android:hint="@string/txt_sell_6"/>
-
-            <EditText style="@style/et_farmer"
-                android:id="@+id/txt_seed_lote"
-                android:inputType="text"
-                android:hint="Lote de semilla"/>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <EditText style="@style/et_farmer"
-                    android:id="@+id/txt_area"
-                    android:inputType="number"
-                    android:hint="Superficie a sembrar"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ha"
-                    android:layout_centerVertical="true"
-                    android:layout_alignEnd="@+id/txt_area"
-                    android:layout_alignRight="@+id/txt_area"/>
-
-            </RelativeLayout>
-
-            <Button style="@style/et_farmer"
-                android:id="@+id/btn_date"
-                android:drawableRight="@drawable/ic_arrow"
-                android:hint="Fecha de siembra"/>
+                android:text="Año 2016" />
 
             <Button
+                android:id="@+id/btn_purchases"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="Compra"
+                android:onClick="selectPurchases" />
+
+            <TextView
+                android:id="@+id/txt_variety"
+                style="@style/et_farmer"
+                android:layout_marginTop="20sp"
+                android:text="-----" />
+
+            <Button
+                android:id="@+id/btn_period"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="Periodo"
+                android:onClick="selectPeriod" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txt_cantity"
+                    style="@style/et_farmer"
+                    android:hint="@string/txt_sell_5"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/txt_cantity"
+                    android:layout_alignRight="@+id/txt_cantity"
+                    android:layout_centerVertical="true"
+                    android:text="Sacos" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_property"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="Predio"
+                android:onClick="selectProperty" />
+
+            <Button
+                android:id="@+id/btn_sell_type"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_6"
+                android:onClick="selectSeedType" />
+
+            <!--<EditText
+                android:id="@+id/txt_seed_lote"
+                style="@style/et_farmer"
+                android:hint="Lote de semilla"
+                android:inputType="text" />-->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txt_area"
+                    style="@style/et_farmer"
+                    android:hint="Superficie a sembrar"
+                    android:inputType="number" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/txt_area"
+                    android:layout_alignRight="@+id/txt_area"
+                    android:layout_centerVertical="true"
+                    android:text="has" />
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_date"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="Fecha de siembra" />
+
+            <Button
+                android:id="@+id/btn_add_seed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10sp"
                 android:background="@drawable/button_login"
-                android:text="@string/btn_send"
-                android:textSize="12sp"
                 android:padding="2sp"
+                android:text="@string/btn_send"
                 android:textColor="@color/colorWhite"
-                android:id="@+id/btn_add_seed"/>
+                android:textSize="12sp" />
 
 
         </LinearLayout>
+
+    </ScrollView>
+
 
 </RelativeLayout>

@@ -34,6 +34,7 @@ public class PurchasesListElementAdapter extends RecyclerView.Adapter<PurchasesL
         public int idPurchaseVariety;
         public String numberPurchase;
         public String varietyPurchase;
+        public String varietyDescPurchase;
 
         public PurchasesViewHolder(final View itemView) {
             super(itemView);
@@ -49,6 +50,7 @@ public class PurchasesListElementAdapter extends RecyclerView.Adapter<PurchasesL
 
                     ListIds.setNamePurchase(numberPurchase);
                     ListIds.setVarietyPurchase(varietyPurchase);
+                    ListIds.setVarietyDescPurchase(varietyDescPurchase);
                     ListIds.setIdPurchase(idPurchase);
                     ListIds.setIdPurchaseVariety(idPurchaseVariety);
 
@@ -85,14 +87,16 @@ public class PurchasesListElementAdapter extends RecyclerView.Adapter<PurchasesL
 
             String purchaseNumber = purchase.getString("NoConvenio");
             String purchaseVariety = purchase.getString("Variedad");
+            String purchaseVarietyDesc = purchase.getString("VariedadDesc");
             int purchaseId  = purchase.getInt("Id");
             int purchaseVarietyId = purchase.getInt("IdVariedad");
 
-            holder.txtSate.setText(purchaseNumber);
+            holder.txtSate.setText(purchaseNumber + " / " + purchaseVariety );
             holder.varietyPurchase = purchaseVariety;
             holder.numberPurchase = purchaseNumber;
             holder.idPurchase = purchaseId;
             holder.idPurchaseVariety = purchaseVarietyId;
+            holder.varietyDescPurchase = purchaseVarietyDesc;
 
         } catch (JSONException jsonE) {
 

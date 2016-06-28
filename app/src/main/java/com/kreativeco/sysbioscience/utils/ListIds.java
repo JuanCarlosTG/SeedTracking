@@ -17,6 +17,8 @@ public class ListIds {
     private static int idPurchaseVariety = -1;
     private static String namePurchase = "";
     private static String varietyPurchase = "";
+    private static String varietyDescPurchase = "";
+
 
     private static int idProperty = -1;
     private static String nameProperty = "";
@@ -210,5 +212,13 @@ public class ListIds {
 
     public static void setStringCoordinatesCounter(String stringCoordinatesCounter) {
         ListIds.stringCoordinatesCounter = stringCoordinatesCounter;
+    }
+
+    public static String getVarietyDescPurchase() {
+        return varietyDescPurchase;
+    }
+
+    public static void setVarietyDescPurchase(String varietyDescPurchase) {
+        ListIds.varietyDescPurchase = varietyDescPurchase;
     }
 }
