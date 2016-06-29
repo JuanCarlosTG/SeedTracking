@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kms"
+                android:text="Has"
                 android:layout_centerVertical="true"
                 android:layout_alignEnd="@+id/txt_area"
                 android:layout_alignRight="@+id/txt_area"/>

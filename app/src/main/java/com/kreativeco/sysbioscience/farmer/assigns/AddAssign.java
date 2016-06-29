@@ -37,7 +37,7 @@ import java.util.HashMap;
 public class AddAssign extends SectionActivity implements WebBridge.WebBridgeListener{
 
     JSONObject jsonObjectData;
-    EditText txtCantity, txtSeedLote, txtArea;
+    EditText txtCantity, txtArea;
     TextView txtVariety;
     Button btnPurchases, btnPeriod, btnProperty, btnSellType, btnDateSeed;
     Button btnAddSeed;
@@ -51,7 +51,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
 
         txtVariety = (TextView) findViewById(R.id.txt_variety);
         txtCantity = (EditText) findViewById(R.id.txt_cantity);
-        txtSeedLote = (EditText) findViewById(R.id.txt_seed_lote);
+        //txtSeedLote = (EditText) findViewById(R.id.txt_seed_lote);
         txtArea = (EditText) findViewById(R.id.txt_area);
 
         btnPurchases = (Button) findViewById(R.id.btn_purchases);
@@ -143,7 +143,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("cantidad", txtCantity.getText().toString());
         params.put("idPredio", ListIds.getIdProperty());
         params.put("idTipoSiembra", ListIds.getIdSeedType());
-        params.put("loteSemilla", txtSeedLote.getText().toString());
+        //params.put("loteSemilla", txtSeedLote.getText().toString());
         params.put("superficie", txtArea.getText().toString());
         params.put("fechaSiembra", "2016-05-31");
         params.put("IdStatusAsignacion", 1);
@@ -187,7 +187,7 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
         params.put("cantidad", txtCantity.getText().toString());
         params.put("idPredio", ListIds.getIdProperty());
         params.put("idTipoSiembra", ListIds.getIdSeedType());
-        params.put("loteSemilla", txtSeedLote.getText().toString());
+        //params.put("loteSemilla", txtSeedLote.getText().toString());
         params.put("superficie", txtArea.getText().toString());
         params.put("fechaSiembra", btnDateSeed.getText().toString());
         params.put("IdStatusAsignacion", "1");
@@ -280,8 +280,8 @@ public class AddAssign extends SectionActivity implements WebBridge.WebBridgeLis
 
         if (requestCode == 5) {
             if (resultCode == 5) {
-                txtVariety.setText(ListIds.getVarietyPurchase());
-                btnPurchases.setText(ListIds.getNamePurchase());
+                txtVariety.setText(ListIds.getVarietyDescPurchase());
+                btnPurchases.setText(ListIds.getNamePurchase() + " - " + ListIds.getVarietyPurchase());
             }
         }
 
