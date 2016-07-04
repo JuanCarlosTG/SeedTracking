@@ -78,7 +78,7 @@ public class CustomMenuAdapter extends ArrayAdapter<ListModelMenu> {
 
     public void hideSubmenu(ListModelMenuHolder holder, int position) {
 
-        if(position == 4){
+        if(position == 5){
             holder.separator.setVisibility(View.GONE);
             //holder.textView.setLayoutParams(params);
         }

@@ -2,7 +2,6 @@ package com.kreativeco.sysbioscience.home;
 
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -11,11 +10,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kreativeco.sysbioscience.News;
@@ -24,6 +21,7 @@ import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
 import com.kreativeco.sysbioscience.login.LoginActivity;
 import com.kreativeco.sysbioscience.login.profile.Profile;
+import com.kreativeco.sysbioscience.FastBuyActivity;
 import com.kreativeco.sysbioscience.utils.User;
 
 public class HomeActivity extends SectionActivity{
@@ -107,10 +105,14 @@ public class HomeActivity extends SectionActivity{
                     setTitle("Perfil");
                     getFragmentManager().beginTransaction().replace(R.id.flContent, profile).commit();
                 } else if (position == 4) {
+                    setTitle("Compra Rápida");
+                    FastBuyActivity fastBuy = new FastBuyActivity();
+                    getFragmentManager().beginTransaction().replace(R.id.flContent, fastBuy).commit();
+                } else if (position == 5) {
                     setTitle("Acerca De");
                     AboutFragment about = new AboutFragment();
                     getFragmentManager().beginTransaction().replace(R.id.flContent, about).commit();
-                } else if(position == 5){
+                } else if(position == 6){
                     askForLogout();
                 }
                 mDrawer.closeDrawers();

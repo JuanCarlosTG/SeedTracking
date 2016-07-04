@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:id="@+id/pleca_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_pleca_blue"
+        android:background="@drawable/pleca_green" />
+
+    <ImageView
+        android:id="@+id/pleca_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pleca_green"
+        android:background="@drawable/pleca_blue" />
+
+    <LinearLayout
+        android:id="@+id/ll_pleca_blue"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_pleca_blue"
+        android:layout_toEndOf="@+id/pleca_blue"
+        android:layout_toRightOf="@+id/pleca_blue"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTxt_farmer"
+                style="@style/et_farmer"
+                android:layout_marginTop="50sp"
+                android:text="Agricultor"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_stage"
+                style="@style/et_farmer"
+                android:text="Etapa"
+                android:textColor="@color/colorGray" />
+
+            <Button
+                android:id="@+id/btn_sell_date"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="Fecha de siembra"
+                android:onClick="select_date_sowing" />
+
+            <EditText
+                android:id="@+id/editTxt_kg_bone_hectaria"
+                style="@style/et_farmer"
+                android:text="KG Hueso/Hectária"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_feather_hectaria"
+                style="@style/et_farmer"
+                android:text="Pluma/Hectária"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_percent_fiber"
+                style="@style/et_farmer"
+                android:text="% Fibra"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_bales_hectarias"
+                style="@style/et_farmer"
+                android:text="Pacas/Hectária"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_longitude"
+                style="@style/et_farmer"
+                android:text="Longitud"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_micronaire"
+                style="@style/et_farmer"
+                android:text="Micronaire"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_resistence"
+                style="@style/et_farmer"
+                android:text="Resistencia"
+                android:textColor="@color/colorGray" />
+
+            <EditText
+                android:id="@+id/editTxt_uniformity"
+                style="@style/et_farmer"
+                android:text="Uniformidad"
+                android:textColor="@color/colorGray" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10sp"
+            android:layout_weight="0.2"
+            android:background="@color/colorPrimary"
+            android:text="@string/btn_send"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

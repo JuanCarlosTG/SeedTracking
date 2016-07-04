@@ -23,6 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.kreativeco.sysbioscience.FastBuyActivity;
 import com.kreativeco.sysbioscience.News;
 import com.kreativeco.sysbioscience.R;
 import com.kreativeco.sysbioscience.SectionActivity;
@@ -142,9 +143,14 @@ public class HomeFarmer extends SectionActivity {
                     setTitle("Perfil");
                     getFragmentManager().beginTransaction().replace(R.id.flContent, profile).commit();
                 } else if (position == 4) {
+                    setTitle("Compra Rápida");
+                    FastBuyActivity fastBuy = new FastBuyActivity();
+                    getFragmentManager().beginTransaction().replace(R.id.flContent, fastBuy).commit();
+                } else if (position == 5) {
                     setTitle("Acerca De");
-                    getFragmentManager().beginTransaction().replace(R.id.flContent, aboutFragment).commit();
-                }else if(position == 5){
+                    AboutFragment about = new AboutFragment();
+                    getFragmentManager().beginTransaction().replace(R.id.flContent, about).commit();
+                }else if(position == 6){
                     askForLogout();
                 }
                 mDrawer.closeDrawers();

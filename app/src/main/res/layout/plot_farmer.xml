@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pleca_green"
+        android:id="@+id/pleca_green"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/pleca_blue"
+        android:layout_below="@+id/pleca_green"
+        android:id="@+id/pleca_blue"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_search"
+        android:gravity="center_vertical"
+        android:background="@drawable/search"
+        android:layout_toRightOf="@+id/pleca_green"
+        android:layout_toEndOf="@+id/pleca_green">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_search"
+            android:gravity="center"
+            android:padding="5sp"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:background="@android:color/transparent"
+            android:maxLines="1"
+            android:layout_margin="12sp"
+            android:textSize="12sp"
+            android:hint="Filtrar"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="134dp"
+            android:layout_marginStart="134dp"
+            android:padding="10sp"
+            android:id="@+id/search_farmer"
+            android:background="@drawable/search_icon"
+            android:layout_alignBottom="@+id/txt_search"
+            android:layout_alignLeft="@+id/txt_search"
+            android:layout_alignStart="@+id/txt_search" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20sp"
+            android:layout_marginEnd="20sp"
+            android:id="@+id/btn_close_search"
+            android:padding="5sp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/close_search"/>
+
+    </RelativeLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_farmers"
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/i_btn_add_farmer"
+        android:layout_below="@+id/ll_search"
+        android:layout_toRightOf="@+id/pleca_blue"
+        android:layout_toEndOf="@+id/pleca_blue">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <ImageButton
+        android:id="@+id/i_btn_add_farmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16sp"
+        android:background="@drawable/ic_add"/>
+
+</RelativeLayout>

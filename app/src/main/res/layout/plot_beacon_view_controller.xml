@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/ll_pleca_blue"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:orientation="vertical"
+        android:background="@color/colorPrimaryDark">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_pleca_blue"
+        android:background="@color/colorGray"/>
+
+    <Button
+        android:layout_width="120sp"
+        android:layout_height="40sp"
+        android:id="@+id/btn_pin"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btn_confirm"
+        android:layout_toStartOf="@+id/btn_confirm"
+        android:background="@color/colorPrimary"
+        android:text="@string/btn_add_pin"
+        android:onClick="addNewPin"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:layout_margin="5sp"/>
+
+    <Button
+        android:layout_width="120sp"
+        android:layout_height="40sp"
+        android:id="@+id/btn_confirm"
+        android:text="@string/btn_confirm"
+        android:layout_margin="5sp"
+        android:textStyle="bold"
+        android:onClick="validateCoordinates"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorGreen"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

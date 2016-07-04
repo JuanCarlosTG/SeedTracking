@@ -3,16 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/header_with_back" />
+
+    <ImageView
+        android:id="@+id/pleca_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:background="@drawable/pleca_green" />
+
+    <ImageView
+        android:id="@+id/pleca_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/pleca_green"
+        android:background="@drawable/pleca_blue" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/header"
-        android:keepScreenOn="true"
-        android:scrollbars="none">
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_toEndOf="@+id/pleca_blue"
+        android:layout_toRightOf="@+id/pleca_blue">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,46 +32,87 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/tv_farmer"
-                android:layout_marginTop="20sp"
-                android:text="@string/txt_farmer" />
+                style="@style/et_farmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="AGRICULTOR"
+                android:textColor="@color/colorGreen" />
 
             <EditText
-                android:id="@+id/et_name"
+                android:id="@+id/txt_name"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_1" />
+                android:layout_marginTop="2sp"
+                android:text="Nombre"
+                android:textColor="@color/colorGray" />
 
             <EditText
-                android:id="@+id/et_last_name_a"
+                android:id="@+id/txt_second_name_a"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_2" />
+                android:layout_marginTop="2sp"
+                android:text="Apellido Paterno"
+                android:textColor="@color/colorGray" />
 
             <EditText
-                android:id="@+id/et_last_name_b"
+                android:id="@+id/txt_second_name_b"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_3" />
+                android:layout_marginTop="2sp"
+                android:text="Apellido Materno"
+                android:textColor="@color/colorGray" />
 
             <TextView
-                style="@style/tv_farmer"
-                android:layout_marginTop="20sp"
-                android:text="@string/txt_contact" />
+                style="@style/et_farmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONTACTO"
+                android:textColor="@color/colorGreen" />
 
             <EditText
-                android:id="@+id/et_e_mail"
+                android:id="@+id/txt_email"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_4"
-                android:inputType="textEmailAddress" />
+                android:layout_marginTop="2sp"
+                android:text="Correo"
+                android:textColor="@color/colorGray" />
 
             <EditText
-                android:id="@+id/et_cell"
+                android:id="@+id/txt_phone"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_6"
-                android:inputType="phone" />
+                android:layout_marginTop="2sp"
+                android:text="Telefono"
+                android:textColor="@color/colorGray" />
 
             <TextView
-                style="@style/tv_farmer"
-                android:layout_marginTop="20sp"
-                android:text="@string/txt_location" />
+                style="@style/et_farmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UBICACIÓN"
+                android:textColor="@color/colorGreen" />
+
+            <Button
+                android:id="@+id/btn_state_location"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_2" />
+
+            <Button
+                android:id="@+id/btn_municipality_location"
+                style="@style/et_farmer"
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_3" />
+
+            <TextView
+                style="@style/et_farmer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="COMPRA"
+                android:textColor="@color/colorGreen" />
+
+
+            <EditText
+                android:id="@+id/txt_bill"
+                style="@style/et_farmer"
+                android:layout_marginTop="2sp"
+                android:hint="@string/txt_sell_1" />
+
 
             <Button
                 android:id="@+id/btn_state"
@@ -74,37 +126,45 @@
                 android:drawableRight="@drawable/ic_arrow"
                 android:hint="@string/txt_sell_3" />
 
-            <EditText
-                android:id="@+id/et_address"
+            <Button
+                android:id="@+id/btn_variety"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_10" />
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_4"
+                android:inputType="textEmailAddress" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/txt_cantity"
+                    style="@style/et_farmer"
+                    android:hint="@string/txt_sell_5"
+                    android:inputType="phone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/txt_cantity"
+                    android:layout_alignRight="@+id/txt_cantity"
+                    android:layout_centerVertical="true"
+                    android:text="Sacos" />
+
+            </RelativeLayout>
 
             <EditText
-                android:id="@+id/et_zip"
+                android:id="@+id/txt_seed_lote"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_11"
-                android:inputType="number" />
+                android:hint="Lote de semilla"
+                android:inputType="text" />
 
-            <TextView
-                style="@style/tv_farmer"
-                android:layout_marginTop="20sp"
-                android:text="@string/txt_location" />
-
-            <EditText
-                android:id="@+id/et_company"
+            <Button
+                android:id="@+id/btn_sell_type"
                 style="@style/et_farmer"
-                android:hint="@string/txt_farmer_7" />
+                android:drawableRight="@drawable/ic_arrow"
+                android:hint="@string/txt_sell_6" />
 
-            <EditText
-                android:id="@+id/et_rfc"
-                style="@style/et_farmer"
-                android:hint="@string/txt_farmer_8"
-                android:maxLength="13" />
-
-            <EditText
-                android:id="@+id/et_id"
-                style="@style/et_farmer"
-                android:hint="@string/txt_farmer_9" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -200,13 +260,12 @@
 
 
                     <Button
-                        android:id="@+id/btn_add_farmer"
+                        android:id="@+id/btn_add_sell"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ll_terms"
                         android:layout_centerHorizontal="true"
                         android:background="@drawable/button_login"
-                        android:onClick="saveFarmer"
                         android:padding="2sp"
                         android:text="@string/btn_send"
                         android:textColor="@color/colorWhite"
@@ -216,8 +275,10 @@
 
             </RelativeLayout>
 
-        </LinearLayout>
 
+
+        </LinearLayout>
     </ScrollView>
+
 
 </RelativeLayout>
